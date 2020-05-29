@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">EmployeePortal</string>
+
+    <string name="welcome_title_text">Welcome,\nLet\'s get you started</string>
+    <string name="dummy_text">loremipsum</string>
+</resources>
