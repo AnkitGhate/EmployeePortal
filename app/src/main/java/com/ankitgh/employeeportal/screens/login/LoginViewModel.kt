@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal.screens.onboarding
+package com.ankitgh.employeeportal.screens.login
 
 import androidx.lifecycle.ViewModel
 

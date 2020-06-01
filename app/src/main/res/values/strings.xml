@@ -3,4 +3,5 @@
 
     <string name="welcome_title_text">Welcome,\nLet\'s get you started</string>
     <string name="dummy_text">loremipsum</string>
+    <string name="text_input_layout_username_hint">Cybage ID</string>
 </resources>

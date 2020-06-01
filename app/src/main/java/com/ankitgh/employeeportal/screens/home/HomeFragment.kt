@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal.screens.onboarding
+package com.ankitgh.employeeportal.screens.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,31 +9,33 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.ankitgh.employeeportal.R
 
-class LoginFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     companion object {
-        @JvmStatic
-        fun launchFragment(containerView: Int, fragmentManager: FragmentManager) {
-            val loginFragment = LoginFragment()
+        fun launchFragment(
+            containerView: Int,
+            fragmentManager: FragmentManager
+        ) {
+            val letsGetStartedFragment = HomeFragment()
             val transaction = fragmentManager.beginTransaction()
-            transaction.replace(containerView, loginFragment)
+            transaction.replace(containerView, letsGetStartedFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
     }
 
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
+        return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

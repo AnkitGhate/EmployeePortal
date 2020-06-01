@@ -5,8 +5,8 @@
     android:id="@+id/lgs_fragment_rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_30"
     android:background="@color/colorPrimary"
+    android:padding="@dimen/padding_30"
     tools:context=".screens.onboarding.LetsGetStartedFragment">
 
     <TextView

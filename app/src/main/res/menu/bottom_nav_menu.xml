@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="@color/colorAccent">
+    <item
+        android:id="@+id/home_tab"
+        android:enabled="true"
+        android:icon="@mipmap/menu_icon_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/feed_tab"
+        android:icon="@mipmap/menu_icon_feed"
+        android:title="Feed" />
+    <item
+        android:id="@+id/addressBook_tab"
+        android:icon="@mipmap/menu_icon_address_book"
+        android:title="People" />
+    <item
+        android:id="@+id/settings_tab"
+        android:icon="@mipmap/menu_icon_settings"
+        android:title="Settings" />
+</menu>
