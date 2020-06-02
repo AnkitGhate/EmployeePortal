@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
         android:text="2"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="35sp" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
         android:text="Floating"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="15sp" />
 
 </LinearLayout>

@@ -34,7 +34,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_alignParentEnd="true"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/man_avatar_image" />
 
                 <TextView
                     android:id="@+id/username"
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jostregular"
                     android:text="Ankit Ghate"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/off_white"
                     android:textSize="25sp" />
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/jostregular"
                     android:text="PROJECT"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/off_white" />
 
                 <TextView
                     android:id="@+id/project_name"
@@ -74,7 +74,7 @@
                     android:layout_toRightOf="@id/project_title"
                     android:fontFamily="@font/jostregular"
                     android:text="Cybage Resource Pool"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/off_white" />
 
             </RelativeLayout>
 
@@ -197,6 +197,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal"
             android:weightSum="2"
             app:layout_constraintTop_toBottomOf="@id/leave_balance_cardview">
@@ -261,7 +262,6 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

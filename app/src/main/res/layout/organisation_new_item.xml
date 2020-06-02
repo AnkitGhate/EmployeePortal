@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
         android:maxLines="3"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="15sp"
         tools:text="@string/placeholder_text_for_lists" />
 

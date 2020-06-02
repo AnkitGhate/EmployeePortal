@@ -23,7 +23,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentStart="true"
-                app:srcCompat="@drawable/guy_placeholder_icon" />
+                app:srcCompat="@drawable/man_avatar_image" />
 
             <TextView
                 android:id="@+id/user_title"
@@ -32,7 +32,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/profile_imageview"
                 android:fontFamily="@font/jostregular"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/off_white"
                 android:textSize="18sp"
                 tools:text="Ankit Ghate" />
 
@@ -44,7 +44,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/profile_imageview"
                 android:fontFamily="@font/jostlight"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/off_white"
                 android:textSize="14sp"
                 tools:text="Senior Developer" />
 
@@ -69,7 +69,7 @@
                 android:fontFamily="@font/jostregular"
                 android:maxLines="4"
                 android:text="@string/placeholder_text_paragraph"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/off_white"
                 android:textSize="16sp" />
 
 

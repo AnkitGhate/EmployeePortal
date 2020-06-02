@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
         android:text="09:17"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="35sp" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
         android:text="Average In Time"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="15sp" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/jostlight"
         android:text="08:23"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="35sp" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
         android:text="Actual Work Hour"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/off_white"
         android:textSize="15sp" />
 
 </LinearLayout>
