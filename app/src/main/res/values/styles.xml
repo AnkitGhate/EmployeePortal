@@ -18,4 +18,18 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+
+    <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+        <item name="cardBackgroundColor">@color/colorPrimaryDark</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+
+    <!--app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp"
+    app:contentPadding="16dp"-->
+
 </resources>

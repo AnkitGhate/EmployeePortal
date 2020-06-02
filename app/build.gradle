@@ -47,6 +47,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //Chip Navigation
+    //Docs : https://github.com/ismaeldivita/chip-navigation-bar
     implementation 'com.ismaeldivita.chipnavigation:chip-navigation-bar:1.0.0'
 
 }

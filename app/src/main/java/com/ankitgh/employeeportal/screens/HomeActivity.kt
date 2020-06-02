@@ -24,12 +24,13 @@ class HomeActivity : BaseActivity() {
 
     private fun setUpBottomNavigation() {
         navController = Navigation.findNavController(this, R.id.home_nav_host_fragment)
+
         bottom_chip_navigation_bar.setOnItemSelectedListener {
             when (it) {
-                R.id.home_tab -> navController.navigate(R.id.action_homeFragment_self)
-                R.id.feed_tab -> navController.navigate(R.id.action_homeFragment_to_feedFragment)
-                R.id.addressBook_tab -> navController.navigate(R.id.action_feedFragment_to_addressBookFragment)
-                R.id.settings_tab -> navController.navigate(R.id.action_addressBookFragment_to_settingsFragment)
+                R.id.home_tab -> navController.navigate(R.id.homeFragment)
+                R.id.feed_tab -> navController.navigate(R.id.feedFragment)
+                R.id.addressBook_tab -> navController.navigate(R.id.addressBookFragment)
+                R.id.settings_tab -> navController.navigate(R.id.settingsFragment)
             }
         }
     }

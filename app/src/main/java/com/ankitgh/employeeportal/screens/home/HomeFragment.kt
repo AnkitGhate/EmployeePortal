@@ -16,9 +16,9 @@ class HomeFragment : Fragment() {
             containerView: Int,
             fragmentManager: FragmentManager
         ) {
-            val letsGetStartedFragment = HomeFragment()
+            val homeFragment = HomeFragment()
             val transaction = fragmentManager.beginTransaction()
-            transaction.replace(containerView, letsGetStartedFragment)
+            transaction.replace(containerView, homeFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
