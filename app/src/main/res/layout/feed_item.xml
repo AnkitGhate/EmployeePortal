@@ -2,24 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
 
     <androidx.cardview.widget.CardView
+        style="@style/Widget.App.CardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/profile_imageview"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentStart="true"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:srcCompat="@drawable/guy_placeholder_icon" />
 
             <TextView
                 android:id="@+id/user_title"
@@ -27,7 +31,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/profile_imageview"
-                android:text="TextView" />
+                android:fontFamily="@font/jostregular"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                tools:text="Ankit Ghate" />
 
             <TextView
                 android:id="@+id/designation_title"
@@ -36,7 +43,10 @@
                 android:layout_below="@id/user_title"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/profile_imageview"
-                android:text="TextView" />
+                android:fontFamily="@font/jostlight"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                tools:text="Senior Developer" />
 
             <TextView
                 android:id="@+id/post_time_textview"
@@ -44,7 +54,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/user_title"
                 android:layout_alignParentEnd="true"
-                android:text="TextView" />
+                android:fontFamily="@font/jostregular"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                tools:text="10 min ago" />
 
             <TextView
                 android:id="@+id/feed_body_textview"
@@ -52,9 +65,41 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_imageview"
                 android:layout_marginTop="10dp"
-                android:text="@string/placeholder_text_paragraph" />
+                android:ellipsize="end"
+                android:fontFamily="@font/jostregular"
+                android:maxLines="4"
+                android:text="@string/placeholder_text_paragraph"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feed_body_textview"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_favorite_border" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_favorite_comment" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_favorite_share" />
+
+            </LinearLayout>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

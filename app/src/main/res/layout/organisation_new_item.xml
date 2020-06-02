@@ -6,7 +6,7 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:id="@+id/content_tv"
+        android:id="@+id/news_body_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
@@ -16,19 +16,19 @@
         tools:text="@string/placeholder_text_for_lists" />
 
     <TextView
-        android:id="@+id/content_date_tv"
+        android:id="@+id/news_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/content_tv"
+        android:layout_below="@+id/news_body_textview"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/jostlight"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/grey"
         tools:text="2nd June 2020" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/content_date_tv"
+        android:layout_alignBaseline="@id/news_date_tv"
         android:layout_alignParentRight="true"
         android:fontFamily="@font/jostlight"
         android:textColor="@color/grey"
