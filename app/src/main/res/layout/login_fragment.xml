@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:background="@color/colorPrimary"
+    android:padding="30dp"
     tools:context=".screens.login.LoginFragment">
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jostlight"
+        android:text="Login with credentails registered with your company"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/margin_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
+        android:id="@+id/email_input_layout"
         style="@style/LoginTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,26 +31,28 @@
         android:fontFamily="@font/jostregular"
         android:hint="@string/text_input_layout_username_hint"
         android:textColorHint="@color/colorAccent"
+        app:errorEnabled="true"
         app:hintTextColor="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
+        app:layout_constraintBottom_toTopOf="@+id/password_inputlayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_input_edittext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/jostregular"
-            android:inputType="number"
+            android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:nextFocusDown="@id/textInputLayout5"
-            android:numeric="integer"
+            android:nextFocusDown="@id/password_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout5"
+        android:id="@+id/password_inputlayout"
         style="@style/LoginTextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +61,7 @@
         android:hint="Password"
         android:nextFocusForward="@id/signin_button"
         android:textColorHint="@color/colorAccent"
+        app:errorEnabled="true"
         app:hintTextColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/signin_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +69,16 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_input_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint"
-            android:inputType="textPassword" />
+            android:fontFamily="@font/jostregular"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:nextFocusDown="@id/signin_button"
+            android:singleLine="true"
+            android:textColor="@color/colorAccent"
+            android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -74,5 +96,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="@color/colorPrimaryDark" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signin_button"
+        app:layout_constraintTop_toBottomOf="@+id/password_inputlayout"
+        app:layout_constraintVertical_bias="0.509" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

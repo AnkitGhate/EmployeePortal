@@ -23,5 +23,14 @@
         android:id="@+id/settingsFragment"
         android:name="com.ankitgh.employeeportal.screens.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/settings_fragment">
+        <action
+            android:id="@+id/action_settingsFragment_to_onBoardingActivity"
+            app:destination="@id/onBoardingActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/onBoardingActivity"
+        android:name="com.ankitgh.employeeportal.screens.onboarding.OnBoardingActivity"
+        android:label="activity_onboarding"
+        tools:layout="@layout/activity_onboarding" />
 </navigation>

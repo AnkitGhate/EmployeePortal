@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/onboarding_nav_graph"
     app:startDestination="@id/letsGetStartedFragment">
-    <fragment
+
+<fragment
         android:id="@+id/letsGetStartedFragment"
         android:name="com.ankitgh.employeeportal.screens.onboarding.LetsGetStartedFragment"
         android:label="fragment_lets_get_started"
