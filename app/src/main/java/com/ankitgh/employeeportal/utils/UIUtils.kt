@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal
+package com.ankitgh.employeeportal.utils
 
 import android.os.Build
 import android.util.Log

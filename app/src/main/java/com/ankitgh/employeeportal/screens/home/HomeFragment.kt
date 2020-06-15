@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.getPlaceHolderListOfNews
@@ -16,7 +16,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var OrgNewsAdapter: OrgNewsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     companion object {
         fun launchFragment(
@@ -46,12 +46,6 @@ class HomeFragment : Fragment() {
 
         OrgNewsAdapter = OrgNewsAdapter(getPlaceHolderListOfNews())
         organisation_news_recyclerview.adapter = OrgNewsAdapter
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

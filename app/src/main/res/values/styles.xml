@@ -26,10 +26,15 @@
         <item name="cardElevation">8dp</item>
     </style>
 
+    <style name="TextViewStyleRegularFont" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontFamily">@font/jostregular</item>
+        <item name="android:textSize">25sp</item>
+    </style>
 
-    <!--app:cardBackgroundColor="@color/colorPrimaryDark"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="8dp"
-    app:contentPadding="16dp"-->
-
+    <style name="CustomFloatingActionButtonStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="android:textColor">@color/grey</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
 </resources>

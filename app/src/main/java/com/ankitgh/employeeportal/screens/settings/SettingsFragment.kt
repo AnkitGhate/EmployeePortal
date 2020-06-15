@@ -34,9 +34,7 @@ class SettingsFragment : Fragment() {
         firebaseAuth = Firebase.auth
         settingsNavController = Navigation.findNavController(view)
         signout_textview.setOnClickListener {
-            signoutCircularProgress.visibility = View.VISIBLE
             firebaseAuth.signOut()
-            signoutCircularProgress.visibility = View.GONE
             settingsNavController.navigate(R.id.action_settingsFragment_to_onBoardingActivity)
         }
     }

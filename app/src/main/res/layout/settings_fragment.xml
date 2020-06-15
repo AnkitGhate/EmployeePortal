@@ -5,31 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:padding="30dp"
     tools:context=".screens.settings.SettingsFragment">
 
     <TextView
-        android:id="@+id/signout_textview"
-        android:layout_width="wrap_content"
+        android:id="@+id/mytrainings_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jostlight"
-        android:gravity="center"
-        android:text="Sign Out"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/margin_40"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="My Trainings"
+        app:layout_constraintBottom_toTopOf="@+id/termsandcondition_textview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/signoutCircularProgress"
-        style="?android:attr/progressBarStyle"
+    <TextView
+        android:id="@+id/feedback_textview"
+        style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Feedback"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signout_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/termsandcondition_textview" />
+
+    <TextView
+        android:id="@+id/termsandcondition_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Terms and Condition"
+        app:layout_constraintBottom_toTopOf="@id/feedback_textview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mytrainings_textview" />
+
+    <TextView
+        android:id="@+id/signout_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Signout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedback_textview" />
+
+    <TextView
+        android:id="@+id/copyright_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:text="Copyright 2020"
+
+        android:textColor="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

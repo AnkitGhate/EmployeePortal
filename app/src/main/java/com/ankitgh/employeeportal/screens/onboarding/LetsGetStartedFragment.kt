@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.toggleHideyBar
+import com.ankitgh.employeeportal.utils.toggleHideyBar
 import kotlinx.android.synthetic.main.fragment_lets_get_started.*
 
 class LetsGetStartedFragment : Fragment() {

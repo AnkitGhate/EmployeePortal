@@ -6,8 +6,10 @@ import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.BaseActivity
 import com.ankitgh.employeeportal.screens.home.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.*
 
+@AndroidEntryPoint
 class HomeActivity : BaseActivity() {
 
     lateinit var navController: NavController
