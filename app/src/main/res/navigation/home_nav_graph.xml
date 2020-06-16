@@ -13,7 +13,11 @@
         android:id="@+id/feedFragment"
         android:name="com.ankitgh.employeeportal.screens.feed.FeedFragment"
         android:label="feed_fragment"
-        tools:layout="@layout/feed_fragment" />
+        tools:layout="@layout/feed_fragment">
+        <action
+            android:id="@+id/action_feedFragment_to_createPostFragment"
+            app:destination="@id/createPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addressBookFragment"
         android:name="com.ankitgh.employeeportal.screens.addressbook.AddressBookFragment"
@@ -33,4 +37,9 @@
         android:name="com.ankitgh.employeeportal.screens.onboarding.OnBoardingActivity"
         android:label="activity_onboarding"
         tools:layout="@layout/activity_onboarding" />
+    <dialog
+        android:id="@+id/createPostFragment"
+        android:name="com.ankitgh.employeeportal.screens.feed.CreatePostFragment"
+        android:label="create_post_fragment"
+        tools:layout="@layout/create_post_fragment" />
 </navigation>

@@ -1,7 +1,6 @@
 package com.ankitgh.employeeportal.screens.feed
 
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,24 +8,18 @@ import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.inflate
 import kotlinx.android.synthetic.main.feed_item.view.*
 
+
 class FeedAdapter(feedPosts: ArrayList<FeedPostModel>) :
     RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
     private val postsList: ArrayList<FeedPostModel> = feedPosts
 
-    class FeedViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class FeedViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var view: View = v
         private var feedPost: FeedPostModel? = null
 
-        init {
-            v.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            Log.d("RecyclerView", "CLICK!")
-        }
-
         fun bindPost(feedPost: FeedPostModel) {
+            view.profile_imageview.hash = feedPost.username.hashCode()
             this.feedPost = feedPost
             view.user_title.text = feedPost.username
             view.designation_title.text = feedPost.designation

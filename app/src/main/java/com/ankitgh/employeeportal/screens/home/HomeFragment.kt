@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.getPlaceHolderListOfNews
+import com.ankitgh.employeeportal.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var OrgNewsAdapter: OrgNewsAdapter
@@ -40,6 +44,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getUserName().observe(requireActivity(), Observer {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    username.text = it.data?.username.toString().capitalize()
+                    designation.text = it.data?.designation?.toUpperCase()
+                    profileimage.hash = username.hashCode()
+                    shimmer_layout_container.hideShimmer()
+                }
+            }
+        })
 
         linearLayoutManager = LinearLayoutManager(activity)
         organisation_news_recyclerview.layoutManager = linearLayoutManager

@@ -4,6 +4,7 @@ import com.ankitgh.employeeportal.BuildConfig
 import com.ankitgh.employeeportal.data.api.ApiHelper
 import com.ankitgh.employeeportal.data.api.ApiHelperImpl
 import com.ankitgh.employeeportal.data.api.ApiService
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,5 +51,9 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
 }

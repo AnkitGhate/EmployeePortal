@@ -25,58 +25,66 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_layout_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="true">
 
-                <ImageView
-                    android:id="@+id/profileimage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/man_avatar_image" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/jostregular"
-                    android:text="Ankit Ghate"
-                    android:textColor="@color/off_white"
-                    android:textSize="25sp" />
+                    <com.lelloman.identicon.view.ClassicIdenticonView
+                        android:id="@+id/profileimage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/man_avatar_image" />
 
-                <TextView
-                    android:id="@+id/designation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/username"
-                    android:layout_marginTop="-5dp"
-                    android:fontFamily="@font/jostbold"
-                    android:text="SR.SOFTWARE ENGINEER"
-                    android:textColor="@color/grey" />
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jostregular"
+                        android:textColor="@color/off_white"
+                        android:textSize="25sp"
+                        tools:text="Ankit Ghate" />
 
-                <TextView
-                    android:id="@+id/project_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/designation"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/jostregular"
-                    android:text="PROJECT"
-                    android:textColor="@color/off_white" />
+                    <TextView
+                        android:id="@+id/designation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/username"
+                        android:layout_marginTop="-5dp"
+                        android:fontFamily="@font/jostbold"
+                        android:textColor="@color/grey"
+                        tools:text="SR.SOFTWARE ENGINEER" />
 
-                <TextView
-                    android:id="@+id/project_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/project_title"
-                    android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@id/project_title"
-                    android:fontFamily="@font/jostregular"
-                    android:text="Cybage Resource Pool"
-                    android:textColor="@color/off_white" />
+                    <TextView
+                        android:id="@+id/project_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/designation"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/jostregular"
+                        android:text="PROJECT"
+                        android:textColor="@color/off_white" />
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/project_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/project_title"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@id/project_title"
+                        android:fontFamily="@font/jostregular"
+                        android:text="Cybage Resource Pool"
+                        android:textColor="@color/off_white" />
+
+                </RelativeLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.cardview.widget.CardView>
 
