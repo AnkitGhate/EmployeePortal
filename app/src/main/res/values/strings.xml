@@ -6,4 +6,7 @@
     <string name="placeholder_text_for_lists">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="text_input_layout_username_hint">Cybage ID</string>
     <string name="placeholder_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis metus ut ornare ultrices. Quisque fringilla hendrerit ipsum pellentesque viverra. Quisque tincidunt felis vitae turpis accumsan dapibus. Aliquam efficitur pulvinar leo, sit amet ornare elit faucibus quis. Pellentesque et magna ornare, tincidunt ante ac,</string>
+    <string name="login_body_text">Login with credentials registered with \nyour company</string>
+    <string name="password_text">Password</string>
+    <string name="sign_in_text">SIGN IN</string>
 </resources>
