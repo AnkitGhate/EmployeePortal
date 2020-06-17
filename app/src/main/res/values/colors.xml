@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#050710</color>
     <color name="colorPrimaryDark">#1A344A</color>
+    <color name="card_background">#1A344A</color>
     <color name="colorAccent">#0BB2B4</color>
     <color name="black_overlay">#464D55</color>
     <color name="off_white">#F6F6F7</color>

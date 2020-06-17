@@ -3,6 +3,7 @@ package com.ankitgh.employeeportal.screens.feed
 import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.inflate
@@ -14,17 +15,14 @@ class FeedAdapter(feedPosts: ArrayList<FeedPostModel>) :
 
     private val postsList: ArrayList<FeedPostModel> = feedPosts
 
-    class FeedViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private var view: View = v
-        private var feedPost: FeedPostModel? = null
-
+    class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindPost(feedPost: FeedPostModel) {
-            view.profile_imageview.hash = feedPost.username.hashCode()
-            this.feedPost = feedPost
-            view.user_title.text = feedPost.username
-            view.designation_title.text = feedPost.designation
-            view.feed_body_textview.text = feedPost.feedBody
-            view.post_time_textview.text = feedPost.postTime?.let { DateUtils.getRelativeTimeSpanString(it) }
+            itemView.profile_imageview.hash = feedPost.username.hashCode()
+            itemView.user_title.text = feedPost.username
+            itemView.designation_title.text = feedPost.designation
+            itemView.feed_body_textview.text = feedPost.feedBody
+            itemView.post_time_textview.text = feedPost.postTime?.let { DateUtils.getRelativeTimeSpanString(it) }
+            itemView.card_container.animation = AnimationUtils.loadAnimation(itemView.context, R.anim.card_transition)
         }
     }
 

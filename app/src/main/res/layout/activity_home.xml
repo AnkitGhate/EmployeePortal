@@ -26,7 +26,7 @@
         android:id="@+id/bottom_chip_navigation_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/card_background"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

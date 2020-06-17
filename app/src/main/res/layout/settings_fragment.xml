@@ -8,12 +8,12 @@
     android:padding="30dp"
     tools:context=".screens.settings.SettingsFragment">
 
+
     <TextView
         android:id="@+id/mytrainings_textview"
         style="@style/TextViewStyleRegularFont"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:text="My Trainings"
         app:layout_constraintBottom_toTopOf="@+id/termsandcondition_textview"
@@ -25,7 +25,6 @@
         style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="Feedback"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +35,6 @@
         style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="Terms and Condition"
@@ -49,24 +47,9 @@
         style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="Signout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feedback_textview" />
-
-    <TextView
-        android:id="@+id/copyright_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:text="Copyright 2020"
-
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

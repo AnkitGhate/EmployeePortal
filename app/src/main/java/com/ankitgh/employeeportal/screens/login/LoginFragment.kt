@@ -59,6 +59,7 @@ class LoginFragment : Fragment() {
                             Log.d("LoginFragment", "signInWithEmail:success")
                             val user = firebaseAuth.currentUser
                             onBoardingNavController.navigate(R.id.action_loginFragment_to_homeActivity)
+                            requireActivity().finish()
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("LoginFragment", "signInWithEmail:failure", task.exception)

@@ -108,7 +108,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/colorPrimaryDark" />
+        app:rippleColor="@color/card_background" />
 
     <ProgressBar
         android:id="@+id/progressBar"
