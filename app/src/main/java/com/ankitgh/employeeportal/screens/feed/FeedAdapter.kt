@@ -15,14 +15,22 @@ class FeedAdapter(feedPosts: ArrayList<FeedPostModel>) :
 
     private val postsList: ArrayList<FeedPostModel> = feedPosts
 
-    class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         fun bindPost(feedPost: FeedPostModel) {
-            itemView.profile_imageview.hash = feedPost.username.hashCode()
             itemView.user_title.text = feedPost.username
             itemView.designation_title.text = feedPost.designation
             itemView.feed_body_textview.text = feedPost.feedBody
             itemView.post_time_textview.text = feedPost.postTime?.let { DateUtils.getRelativeTimeSpanString(it) }
             itemView.card_container.animation = AnimationUtils.loadAnimation(itemView.context, R.anim.card_transition)
+        }
+
+        override fun onClick(view: View?) {
+            if (view != null) {
+                when (view.id) {
+                    R.id.card_container -> {
+                    }
+                }
+            }
         }
     }
 

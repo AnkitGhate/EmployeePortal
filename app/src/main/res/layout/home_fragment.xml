@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardElevation="15dp"
+            app:cardElevation="24dp"
             app:contentPadding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,12 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.lelloman.identicon.view.ClassicIdenticonView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileimage"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:layout_alignParentEnd="true"
-                        android:src="@drawable/man_avatar_image" />
+                        android:src="@drawable/placeholder_avatar_1" />
 
                     <TextView
                         android:id="@+id/username"
@@ -60,7 +60,7 @@
                         android:layout_below="@id/username"
                         android:layout_marginTop="-5dp"
                         android:fontFamily="@font/jostbold"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/off_white"
                         tools:text="SR.SOFTWARE ENGINEER" />
 
                     <TextView
@@ -117,6 +117,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/organisation_news_recyclerview"
                     android:layout_width="match_parent"
+                    android:background="@color/card_background"
                     android:layout_height="200dp"
                     android:layout_below="@id/organisation_news_title"
                     android:layout_marginTop="5dp"

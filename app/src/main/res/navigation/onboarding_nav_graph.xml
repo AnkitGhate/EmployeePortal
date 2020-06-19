@@ -5,7 +5,7 @@
     android:id="@+id/onboarding_nav_graph"
     app:startDestination="@id/letsGetStartedFragment">
 
-<fragment
+    <fragment
         android:id="@+id/letsGetStartedFragment"
         android:name="com.ankitgh.employeeportal.screens.onboarding.LetsGetStartedFragment"
         android:label="fragment_lets_get_started"
@@ -13,14 +13,18 @@
         <action
             android:id="@+id/action_letsGetStartedFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.ankitgh.employeeportal.screens.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeActivity"
             app:destination="@id/homeActivity" />
@@ -30,4 +34,15 @@
         android:name="com.ankitgh.employeeportal.screens.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.ankitgh.employeeportal.screens.registration.RegistrationFragment"
+        android:label="registration_fragment"
+        tools:layout="@layout/registration_fragment">
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment2"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
 </navigation>

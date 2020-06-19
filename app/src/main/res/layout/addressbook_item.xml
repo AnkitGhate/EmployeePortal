@@ -11,17 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.lelloman.identicon.view.ClassicIdenticonView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_imageview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            tools:src="@drawable/man_avatar_image" />
+            android:src="@drawable/placeholder_avatar_1" />
 
         <TextView
             android:id="@+id/username_tv"

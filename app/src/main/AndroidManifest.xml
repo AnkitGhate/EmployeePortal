@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".screens.HomeActivity" />
+        <activity
+            android:name=".screens.HomeActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity android:name=".screens.onboarding.OnBoardingActivity">
             <intent-filter>

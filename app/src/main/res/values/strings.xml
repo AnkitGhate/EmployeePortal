@@ -9,4 +9,6 @@
     <string name="login_body_text">Login with credentials registered with \nyour company</string>
     <string name="password_text">Password</string>
     <string name="sign_in_text">SIGN IN</string>
+    <string name="search">Search</string>
+    <string name="empty"> </string>
 </resources>

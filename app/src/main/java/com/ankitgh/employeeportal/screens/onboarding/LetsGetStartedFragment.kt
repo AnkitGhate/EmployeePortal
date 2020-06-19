@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
@@ -16,20 +15,6 @@ import kotlinx.android.synthetic.main.fragment_lets_get_started.*
 class LetsGetStartedFragment : Fragment() {
 
     lateinit var onBoardingNavController: NavController
-
-    companion object {
-        @JvmStatic
-        fun launchFragment(
-            containerView: Int,
-            fragmentManager: FragmentManager
-        ) {
-            val letsGetStartedFragment = LetsGetStartedFragment()
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(containerView, letsGetStartedFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +48,4 @@ class LetsGetStartedFragment : Fragment() {
         uiOptions = toggleHideyBar(uiOptions)
     }
 
-    interface listner {
-        fun navigateToFragment()
-    }
 }

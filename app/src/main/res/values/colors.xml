@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#050710</color>
-    <color name="colorPrimaryDark">#1A344A</color>
-    <color name="card_background">#1A344A</color>
-    <color name="colorAccent">#0BB2B4</color>
+    <!--    <color name="colorPrimary">#050710</color>-->
+    <!--    <color name="colorPrimaryDark">#1A344A</color>-->
+    <!--    <color name="card_background">#1A344A</color>-->
+    <!--    <color name="colorAccent">#0BB2B4</color>-->
+    <!--    <color name="black_overlay">#464D55</color>-->
+    <!--    <color name="off_white">#F6F6F7</color>-->
+    <!--    <color name="grey">#A3A6AD</color>-->
+
+    <color name="colorPrimary">#121212</color>
+    <color name="colorPrimaryDark">#393E46</color>
+    <color name="card_background">#323232</color>
+    <color name="colorAccent">#00ADB5</color>
     <color name="black_overlay">#464D55</color>
-    <color name="off_white">#F6F6F7</color>
+    <color name="off_white">#EEEEEE</color>
     <color name="grey">#A3A6AD</color>
 </resources>

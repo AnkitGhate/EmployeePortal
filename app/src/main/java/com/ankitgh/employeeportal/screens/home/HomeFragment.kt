@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
-                    profileimage.hash = username.hashCode()
                     shimmer_layout_container.hideShimmer()
                 }
             }

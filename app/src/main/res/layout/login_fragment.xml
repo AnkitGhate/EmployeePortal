@@ -75,6 +75,8 @@
         android:nextFocusForward="@id/signin_button"
         android:textColorHint="@color/colorAccent"
         app:errorEnabled="true"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/colorAccent"
         app:hintTextColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/signin_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +110,22 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/card_background" />
+
+    <Button
+        android:id="@+id/regsiter_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="40dp"
+        android:background="?attr/selectableItemBackground"
+        android:fontFamily="@font/jostbold"
+        android:text="REGISTER"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/card_background" />
 
     <ProgressBar

@@ -17,8 +17,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
@@ -73,6 +75,9 @@ class LoginFragment : Fragment() {
                     }
             }
         }
+        regsiter_button.setOnClickListener {
+            onBoardingNavController.navigate(R.id.registrationFragment)
+        }
     }
 
     private fun validateUser(email: String, password: String): Boolean {
@@ -85,8 +90,6 @@ class LoginFragment : Fragment() {
             password_inputlayout.error = "Please enter a valid password"
             result = false
         }
-
-
         return result
     }
 

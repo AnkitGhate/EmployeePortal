@@ -4,6 +4,7 @@ import com.ankitgh.employeeportal.BuildConfig
 import com.ankitgh.employeeportal.data.api.ApiHelper
 import com.ankitgh.employeeportal.data.api.ApiHelperImpl
 import com.ankitgh.employeeportal.data.api.ApiService
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -46,7 +47,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
     @Provides
     @Singleton
@@ -55,5 +56,9 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
 }

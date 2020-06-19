@@ -22,8 +22,8 @@
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
-        <item name="cardBackgroundColor">@color/colorPrimaryDark</item>
-        <item name="cardElevation">8dp</item>
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardElevation">24dp</item>
     </style>
 
     <style name="TextViewStyleRegularFont" parent="Widget.MaterialComponents.TextView">

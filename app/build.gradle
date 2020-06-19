@@ -98,9 +98,14 @@ dependencies {
     //Facebook Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+    //Animation Lib
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    //Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Runtime Permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 }

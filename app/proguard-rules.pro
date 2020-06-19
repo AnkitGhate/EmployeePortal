@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#For some reason this classes was getting encrypted and not found during build. Hence exclueded from proguard.
+ -keep class androidx.core.app.CoreComponentFactory { *; }

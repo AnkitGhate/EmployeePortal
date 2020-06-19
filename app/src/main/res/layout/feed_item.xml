@@ -19,12 +19,12 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <com.lelloman.identicon.view.ClassicIdenticonView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_imageview"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
-                app:srcCompat="@drawable/man_avatar_image" />
+                android:src="@drawable/placeholder_avatar_1" />
 
             <TextView
                 android:id="@+id/user_title"
@@ -81,13 +81,6 @@
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:weightSum="3">
-
-
-                <!--                <ImageView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_weight="1"-->
-                <!--                    android:src="@mipmap/ic_favorite_border" />-->
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.ankitgh.employeeportal.screens.addressbook
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +17,9 @@ import kotlinx.android.synthetic.main.address_book_fragment.*
 @AndroidEntryPoint
 class AddressBookFragment : Fragment() {
 
-    private val viewModel: AddressBookViewModel by viewModels()
-    private lateinit var addressBookAdapter: AddressBookAdapter
-    private var contactsList = ArrayList<ContactItem>()
+    private val mViewModel: AddressBookViewModel by viewModels()
+    private lateinit var mAdapter: AddressBookAdapter
+    private var mContactList = ArrayList<ContactItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +31,35 @@ class AddressBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        handleSearchRequest()
+    }
+
+    private fun handleSearchRequest() {
+        search_input_editext.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                filter(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+    }
+
+    private fun filter(queryString: String) {
+        val filteredList: ArrayList<ContactItem> = mContactList.filter { it.name.toLowerCase().startsWith(queryString, ignoreCase = true) } as ArrayList<ContactItem>
+        mAdapter.filterList(filteredList)
     }
 
     private fun setupRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(activity)
         contacts_recyclerview.layoutManager = linearLayoutManager
-        addressBookAdapter = AddressBookAdapter(getPlaceHolderListOfContacts())
-        contacts_recyclerview.adapter = addressBookAdapter
+        //TODO : Remove dummy list later
+        mContactList = getPlaceHolderListOfContacts()
+        mAdapter = AddressBookAdapter(mContactList)
+        contacts_recyclerview.adapter = mAdapter
     }
 }
