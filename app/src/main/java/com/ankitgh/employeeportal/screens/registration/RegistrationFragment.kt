@@ -5,35 +5,37 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.isValidEmail
 import com.ankitgh.employeeportal.common.isValidPassword
 import com.ankitgh.employeeportal.data.firestoremodel.User
+import com.ankitgh.employeeportal.utils.Status
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.login_fragment.*
-import kotlinx.android.synthetic.main.login_fragment.password_inputlayout
 import kotlinx.android.synthetic.main.registration_fragment.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 @AndroidEntryPoint
-class RegistrationFragment : Fragment() {
+class RegistrationFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        private const val RC_STORAGE_PERMISSION: Int = 12523
-        private const val REQUEST_CODE_GALLERY_INTENT: Int = 12527
+        private const val RC_STORAGE_PERMISSION: Int = 101
+        private const val REQUEST_CODE_GALLERY_INTENT: Int = 102
     }
 
     private lateinit var navController: NavController
-    private var mPickedImageURI: Uri? = null
     private val mViewModel: RegistrationViewModel by viewModels()
+    private var mPickedImageURI: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,22 +48,10 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        add_profile_imageview.setOnClickListener {
-            externalStorageRequestTask()
-        }
-        register_button.setOnClickListener {
-            val user = User(
-                employeeid = employeeid_editext.text.toString(),
-                username = username_editext.text.toString(),
-                designation = designation_editext.text.toString(),
-                email = email_editext.text.toString(),
-                password = password_editext.text.toString()
-            )
-            if (validateUser(user)) {
-                mViewModel.registerUser(user)
-            }
-        }
+        add_profile_imageview.setOnClickListener(this)
+        register_button.setOnClickListener(this)
     }
+
 
     private fun validateUser(user: User): Boolean {
         var result = true
@@ -79,11 +69,15 @@ class RegistrationFragment : Fragment() {
             result = false
         }
         if (!user.email.isValidEmail()) {
-            email_input_layout.error = "Please enter a valid email"
+            email_inputlayout.error = "Please enter a valid email"
             result = false
         }
         if (!user.password.isValidPassword()) {
             password_inputlayout.error = "Please enter a valid password"
+            result = false
+        }
+        if (user.photoUri == null) {
+            Log.e("RegistrationFragment", "Profile URI is null")
             result = false
         }
         return result
@@ -104,12 +98,6 @@ class RegistrationFragment : Fragment() {
         }
     }
 
-    private fun openGallery() {
-        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
-        galleryIntent.type = "image/*"
-        startActivityForResult(galleryIntent, REQUEST_CODE_GALLERY_INTENT)
-    }
-
     private fun hasCameraPermission(): Boolean {
         return EasyPermissions.hasPermissions(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
     }
@@ -127,5 +115,61 @@ class RegistrationFragment : Fragment() {
             mPickedImageURI = data.data
             add_profile_imageview.setImageURI(mPickedImageURI)
         }
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            add_profile_imageview -> {
+                externalStorageRequestTask()
+            }
+            register_button -> {
+                registerUser()
+            }
+        }
+    }
+
+    private fun openGallery() {
+        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+        galleryIntent.type = "image/*"
+        startActivityForResult(galleryIntent, REQUEST_CODE_GALLERY_INTENT)
+    }
+
+    private fun registerUser() {
+        val user = User(
+            employeeid = employeeid_editext.text.toString(),
+            username = username_editext.text.toString(),
+            designation = designation_editext.text.toString(),
+            email = email_editext.text.toString(),
+            password = password_editext.text.toString(),
+            photoUri = mPickedImageURI
+        )
+        if (validateUser(user)) {
+            progressBar.visibility = View.VISIBLE
+            mViewModel.registerUser(user).observe(viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Status.ERROR -> {
+                        progressBar.visibility = View.GONE
+                        Log.e("RegistrationFragment", "Error while registering user : Exception - ${it.message}")
+                        Snackbar.make(
+                            requireView(), "[Error] : There seems to be some issue while creating user.Please try again later",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                    Status.SUCCESS -> {
+                        Log.i("RegistrationFragment", "User is registered")
+                        progressBar.visibility = View.GONE
+                        navigateToHomeActivity()
+                    }
+                    Status.LOADING -> {
+                        progressBar.visibility = View.VISIBLE
+                    }
+                }
+            })
+        }
+    }
+
+    private fun navigateToHomeActivity() {
+        navController.navigate(R.id.action_registrationFragment_to_homeActivity)
+        requireActivity().finish()
     }
 }

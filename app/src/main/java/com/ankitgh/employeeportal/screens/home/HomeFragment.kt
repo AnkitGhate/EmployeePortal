@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.getPlaceHolderListOfNews
 import com.ankitgh.employeeportal.utils.Status
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -45,11 +46,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUserName().observe(requireActivity(), Observer {
+        viewModel.getUser().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
+                    Glide.with(this).load(it.data?.photoUrl).into(profileimage)
                     shimmer_layout_container.hideShimmer()
                 }
             }

@@ -116,15 +116,14 @@
         android:id="@+id/regsiter_button"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:layout_marginStart="15dp"
-        android:layout_marginBottom="40dp"
         android:background="?attr/selectableItemBackground"
         android:fontFamily="@font/jostbold"
         android:text="REGISTER"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/signin_button"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/card_background" />
 

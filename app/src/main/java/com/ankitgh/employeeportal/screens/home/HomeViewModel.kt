@@ -11,17 +11,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeViewModel @ViewModelInject constructor(
+    private val firebaseAuth: FirebaseAuth,
     private val fireStoreDb: FirebaseFirestore
 ) : ViewModel() {
 
     private val user = MutableLiveData<Resource<User>>()
 
-    fun getUserName(): LiveData<Resource<User>> {
+    fun getUser(): LiveData<Resource<User>> {
         fireStoreDb.collection("users")
-            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+            .document(firebaseAuth.currentUser?.uid as String)
             .get()
             .addOnSuccessListener { userSnapShot ->
                 val signedInUser = userSnapShot.toObject(User::class.java)
+                if (signedInUser != null) {
+                    signedInUser.photoUri = firebaseAuth.currentUser?.photoUrl
+                    signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
+                }
                 user.postValue(Resource.success(signedInUser))
                 Log.i("CreatePostViewModel", "Signed in user : $signedInUser")
             }

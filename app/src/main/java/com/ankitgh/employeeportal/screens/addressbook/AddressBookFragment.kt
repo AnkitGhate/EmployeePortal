@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.getPlaceHolderListOfContacts
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.address_book_fragment.*
 
@@ -30,6 +31,7 @@ class AddressBookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        profile_image.setImageURI(FirebaseAuth.getInstance().currentUser?.photoUrl)
         setupRecyclerView()
         handleSearchRequest()
     }
