@@ -91,7 +91,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Identicon Generator
     implementation 'com.github.lelloman:android-identicons:v11'
@@ -108,5 +108,4 @@ dependencies {
 
     //Runtime Permission
     implementation 'pub.devrel:easypermissions:3.0.0'
-
 }

@@ -6,6 +6,8 @@ import com.ankitgh.employeeportal.data.api.ApiHelperImpl
 import com.ankitgh.employeeportal.data.api.ApiService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,11 +56,12 @@ class ApplicationModule {
     fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
 
     @Provides
-    @Singleton
     fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
     @Provides
-    @Singleton
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    fun provideFirebaseStorage(): StorageReference = FirebaseStorage.getInstance().reference
 
 }

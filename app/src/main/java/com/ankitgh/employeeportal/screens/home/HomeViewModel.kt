@@ -1,5 +1,6 @@
 package com.ankitgh.employeeportal.screens.home
 
+import android.net.Uri
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -23,10 +24,14 @@ class HomeViewModel @ViewModelInject constructor(
             .get()
             .addOnSuccessListener { userSnapShot ->
                 val signedInUser = userSnapShot.toObject(User::class.java)
+                Log.d("TTTT", "Fetch user from firebase auth - ${signedInUser.toString()}")
                 if (signedInUser != null) {
                     signedInUser.photoUri = firebaseAuth.currentUser?.photoUrl
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
                 }
+
+                Log.d("TTTT", "Updated values - ${signedInUser.toString()}")
+
                 user.postValue(Resource.success(signedInUser))
                 Log.i("CreatePostViewModel", "Signed in user : $signedInUser")
             }

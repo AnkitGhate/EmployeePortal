@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity() {
-
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
