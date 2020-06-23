@@ -18,8 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField 'String', 'BASE_URL', "\"https://5e510330f2c0d300147c034c.mockapi.io/\""
+        buildConfigField 'String', 'BASE_URL', "\"http://newsapi.org/v2/\""
     }
 
     buildTypes {
@@ -40,7 +39,7 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.3.0-beta01"
+    def nav_version = "2.3.0-rc01"
     def dagger_hilt_version = "2.28-alpha"
     def retrofit_version = "2.9.0"
     def okhttp3_version = "4.7.2"
@@ -68,6 +67,12 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //JetPack Paging
+    def paging_version = "2.1.2"
+    implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx
+    testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
+
 
     //Chip Navigation
     //Docs : https://github.com/ismaeldivita/chip-navigation-bar

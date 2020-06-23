@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.address_book_fragment.*
-import kotlinx.android.synthetic.main.home_fragment.*
 
 @AndroidEntryPoint
 class AddressBookFragment : Fragment() {
@@ -34,7 +33,9 @@ class AddressBookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Glide.with(this).load(FirebaseAuth.getInstance().currentUser?.photoUrl.toString()).into(profile_image)
+        val photouri: Uri = Uri.parse(FirebaseAuth.getInstance().currentUser?.photoUrl.toString())
+        Glide.with(this).load(photouri).into(profile_image)
+        //profile_image.setImageURI(FirebaseAuth.getInstance().currentUser?.photoUrl)
         setupRecyclerView()
         handleSearchRequest()
     }

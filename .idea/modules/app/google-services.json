@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "961047534874",
+    "firebase_url": "https://employeeportal-d4b1b.firebaseio.com",
+    "project_id": "employeeportal-d4b1b",
+    "storage_bucket": "employeeportal-d4b1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961047534874:android:54bf6c0ee4a33e8c2ee0a3",
+        "android_client_info": {
+          "package_name": "com.ankitgh.employeeportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961047534874-gat1g1ekd80hs3hnnlc3qh07l6solidc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ankitgh.employeeportal",
+            "certificate_hash": "3f76601598fbd669d4df0c7cd0682d8f8e841763"
+          }
+        },
+        {
+          "client_id": "961047534874-4uq389u2gunbmqo0ktf2ra1rp252crm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMJiW82DbIdRKZxO05Ny4SpwUicB0Jk5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961047534874-4uq389u2gunbmqo0ktf2ra1rp252crm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

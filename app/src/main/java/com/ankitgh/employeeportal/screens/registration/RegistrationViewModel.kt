@@ -1,77 +1,68 @@
 package com.ankitgh.employeeportal.screens.registration
 
-import android.net.Uri
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ankitgh.employeeportal.data.firestoremodel.User
+import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.FirebaseStorage
 
 
 class RegistrationViewModel @ViewModelInject constructor(
     private val firebaseFirestore: FirebaseFirestore,
-    private val firebaseAuth: FirebaseAuth,
-    private val firebaseStorageRef: StorageReference
+    private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
-    private val userObserver = MutableLiveData<Resource<User>>()
+    private val fireBaseStorage = FirebaseStorage.getInstance().reference
+    private val userObserver = MutableLiveData<Resource<UserSchema>>()
 
-    fun registerUser(user: User): LiveData<Resource<User>> {
-        val photoReference = firebaseStorageRef.child("profile_images/${System.currentTimeMillis()}-${user.username}-profile-photo.jpg")
-        firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
+    fun registerUser(userSchema: UserSchema): LiveData<Resource<UserSchema>> {
+        val photoReference = fireBaseStorage.child("profile_images/${System.currentTimeMillis()}-${userSchema.username}-profile-photo.jpg")
+
+        firebaseAuth.createUserWithEmailAndPassword(userSchema.email, userSchema.password)
             .continueWithTask { userRegistrationTask ->
                 //Upload profile image to firebase storage
-                user.photoUri?.let { photoReference.putFile(it) }
+                userRegistrationTask.isSuccessful
+
+                userSchema.photoUri?.let { photoReference.putFile(it) }
             }.continueWithTask { imageUploadTask ->
                 //Download url of the image uploaded
-                if(imageUploadTask.isSuccessful){
-                    Log.d("TTTT","imageUploadTask : ${imageUploadTask.result.toString()}")
-                }
                 photoReference.downloadUrl
             }.continueWithTask { downloadUrlTask ->
-                val imageuri : Uri = Uri.parse(downloadUrlTask.result.toString())
-                Log.d("TTTT", "downloadUrlTask Path : ${imageuri}")
                 //update the new user in firebase auth with the profile url and username
                 val updateRequest: UserProfileChangeRequest = userProfileChangeRequest {
-                    displayName = user.username
-                    photoUri = imageuri
+                    displayName = userSchema.username
+                    photoUri = downloadUrlTask.result
                     build()
                 }
                 firebaseAuth.currentUser?.updateProfile(updateRequest)
             }.continueWithTask { userUpdateTask ->
-                if (userUpdateTask.isSuccessful) {
-                    Log.d("TTTT", "User updated with username and profile image path")
-                }
                 //Add user to firestore
                 val userData: MutableMap<String, Any> = HashMap()
-                userData["username"] = user.username
-                userData["designation"] = user.designation
+                userData["username"] = userSchema.username
+                userData["designation"] = userSchema.designation
 
                 firebaseFirestore.collection("users").document(firebaseAuth.currentUser?.uid.toString())
                     .set(userData)
                     .addOnSuccessListener {
-                        Log.d("TTTT", "document added successfully ")
+                        Log.d("RegistrationModel", "document added successfully")
                     }
                     .addOnFailureListener { exception ->
-                        Log.e("TTTT", "Error adding document", exception)
+                        Log.e("RegistrationModel", "Error adding document", exception)
                     }
             }.addOnCompleteListener { updateFireStoreTask ->
                 if (updateFireStoreTask.isSuccessful) {
-                    userObserver.postValue(Resource.success(User(isSignUpComplete = true)))
-                    Log.i("TTTT", "All task for user registration are complete!")
+                    userObserver.postValue(Resource.success(UserSchema(isSignUpComplete = true)))
+                    Log.i("RegistrationViewModel", "All task for user registration are complete!")
                 } else {
                     userObserver.postValue(Resource.error(updateFireStoreTask.exception.toString()))
-                    Log.e(
-                        "TTTT", "Error while user registration : Exception :" +
-                                " ${updateFireStoreTask.exception?.stackTrace}"
-                    )
+                    Log.e("RegistrationViewModel", "Error while user registration : Exception : ${updateFireStoreTask.exception?.stackTrace}")
                 }
             }
         return userObserver

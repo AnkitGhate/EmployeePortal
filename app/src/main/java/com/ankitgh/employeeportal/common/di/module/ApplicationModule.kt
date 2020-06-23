@@ -1,9 +1,9 @@
 package com.ankitgh.employeeportal.common.di.module
 
 import com.ankitgh.employeeportal.BuildConfig
-import com.ankitgh.employeeportal.data.api.ApiHelper
-import com.ankitgh.employeeportal.data.api.ApiHelperImpl
-import com.ankitgh.employeeportal.data.api.ApiService
+import com.ankitgh.employeeportal.data.api.NewsApiHelper
+import com.ankitgh.employeeportal.data.api.NewsApiService
+import com.ankitgh.employeeportal.data.api.NewsNewsApiHelperImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -49,11 +49,11 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): NewsApiService = retrofit.create(NewsApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+    fun provideApiHelper(newsApiHelper: NewsNewsApiHelperImpl): NewsApiHelper = newsApiHelper
 
     @Provides
     fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()

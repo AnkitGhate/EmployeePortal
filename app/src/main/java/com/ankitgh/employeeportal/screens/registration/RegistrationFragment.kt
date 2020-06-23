@@ -17,7 +17,7 @@ import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.isValidEmail
 import com.ankitgh.employeeportal.common.isValidPassword
-import com.ankitgh.employeeportal.data.firestoremodel.User
+import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Status
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,30 +53,30 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     }
 
 
-    private fun validateUser(user: User): Boolean {
+    private fun validateUser(userSchema: UserSchema): Boolean {
         var result = true
 
-        if (user.employeeid.isEmpty()) {
+        if (userSchema.employeeid.isEmpty()) {
             password_inputlayout.error = "Please enter a valid employeeID"
             result = false
         }
-        if (user.username.isEmpty()) {
+        if (userSchema.username.isEmpty()) {
             password_inputlayout.error = "Please enter a valid username"
             result = false
         }
-        if (user.designation.isEmpty()) {
+        if (userSchema.designation.isEmpty()) {
             password_inputlayout.error = "Please enter a valid designation"
             result = false
         }
-        if (!user.email.isValidEmail()) {
+        if (!userSchema.email.isValidEmail()) {
             email_inputlayout.error = "Please enter a valid email"
             result = false
         }
-        if (!user.password.isValidPassword()) {
+        if (!userSchema.password.isValidPassword()) {
             password_inputlayout.error = "Please enter a valid password"
             result = false
         }
-        if (user.photoUri == null) {
+        if (userSchema.photoUri == null) {
             Log.e("RegistrationFragment", "Profile URI is null")
             result = false
         }
@@ -135,7 +135,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     }
 
     private fun registerUser() {
-        val user = User(
+        val user = UserSchema(
             employeeid = employeeid_editext.text.toString(),
             username = username_editext.text.toString(),
             designation = designation_editext.text.toString(),

@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.screens.home
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,6 @@ import com.ankitgh.employeeportal.common.getPlaceHolderListOfNews
 import com.ankitgh.employeeportal.utils.Status
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.address_book_fragment.*
-import kotlinx.android.synthetic.main.addressbook_item.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
 @AndroidEntryPoint
@@ -55,8 +52,6 @@ class HomeFragment : Fragment() {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
                     Glide.with(this).load(it.data?.photoUri).into(profileimage)
-                    //profileimage.setImageURI(it.data?.photoUri)
-                    shimmer_layout_container.hideShimmer()
                 }
             }
         })
