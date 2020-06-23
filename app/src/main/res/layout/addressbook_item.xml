@@ -6,53 +6,63 @@
     android:layout_height="wrap_content"
     android:background="@color/card_background">
 
-    <RelativeLayout
-        android:id="@+id/contact_container"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_container"
+        style="@style/Widget.App.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="10dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_imageview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/placeholder_avatar_1" />
-
-        <TextView
-            android:id="@+id/username_tv"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/contact_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/profile_imageview"
-            android:fontFamily="@font/jostregular"
-            android:maxLines="1"
-            android:textColor="@color/off_white"
-            android:textSize="20sp"
-            tools:text="Ankit Ghate" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/designation_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/username_tv"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/profile_imageview"
-            android:fontFamily="@font/jostlight"
-            android:maxLines="1"
-            android:textColor="@color/grey"
-            android:textSize="14sp"
-            tools:text="Sr Software Developer" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_imageview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/placeholder_avatar_1" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/username_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@id/profile_imageview"
+                android:fontFamily="@font/jostregular"
+                android:maxLines="1"
+                android:textColor="@color/off_white"
+                android:textSize="20sp"
+                tools:text="Ankit Ghate" />
 
+            <TextView
+                android:id="@+id/designation_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/username_tv"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@id/profile_imageview"
+                android:fontFamily="@font/jostlight"
+                android:maxLines="1"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                tools:text="Sr Software Developer" />
 
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

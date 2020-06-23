@@ -1,5 +1,6 @@
 package com.ankitgh.employeeportal.screens.addressbook
 
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.common.getPlaceHolderListOfContacts
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.address_book_fragment.*
@@ -31,7 +33,9 @@ class AddressBookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profile_image.setImageURI(FirebaseAuth.getInstance().currentUser?.photoUrl)
+        val photouri: Uri = Uri.parse(FirebaseAuth.getInstance().currentUser?.photoUrl.toString())
+        Glide.with(this).load(photouri).into(profile_image)
+        //profile_image.setImageURI(FirebaseAuth.getInstance().currentUser?.photoUrl)
         setupRecyclerView()
         handleSearchRequest()
     }

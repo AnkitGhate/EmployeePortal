@@ -5,16 +5,16 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ankitgh.employeeportal.data.firestoremodel.Post
+import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: FirebaseFirestore) : ViewModel() {
 
-    private val postLiveData = MutableLiveData<Resource<Post>>()
+    private val postLiveData = MutableLiveData<Resource<PostSchema>>()
 
-    fun fetchPostsFromDatabase(postList: ArrayList<FeedPostModel>): LiveData<Resource<Post>> {
+    fun fetchPostsFromDatabase(postList: ArrayList<FeedPostModel>): LiveData<Resource<PostSchema>> {
         postLiveData.postValue(Resource.loading(null))
         fireStoreDb.collection("posts")
             .orderBy("creation_time", Query.Direction.DESCENDING)
@@ -25,14 +25,14 @@ class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: Fireba
                 }
                 postList.clear()
                 if (snapshot != null) {
-                    var postListSnapShot = snapshot.toObjects(Post::class.java)
+                    var postListSnapShot = snapshot.toObjects(PostSchema::class.java)
 
                     for (post in postListSnapShot) {
                         postList.add(
                             FeedPostModel(
                                 "",
-                                post.user?.username,
-                                post.user?.designation,
+                                post.userSchema?.username,
+                                post.userSchema?.designation,
                                 post.creation_time,
                                 post.body
                             )

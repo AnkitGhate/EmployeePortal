@@ -51,8 +51,7 @@ class HomeFragment : Fragment() {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
-                    Glide.with(this).load(it.data?.photoUrl).into(profileimage)
-                    shimmer_layout_container.hideShimmer()
+                    Glide.with(this).load(it.data?.photoUri).into(profileimage)
                 }
             }
         })

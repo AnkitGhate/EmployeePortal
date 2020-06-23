@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ankitgh.employeeportal.data.firestoremodel.User
+import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,14 +15,14 @@ class HomeViewModel @ViewModelInject constructor(
     private val fireStoreDb: FirebaseFirestore
 ) : ViewModel() {
 
-    private val user = MutableLiveData<Resource<User>>()
+    private val user = MutableLiveData<Resource<UserSchema>>()
 
-    fun getUser(): LiveData<Resource<User>> {
+    fun getUser(): LiveData<Resource<UserSchema>> {
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
             .get()
             .addOnSuccessListener { userSnapShot ->
-                val signedInUser = userSnapShot.toObject(User::class.java)
+                val signedInUser = userSnapShot.toObject(UserSchema::class.java)
                 if (signedInUser != null) {
                     signedInUser.photoUri = firebaseAuth.currentUser?.photoUrl
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()

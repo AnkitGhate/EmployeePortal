@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/card_background">
+    android:background="@color/card_background"
+    android:paddingBottom="5dp">
 
     <TextView
         android:id="@+id/news_body_textview"
@@ -20,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/news_body_textview"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/jostlight"
         android:textColor="@color/grey"
         tools:text="2nd June 2020" />
@@ -29,9 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/news_date_tv"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:fontFamily="@font/jostlight"
-        android:textColor="@color/grey"
-        tools:text="Read more.." />
+        android:text="Read more.."
+        android:textColor="@color/grey" />
 
 </RelativeLayout>
