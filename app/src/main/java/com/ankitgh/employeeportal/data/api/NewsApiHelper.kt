@@ -1,8 +1,8 @@
 package com.ankitgh.employeeportal.data.api
 
-import com.ankitgh.employeeportal.data.model.newsmodel.NewsJsonRootSchema
-import retrofit2.Response
+import com.ankitgh.employeeportal.common.Resource
+import com.ankitgh.employeeportal.ui.home.NewsArticleModel
 
 interface NewsApiHelper {
-    suspend fun getTopHeadlines(): Response<NewsJsonRootSchema>
+    suspend fun getTopHeadlines(): Resource<List<NewsArticleModel>>
 }

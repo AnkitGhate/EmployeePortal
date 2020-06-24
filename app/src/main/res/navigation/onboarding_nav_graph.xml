@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/letsGetStartedFragment"
-        android:name="com.ankitgh.employeeportal.screens.onboarding.LetsGetStartedFragment"
+        android:name="com.ankitgh.employeeportal.ui.onboarding.LetsGetStartedFragment"
         android:label="fragment_lets_get_started"
         tools:layout="@layout/fragment_lets_get_started">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ankitgh.employeeportal.screens.login.LoginFragment"
+        android:name="com.ankitgh.employeeportal.ui.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment">
         <action
@@ -31,12 +31,12 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.ankitgh.employeeportal.screens.HomeActivity"
+        android:name="com.ankitgh.employeeportal.ui.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.ankitgh.employeeportal.screens.registration.RegistrationFragment"
+        android:name="com.ankitgh.employeeportal.ui.registration.RegistrationFragment"
         android:label="registration_fragment"
         tools:layout="@layout/registration_fragment">
         <action

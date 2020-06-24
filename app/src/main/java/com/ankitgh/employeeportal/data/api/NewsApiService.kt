@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface NewsApiService {
 
     companion object {
-        const val ENDPOINT = "https://newsapi.org/"
+        const val ENDPOINT = "https://newsapi.org/v2/"
     }
 
     @GET("top-headlines?sources=google-news-in")

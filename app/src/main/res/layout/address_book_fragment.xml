@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="@dimen/root_padding"
-    tools:context=".screens.addressbook.AddressBookFragment">
+    tools:context=".ui.addressbook.AddressBookFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"

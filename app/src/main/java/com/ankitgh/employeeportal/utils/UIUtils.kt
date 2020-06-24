@@ -44,5 +44,5 @@ fun toggleHideyBar(uiOptions: Int): Int {
     }
 
     return newUiOptions
-    //END_INCLUDE (set_ui_flags)
+    // END_INCLUDE (set_ui_flags)
 }

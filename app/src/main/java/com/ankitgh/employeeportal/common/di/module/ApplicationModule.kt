@@ -1,11 +1,7 @@
 package com.ankitgh.employeeportal.common.di.module
 
 import com.ankitgh.employeeportal.BuildConfig
-import com.ankitgh.employeeportal.data.api.NewsApiHelper
 import com.ankitgh.employeeportal.data.api.NewsApiService
-import com.ankitgh.employeeportal.data.api.NewsNewsApiHelperImpl
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +17,7 @@ import javax.inject.Singleton
 class ApplicationModule {
 
     @Provides
-    fun provideBaseUrl() = BuildConfig.BASE_URL
+    fun provideBaseUrl() = NewsApiService.ENDPOINT
 
     @Provides
     @Singleton
@@ -35,7 +31,6 @@ class ApplicationModule {
         .Builder()
         .build()
 
-
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, BASE_URL: String): Retrofit =
@@ -44,21 +39,5 @@ class ApplicationModule {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): NewsApiService = retrofit.create(NewsApiService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideApiHelper(newsApiHelper: NewsNewsApiHelperImpl): NewsApiHelper = newsApiHelper
-
-    @Provides
-    @Singleton
-    fun provideFirebaseFireStore(): FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    @Provides
-    @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
 }

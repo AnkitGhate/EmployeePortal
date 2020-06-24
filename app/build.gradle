@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: "org.jlleitschuh.gradle.ktlint"
 
 android {
     compileSdkVersion 29
@@ -18,7 +19,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField 'String', 'BASE_URL', "\"http://newsapi.org/v2/\""
     }
 
     buildTypes {
@@ -67,12 +67,6 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
-    //JetPack Paging
-    def paging_version = "2.1.2"
-    implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx
-    testImplementation "androidx.paging:paging-common:$paging_version" // For Kotlin use paging-common-ktx
-
 
     //Chip Navigation
     //Docs : https://github.com/ismaeldivita/chip-navigation-bar

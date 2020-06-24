@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="10dp"
-    tools:context=".screens.feed.FeedFragment">
+    tools:context=".ui.feed.FeedFragment">
 
     <TextView
         android:id="@+id/title_network"
