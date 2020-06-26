@@ -11,16 +11,16 @@
         android:id="@+id/root_home_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/black_900"
         tools:context=".ui.home.HomeFragment">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/userprofile_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="6dp"
             app:cardElevation="24dp"
             app:contentPadding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +60,7 @@
                     android:textSize="12sp"
                     tools:text="Senior Android Developer" />
 
+
                 <!--                <TextView-->
                 <!--                    android:id="@+id/project_title"-->
                 <!--                    android:layout_width="wrap_content"-->
@@ -82,15 +83,15 @@
                 <!--                    android:textColor="@color/off_white" />-->
 
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/organisation_news_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="6dp"
             app:cardElevation="15dp"
             app:contentPadding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/userprofile_cardview"
@@ -115,13 +116,12 @@
                     android:layout_height="200dp"
                     android:layout_below="@id/organisation_news_title"
                     android:layout_marginTop="5dp"
-                    android:background="@color/card_background"
                     tools:itemCount="3"
                     tools:listitem="@layout/organisation_new_item" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/leave_balance_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
@@ -130,7 +130,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="9dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="6dp"
             app:cardElevation="15dp"
             app:contentPadding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +166,7 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/floating_holidays_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,9 +175,9 @@
                         android:layout_weight="1">
 
                         <include layout="@layout/planned_leaves_item" />
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/unplaneed_leaves_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -186,9 +186,9 @@
                         android:layout_weight="1">
 
                         <include layout="@layout/unplanned_leaves_item" />
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/planned_leaves_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -196,11 +196,11 @@
                         android:layout_weight="1">
 
                         <include layout="@layout/floating_leaves_item" />
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -211,13 +211,13 @@
             android:weightSum="2"
             app:layout_constraintTop_toBottomOf="@id/leave_balance_cardview">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/awh_cardview"
                 style="@style/Widget.App.CardView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="6dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -238,16 +238,16 @@
                     <include layout="@layout/awh_item" />
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/gratify_cardview"
                 style="@style/Widget.App.CardView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="6dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -269,7 +269,7 @@
                 </LinearLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

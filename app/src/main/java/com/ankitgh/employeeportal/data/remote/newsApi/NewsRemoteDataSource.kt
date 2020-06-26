@@ -1,8 +1,10 @@
-package com.ankitgh.employeeportal.data.api
+package com.ankitgh.employeeportal.data.remote.newsApi
 
 import com.ankitgh.employeeportal.common.Resource
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
 
-interface NewsApiHelper {
+interface NewsRemoteDataSource {
+
     suspend fun getTopHeadlines(): Resource<List<NewsArticleModel>>
+
 }

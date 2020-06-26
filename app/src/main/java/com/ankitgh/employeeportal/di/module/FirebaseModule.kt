@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal.common.di.module
+package com.ankitgh.employeeportal.di.module
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

@@ -5,7 +5,6 @@
     android:id="@+id/root_home_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".ui.HomeActivity">
 
     <fragment
@@ -14,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/black_900"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_chip_navigation_bar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +26,7 @@
         android:id="@+id/bottom_chip_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/card_background"
+        android:background="@color/black_800"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

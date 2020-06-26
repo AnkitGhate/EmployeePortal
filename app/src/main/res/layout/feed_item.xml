@@ -1,103 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_container"
+    style="@style/Widget.App.CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="6dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_container"
-        style="@style/Widget.App.CardView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
+        android:padding="8dp">
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_imageview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/placeholder_avatar_1" />
+
+        <TextView
+            android:id="@+id/user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/profile_imageview"
+            android:fontFamily="@font/jostregular"
+            android:textColor="@color/off_white"
+            android:textSize="18sp"
+            tools:text="Ankit Ghate" />
+
+        <TextView
+            android:id="@+id/designation_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_title"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/profile_imageview"
+            android:fontFamily="@font/jostlight"
+            android:textColor="@color/off_white"
+            android:textSize="14sp"
+            tools:text="Senior Developer" />
+
+        <TextView
+            android:id="@+id/post_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/user_title"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/jostregular"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            tools:text="10 min ago" />
+
+        <TextView
+            android:id="@+id/feed_body_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_imageview"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/jostregular"
+            android:maxLines="4"
+            android:text="@string/placeholder_text_paragraph"
+            android:textColor="@color/off_white"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_below="@id/feed_body_textview"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="3">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_imageview"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/placeholder_avatar_1" />
-
-            <TextView
-                android:id="@+id/user_title"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/profile_imageview"
-                android:fontFamily="@font/jostregular"
-                android:textColor="@color/off_white"
-                android:textSize="18sp"
-                tools:text="Ankit Ghate" />
+                android:layout_weight="1"
+                android:src="@mipmap/ic_favorite_comment" />
 
-            <TextView
-                android:id="@+id/designation_title"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_title"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/profile_imageview"
-                android:fontFamily="@font/jostlight"
-                android:textColor="@color/off_white"
-                android:textSize="14sp"
-                tools:text="Senior Developer" />
+                android:layout_weight="1"
+                android:src="@mipmap/ic_favorite_share" />
 
-            <TextView
-                android:id="@+id/post_time_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/user_title"
-                android:layout_alignParentEnd="true"
-                android:fontFamily="@font/jostregular"
-                android:textColor="@color/grey"
-                android:textSize="14sp"
-                tools:text="10 min ago" />
+        </LinearLayout>
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/feed_body_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/profile_imageview"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/jostregular"
-                android:maxLines="4"
-                android:text="@string/placeholder_text_paragraph"
-                android:textColor="@color/off_white"
-                android:textSize="16sp" />
+</com.google.android.material.card.MaterialCardView>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/feed_body_textview"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                android:weightSum="3">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_favorite_comment" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_favorite_share" />
-
-            </LinearLayout>
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</RelativeLayout>

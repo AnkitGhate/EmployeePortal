@@ -5,17 +5,19 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ankitgh.employeeportal.common.Resource
 import com.ankitgh.employeeportal.common.Status
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
-import com.ankitgh.employeeportal.data.repository.MainRepository
+import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class HomeViewModel @ViewModelInject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val fireStoreDb: FirebaseFirestore,
-    private val mainRepository: MainRepository
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase
 ) : ViewModel() {
 
     private val user = MutableLiveData<Resource<UserSchema>>()
@@ -42,11 +44,13 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun getNewsArticlesFromRemote(isNetworkAvailable: Boolean): LiveData<Resource<List<NewsArticleModel>>> {
         val orgNewsLD = MutableLiveData<Resource<List<NewsArticleModel>>>()
-        mainRepository.getTopHeadlines(isNetworkAvailable) {
-            when (it.status) {
-                Status.SUCCESS -> orgNewsLD.postValue(Resource.success(it.data))
-                Status.ERROR -> orgNewsLD.postValue(Resource.success(it.data))
-                Status.LOADING -> TODO()
+        viewModelScope.launch {
+            getTopHeadlinesUseCase.getTopHeadlines(isNetworkAvailable).let {
+                when (it.status) {
+                    Status.SUCCESS -> orgNewsLD.postValue(Resource.success(it.data))
+                    Status.ERROR -> orgNewsLD.postValue(Resource.success(it.data))
+                    Status.LOADING -> TODO()
+                }
             }
         }
         return orgNewsLD

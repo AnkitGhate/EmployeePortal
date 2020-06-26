@@ -4,52 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:padding="30dp"
+    android:background="@color/black_900"
+    android:padding="8dp"
     tools:context=".ui.settings.SettingsFragment">
 
 
-    <TextView
-        android:id="@+id/mytrainings_textview"
-        style="@style/TextViewStyleRegularFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="My Trainings"
-        app:layout_constraintBottom_toTopOf="@+id/termsandcondition_textview"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/settingsheadercardview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintCircleRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/feedback_textview"
-        style="@style/TextViewStyleRegularFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Feedback"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/termsandcondition_textview" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/settings_profile_radial_gradient" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/add_profile_placeholder" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/termsandcondition_textview"
         style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:drawableStart="@drawable/ic_terms"
+        android:drawablePadding="10dp"
         android:text="Terms and Condition"
-        app:layout_constraintBottom_toTopOf="@id/feedback_textview"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white_50"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/mytrainings_textview" />
+
+    <TextView
+        android:id="@+id/mytrainings_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:drawableStart="@drawable/ic_training"
+        android:drawablePadding="10dp"
+        android:text="My Trainings"
+        android:textColor="@color/white_50"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/settingsheadercardview" />
+
+    <TextView
+        android:id="@+id/feedback_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/ic_feedback"
+        android:drawablePadding="10dp"
+        android:text="Feedback"
+        android:textColor="@color/white_50"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/termsandcondition_textview" />
 
     <TextView
         android:id="@+id/signout_textview"
         style="@style/TextViewStyleRegularFont"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Signout"
+        android:textColor="@color/white_50"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feedback_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/about_textview"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <TextView
+        android:id="@+id/about_textview"
+        style="@style/TextViewStyleRegularFont"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/ic_about"
+        android:drawablePadding="10dp"
+        android:text="About"
+        android:textColor="@color/white_50"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/feedback_textview" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/mytrainings_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/mytrainings_textview"
+        app:layout_constraintTop_toTopOf="@+id/mytrainings_textview" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/termsandcondition_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/termsandcondition_textview"
+        app:layout_constraintTop_toTopOf="@+id/termsandcondition_textview" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/feedback_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/feedback_textview"
+        app:layout_constraintTop_toTopOf="@+id/feedback_textview" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/about_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/about_textview"
+        app:layout_constraintTop_toTopOf="@+id/about_textview" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="41dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

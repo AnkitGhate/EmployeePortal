@@ -1,7 +1,9 @@
-package com.ankitgh.employeeportal.common.di.module
+package com.ankitgh.employeeportal.di.module
 
 import com.ankitgh.employeeportal.BuildConfig
-import com.ankitgh.employeeportal.data.api.NewsApiService
+import com.ankitgh.employeeportal.data.MainRepository
+import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
+import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,4 +42,7 @@ class ApplicationModule {
             .client(okHttpClient)
             .build()
 
+    @Provides
+    @Singleton
+    fun getTopHeadlinesUseCase(mainRepository: MainRepository): GetTopHeadlinesUseCase = GetTopHeadlinesUseCase(mainRepository)
 }

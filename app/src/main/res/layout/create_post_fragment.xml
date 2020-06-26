@@ -5,7 +5,7 @@
     android:id="@+id/create_post_fragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/black_900"
     tools:context=".ui.feed.CreatePostFragment">
 
     <ImageView
@@ -32,7 +32,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/black_900"
         android:fontFamily="@font/jostregular"
         android:hint="What's happening?"
         android:textColorHint="@color/colorAccent"

@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal.data.api
+package com.ankitgh.employeeportal.data.remote.newsApi
 
 import com.ankitgh.employeeportal.data.model.newsmodel.NewsJsonRootSchema
 import retrofit2.Response

@@ -24,8 +24,13 @@ class OnBoardingActivity : AppCompatActivity() {
 
         val currentUser = firebaseAuth.currentUser
         when {
-            currentUser != null -> onBoardingNavController.navigate(R.id.homeActivity)
-            else -> onBoardingNavController.navigate(R.id.letsGetStartedFragment)
+            currentUser != null -> {
+                onBoardingNavController.navigate(R.id.homeActivity)
+                finish()
+            }
+            else -> {
+                onBoardingNavController.navigate(R.id.letsGetStartedFragment)
+            }
         }
     }
 }
