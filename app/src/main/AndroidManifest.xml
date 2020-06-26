@@ -15,10 +15,10 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".screens.HomeActivity"
+            android:name=".ui.HomeActivity"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".screens.onboarding.OnBoardingActivity">
+        <activity android:name=".ui.onboarding.OnBoardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

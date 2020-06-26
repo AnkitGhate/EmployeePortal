@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/news_item_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/card_background"
-    android:paddingBottom="5dp">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/news_body_textview"
+    <RelativeLayout
+        android:id="@+id/news_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jostlight"
-        android:maxLines="3"
-        android:textColor="@color/off_white"
-        android:textSize="15sp"
-        tools:text="@string/placeholder_text_for_lists" />
+        android:paddingBottom="5dp">
 
-    <TextView
-        android:id="@+id/news_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/news_body_textview"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/jostlight"
-        android:textColor="@color/grey"
-        tools:text="2nd June 2020" />
+        <TextView
+            android:id="@+id/news_body_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jostlight"
+            android:maxLines="3"
+            android:textColor="@color/off_white"
+            android:textSize="15sp"
+            tools:text="@string/placeholder_text_for_lists" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/news_date_tv"
-        android:layout_alignParentEnd="true"
-        android:fontFamily="@font/jostlight"
-        android:text="Read more.."
-        android:textColor="@color/grey" />
+        <TextView
+            android:id="@+id/news_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/news_body_textview"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/jostlight"
+            android:textColor="@color/grey"
+            tools:text="2nd June 2020" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/news_date_tv"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/jostlight"
+            android:text="Read more.."
+            android:textColor="@color/grey" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

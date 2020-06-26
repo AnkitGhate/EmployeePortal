@@ -5,9 +5,9 @@
     android:id="@+id/registrationFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/black_900"
     android:padding="@dimen/root_padding"
-    tools:context=".screens.registration.RegistrationFragment">
+    tools:context=".ui.registration.RegistrationFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/add_profile_imageview"

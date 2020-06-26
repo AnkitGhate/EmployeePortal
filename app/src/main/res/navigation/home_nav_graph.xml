@@ -6,12 +6,12 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ankitgh.employeeportal.screens.home.HomeFragment"
+        android:name="com.ankitgh.employeeportal.ui.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.ankitgh.employeeportal.screens.feed.FeedFragment"
+        android:name="com.ankitgh.employeeportal.ui.feed.FeedFragment"
         android:label="feed_fragment"
         tools:layout="@layout/feed_fragment">
         <action
@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/addressBookFragment"
-        android:name="com.ankitgh.employeeportal.screens.addressbook.AddressBookFragment"
+        android:name="com.ankitgh.employeeportal.ui.addressbook.AddressBookFragment"
         android:label="address_book_fragment"
         tools:layout="@layout/address_book_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.ankitgh.employeeportal.screens.settings.SettingsFragment"
+        android:name="com.ankitgh.employeeportal.ui.settings.SettingsFragment"
         android:label="settings_fragment"
         tools:layout="@layout/settings_fragment">
         <action
@@ -34,12 +34,12 @@
     </fragment>
     <activity
         android:id="@+id/onBoardingActivity"
-        android:name="com.ankitgh.employeeportal.screens.onboarding.OnBoardingActivity"
+        android:name="com.ankitgh.employeeportal.ui.onboarding.OnBoardingActivity"
         android:label="activity_onboarding"
         tools:layout="@layout/activity_onboarding" />
     <dialog
         android:id="@+id/createPostFragment"
-        android:name="com.ankitgh.employeeportal.screens.feed.CreatePostFragment"
+        android:name="com.ankitgh.employeeportal.ui.feed.CreatePostFragment"
         android:label="create_post_fragment"
         tools:layout="@layout/create_post_fragment" />
 </navigation>

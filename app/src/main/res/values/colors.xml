@@ -15,4 +15,11 @@
     <color name="black_overlay">#464D55</color>
     <color name="off_white">#EEEEEE</color>
     <color name="grey">#A3A6AD</color>
+
+    <color name="black_800">#030303</color> <!--Color surface (dark)-->
+    <!--Color on secondary (light), color on background (light),-->
+    <!--color on surface (light)-->
+    <color name="black_900">#000000</color>
+    <color name="white_50">#ffffff</color>
+    <color name="cardBackGroundColor">#030303</color>
 </resources>
