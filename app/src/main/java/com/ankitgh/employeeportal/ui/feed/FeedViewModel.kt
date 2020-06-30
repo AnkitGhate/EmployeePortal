@@ -5,8 +5,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ankitgh.employeeportal.common.Resource
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
+import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 

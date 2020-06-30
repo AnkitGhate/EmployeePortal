@@ -1,4 +1,4 @@
-package com.ankitgh.employeeportal.common
+package com.ankitgh.employeeportal.utils
 
 import android.util.Patterns
 

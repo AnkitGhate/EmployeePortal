@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.inflate
 import com.ankitgh.employeeportal.utils.getRelativeDateTimeFromString
+import com.ankitgh.employeeportal.utils.inflate
 import kotlinx.android.synthetic.main.organisation_new_item.view.*
 import java.util.*
 
 
-class OrgNewsAdapter(newsArticleList: ArrayList<NewsArticleModel>) : RecyclerView.Adapter<OrgNewsAdapter.OrgNewsViewHolder>() {
+class OrgNewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>) : RecyclerView.Adapter<OrgNewsAdapter.OrgNewsViewHolder>() {
 
-    private var newsArticleList: ArrayList<NewsArticleModel> = newsArticleList
+    lateinit var recyclerView: RecyclerView
 
     class OrgNewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private var view: View = itemView
@@ -32,6 +32,11 @@ class OrgNewsAdapter(newsArticleList: ArrayList<NewsArticleModel>) : RecyclerVie
             view.news_body_textview.text = newsArticle.newsContent
             view.news_date_tv.text = getRelativeDateTimeFromString(newsArticle.publishDate)
         }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrgNewsViewHolder {

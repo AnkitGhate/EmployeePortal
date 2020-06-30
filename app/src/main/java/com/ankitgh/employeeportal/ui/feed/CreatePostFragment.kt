@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.Status
+import com.ankitgh.employeeportal.utils.Status
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.create_post_fragment.*
@@ -46,6 +46,7 @@ class CreatePostFragment : BottomSheetDialogFragment() {
                         progressBar.visibility = View.GONE
                         dismiss()
                     }
+                    Status.UNKNOWN -> TODO()
                 }
             })
         }

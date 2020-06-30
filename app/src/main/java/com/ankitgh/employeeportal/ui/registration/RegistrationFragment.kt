@@ -15,10 +15,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.Status
-import com.ankitgh.employeeportal.common.isValidEmail
-import com.ankitgh.employeeportal.common.isValidPassword
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
+import com.ankitgh.employeeportal.utils.Status
+import com.ankitgh.employeeportal.utils.isValidEmail
+import com.ankitgh.employeeportal.utils.isValidPassword
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.registration_fragment.*
@@ -162,6 +162,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
                     Status.LOADING -> {
                         progressBar.visibility = View.VISIBLE
                     }
+                    Status.UNKNOWN -> TODO()
                 }
             })
         }

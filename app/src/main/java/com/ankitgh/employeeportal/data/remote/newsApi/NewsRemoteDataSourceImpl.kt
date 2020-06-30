@@ -1,13 +1,10 @@
-package com.ankitgh.employeeportal.data
+package com.ankitgh.employeeportal.data.remote.newsApi
 
-import com.ankitgh.employeeportal.common.Resource
-import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.ankitgh.employeeportal.utils.Resource
 import javax.inject.Inject
 
-class MainRemoteDataSource @Inject constructor(private val newsApiService: NewsApiService) : MainDataSource {
+class NewsRemoteDataSourceImpl @Inject constructor(private val newsApiService: NewsApiService) : NewsRemoteDataSource {
 
     companion object {
         private const val API_KEY: String = "ce4eb78d859e428688288488cb9eebb3"
@@ -25,9 +22,5 @@ class MainRemoteDataSource @Inject constructor(private val newsApiService: NewsA
         } else {
             Resource.error(response.errorBody().toString())
         }
-    }
-
-    override suspend fun signInUserWithUserNameAndPassword(email: String, password: String): Task<AuthResult> {
-        TODO("Not yet implemented")
     }
 }

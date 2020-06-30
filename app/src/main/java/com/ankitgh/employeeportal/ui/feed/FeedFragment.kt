@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.Status
+import com.ankitgh.employeeportal.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.feed_fragment.*
 
@@ -63,6 +63,7 @@ class FeedFragment : Fragment() {
                 Status.ERROR -> {
                     TODO()
                 }
+                Status.UNKNOWN -> TODO()
             }
         })
     }

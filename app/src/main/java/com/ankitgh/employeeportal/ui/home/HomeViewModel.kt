@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ankitgh.employeeportal.common.Resource
-import com.ankitgh.employeeportal.common.Status
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
+import com.ankitgh.employeeportal.utils.Resource
+import com.ankitgh.employeeportal.utils.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -50,6 +50,7 @@ class HomeViewModel @ViewModelInject constructor(
                     Status.SUCCESS -> orgNewsLD.postValue(Resource.success(it.data))
                     Status.ERROR -> orgNewsLD.postValue(Resource.success(it.data))
                     Status.LOADING -> TODO()
+                    Status.UNKNOWN -> TODO()
                 }
             }
         }

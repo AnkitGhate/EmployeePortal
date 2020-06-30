@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.ankitgh.employeeportal.utils
 
 import android.content.Context

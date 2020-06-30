@@ -1,8 +1,8 @@
 package com.ankitgh.employeeportal.domain
 
-import com.ankitgh.employeeportal.common.Resource
 import com.ankitgh.employeeportal.data.MainRepository
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
+import com.ankitgh.employeeportal.utils.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

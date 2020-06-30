@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.inflate
+import com.ankitgh.employeeportal.utils.inflate
 import kotlinx.android.synthetic.main.addressbook_item.view.*
 
 class AddressBookAdapter(contactsList: ArrayList<ContactItem>) : RecyclerView.Adapter<AddressBookAdapter.ContactViewHolder>() {

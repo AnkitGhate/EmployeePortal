@@ -1,9 +1,10 @@
-package com.ankitgh.employeeportal.common
+package com.ankitgh.employeeportal.utils
 
 enum class Status {
     SUCCESS,
     ERROR,
-    LOADING
+    LOADING,
+    UNKNOWN
 }
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {

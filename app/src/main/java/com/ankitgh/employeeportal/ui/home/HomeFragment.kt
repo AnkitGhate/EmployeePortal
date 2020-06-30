@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.Status
 import com.ankitgh.employeeportal.utils.NetworkUtil
+import com.ankitgh.employeeportal.utils.Status
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,6 +56,9 @@ class HomeFragment : Fragment() {
                     designation.text = it.data?.designation?.toUpperCase()
                     Glide.with(this).load(it.data?.photoUri).into(profileimage)
                 }
+                Status.ERROR -> TODO()
+                Status.LOADING -> TODO()
+                Status.UNKNOWN -> TODO()
             }
         })
 
@@ -78,6 +81,7 @@ class HomeFragment : Fragment() {
                     Status.SUCCESS -> updateUI(it.data)
                     Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
                     Status.LOADING -> TODO()
+                    Status.UNKNOWN -> TODO()
                 }
             })
     }
