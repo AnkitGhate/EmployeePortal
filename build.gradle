@@ -7,6 +7,9 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            url "https://jitpack.io"
+        }
     }
     dependencies {
         classpath 'com.google.gms:google-services:4.3.3'

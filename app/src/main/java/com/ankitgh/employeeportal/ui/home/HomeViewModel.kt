@@ -22,6 +22,20 @@ class HomeViewModel @ViewModelInject constructor(
 
     private val user = MutableLiveData<Resource<UserSchema>>()
 
+    companion object {
+        private lateinit var selectedArticle: NewsArticleModel
+    }
+
+
+    fun setSelectedArticle(article: NewsArticleModel) {
+        selectedArticle = article
+    }
+
+    fun getSelectedArticle(): NewsArticleModel {
+        return selectedArticle
+    }
+
+
     fun getUser(): LiveData<Resource<UserSchema>> {
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
@@ -49,8 +63,8 @@ class HomeViewModel @ViewModelInject constructor(
                 when (it.status) {
                     Status.SUCCESS -> orgNewsLD.postValue(Resource.success(it.data))
                     Status.ERROR -> orgNewsLD.postValue(Resource.success(it.data))
-                    Status.LOADING -> TODO()
-                    Status.UNKNOWN -> TODO()
+                    Status.LOADING -> TODO("Handle loading case for when()")
+                    Status.UNKNOWN -> TODO("Handle unloading case for when()")
                 }
             }
         }

@@ -11,11 +11,11 @@ import kotlinx.android.synthetic.main.organisation_new_item.view.*
 import java.util.*
 
 
-class OrgNewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>) : RecyclerView.Adapter<OrgNewsAdapter.OrgNewsViewHolder>() {
+class NewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     lateinit var recyclerView: RecyclerView
 
-    class OrgNewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private var view: View = itemView
         private var newsArticle: NewsArticleModel? = null
 
@@ -27,10 +27,13 @@ class OrgNewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>) :
             Log.d("RecyclerView", "CLICK!")
         }
 
-        fun bindNews(newsArticle: NewsArticleModel) {
+        fun bindNews(newsArticle: NewsArticleModel, onItemClickListener: OnItemClickListener) {
             this.newsArticle = newsArticle
-            view.news_body_textview.text = newsArticle.newsContent
-            view.news_date_tv.text = getRelativeDateTimeFromString(newsArticle.publishDate)
+            view.news_body_textview.text = newsArticle.description
+            view.news_date_tv.text = getRelativeDateTimeFromString(newsArticle.publishedAt)
+            itemView.setOnClickListener {
+                onItemClickListener.onItemClicked(newsArticle)
+            }
         }
     }
 
@@ -39,23 +42,27 @@ class OrgNewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>) :
         this.recyclerView = recyclerView
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrgNewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflatedView = parent.inflate(R.layout.organisation_new_item, false)
-        return OrgNewsViewHolder(inflatedView)
+        return NewsViewHolder(inflatedView)
     }
 
     override fun getItemCount(): Int {
         return newsArticleList.size
     }
 
-    override fun onBindViewHolder(holder: OrgNewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val postItem = newsArticleList[position]
-        holder.bindNews(postItem)
+        holder.bindNews(postItem, onItemClickListener)
     }
 
     fun updateList(newsList: ArrayList<NewsArticleModel>) {
         newsArticleList.clear()
         newsArticleList = newsList
         notifyDataSetChanged()
+    }
+
+    interface OnItemClickListener {
+        fun onItemClicked(article: NewsArticleModel)
     }
 }

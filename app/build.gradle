@@ -113,9 +113,9 @@ dependencies {
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
     // Coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
@@ -141,5 +141,11 @@ dependencies {
 
     //Runtime Permission
     implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // Charts
+    implementation 'com.diogobernardino:williamchart:3.7.1'
+
+    //CalenderView
+    implementation 'com.applandeo:material-calendar-view:1.8.0-rc01'
 
 }

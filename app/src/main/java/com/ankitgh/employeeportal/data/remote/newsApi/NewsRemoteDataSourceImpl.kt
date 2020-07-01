@@ -13,10 +13,23 @@ class NewsRemoteDataSourceImpl @Inject constructor(private val newsApiService: N
     override suspend fun getTopHeadlines(): Resource<List<NewsArticleModel>> {
         val response = newsApiService.getTopHeadlinesFromGoogle(API_KEY)
         return if (response.isSuccessful) {
+
             val articlesList = response.body()?.articles
             val newsArticleModelList = ArrayList<NewsArticleModel>()
             articlesList?.forEach {
-                newsArticleModelList.add(NewsArticleModel(it.title, it.publishedAt))
+                newsArticleModelList.add(
+                    NewsArticleModel(
+                        description = it.description,
+                        publishedAt = it.publishedAt,
+                        author = it.author,
+                        sourceSchema = it.sourceSchema,
+                        title = it.title,
+                        url = it.url,
+                        urlToImage = it.urlToImage,
+                        content = it.content
+
+                    )
+                )
             }
             Resource.success(newsArticleModelList)
         } else {
