@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.awh_detail_fragment.*
@@ -29,8 +30,15 @@ class AWHDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         title_tv.text = "AWH Details"
-
         setupGraph()
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navBackButton.setOnClickListener {
+            Navigation.findNavController(view).navigateUp()
+        }
     }
 
     @SuppressLint("Range")

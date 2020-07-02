@@ -1,5 +1,6 @@
 package com.ankitgh.employeeportal.ui.home
 
+import android.app.Application
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
+import com.ankitgh.employeeportal.utils.NetworkUtil
 import com.ankitgh.employeeportal.utils.Resource
 import com.ankitgh.employeeportal.utils.Status
 import com.google.firebase.auth.FirebaseAuth
@@ -17,26 +19,27 @@ import kotlinx.coroutines.launch
 class HomeViewModel @ViewModelInject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val fireStoreDb: FirebaseFirestore,
-    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
+    private val appContext: Application
 ) : ViewModel() {
 
-    private val user = MutableLiveData<Resource<UserSchema>>()
+    private var _userData = MutableLiveData<Resource<UserSchema>>()
+    var userData: LiveData<Resource<UserSchema>> = _userData
+
+    private var _getArticles = MutableLiveData<Resource<List<NewsArticleModel>>>()
+    var getArticles: LiveData<Resource<List<NewsArticleModel>>> = _getArticles
 
     companion object {
         private lateinit var selectedArticle: NewsArticleModel
     }
 
-
-    fun setSelectedArticle(article: NewsArticleModel) {
-        selectedArticle = article
-    }
-
-    fun getSelectedArticle(): NewsArticleModel {
-        return selectedArticle
+    init {
+        _userData = getUser()
+        _getArticles = getNewsArticlesFromRemote()
     }
 
 
-    fun getUser(): LiveData<Resource<UserSchema>> {
+    fun getUser(): MutableLiveData<Resource<UserSchema>> {
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
             .get()
@@ -46,28 +49,35 @@ class HomeViewModel @ViewModelInject constructor(
                     signedInUser.photoUri = firebaseAuth.currentUser?.photoUrl
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
                 }
-                user.postValue(Resource.success(signedInUser))
+                _userData.value = Resource.success(signedInUser)
                 Log.i("CreatePostViewModel", "Signed in user : $signedInUser")
             }
             .addOnFailureListener { exception ->
-                user.postValue(Resource.error(exception.message))
+                _userData.value = Resource.error(exception.message)
                 Log.e("CreatePostViewModel", "Failure fetching Singed-In user : $exception")
             }
-        return user
+        return _userData
     }
 
-    fun getNewsArticlesFromRemote(isNetworkAvailable: Boolean): LiveData<Resource<List<NewsArticleModel>>> {
-        val orgNewsLD = MutableLiveData<Resource<List<NewsArticleModel>>>()
+    fun getNewsArticlesFromRemote(): MutableLiveData<Resource<List<NewsArticleModel>>> {
         viewModelScope.launch {
-            getTopHeadlinesUseCase.getTopHeadlines(isNetworkAvailable).let {
+            getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected(appContext)).let {
                 when (it.status) {
-                    Status.SUCCESS -> orgNewsLD.postValue(Resource.success(it.data))
-                    Status.ERROR -> orgNewsLD.postValue(Resource.success(it.data))
+                    Status.SUCCESS -> _getArticles.value = Resource.success(it.data)
+                    Status.ERROR -> _getArticles.value = Resource.success(it.data)
                     Status.LOADING -> TODO("Handle loading case for when()")
                     Status.UNKNOWN -> TODO("Handle unloading case for when()")
                 }
             }
         }
-        return orgNewsLD
+        return _getArticles
+    }
+
+    fun setSelectedArticle(article: NewsArticleModel) {
+        selectedArticle = article
+    }
+
+    fun getSelectedArticle(): NewsArticleModel {
+        return selectedArticle
     }
 }

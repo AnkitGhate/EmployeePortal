@@ -25,11 +25,31 @@ abstract class BaseActivity : AppCompatActivity() {
     fun setUpBottomNavigation() {
         bottom_chip_navigation_bar.setOnItemSelectedListener {
             when (it) {
-                R.id.home_tab -> navigateTo(R.id.homeFragment)
-                R.id.feed_tab -> navigateTo(R.id.feedFragment)
-                R.id.addressBook_tab -> navigateTo(R.id.addressBookFragment)
-                R.id.settings_tab -> navigateTo(R.id.settingsFragment)
+                R.id.home_tab -> {
+                    navController.popBackStack(R.id.homeFragment, false)
+                    navigateTo(R.id.homeFragment)
+                }
+                R.id.feed_tab -> {
+                    navController.popBackStack(R.id.homeFragment, false)
+                    navigateTo(R.id.feedFragment)
+                }
+                R.id.addressBook_tab -> {
+                    navController.popBackStack(R.id.homeFragment, false)
+                    navigateTo(R.id.addressBookFragment)
+                }
+                R.id.settings_tab -> {
+                    navController.popBackStack(R.id.homeFragment, false)
+                    navigateTo(R.id.settingsFragment)
+                }
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        //Hack for bottom nav bar to be selected on back press
+        if (navController.currentDestination?.label == "home_fragment") {
+            bottom_chip_navigation_bar.setItemSelected(R.id.home_tab)
         }
     }
 

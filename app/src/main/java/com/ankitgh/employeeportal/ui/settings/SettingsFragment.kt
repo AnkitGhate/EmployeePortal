@@ -35,7 +35,7 @@ class SettingsFragment : Fragment() {
         settingsNavController = Navigation.findNavController(view)
         signout_textview.setOnClickListener {
             firebaseAuth.signOut()
-            settingsNavController.navigate(R.id.action_settingsFragment_to_onBoardingActivity)
+            settingsNavController.navigate(R.id.onboarding_activity)
         }
     }
 }

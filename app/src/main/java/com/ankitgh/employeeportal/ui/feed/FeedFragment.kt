@@ -29,8 +29,7 @@ class FeedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView: View = inflater.inflate(R.layout.feed_fragment, container, false)
-        return rootView
+        return inflater.inflate(R.layout.feed_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class FeedFragment : Fragment() {
         feed_recyclerview.adapter = feedAdapter
 
         button_add_post_fab.setOnClickListener {
-            navController.navigate(R.id.action_feedFragment_to_createPostFragment)
+            navController.navigate(R.id.createPostFragment)
         }
     }
 
@@ -54,11 +53,11 @@ class FeedFragment : Fragment() {
         viewModel.fetchPostsFromDatabase(postList).observe(requireActivity(), Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    progressBar.visibility = View.GONE
+                    if (progressBar != null) progressBar.visibility = View.GONE
                     feedAdapter.notifyDataSetChanged()
                 }
                 Status.LOADING -> {
-                    progressBar.visibility = View.VISIBLE
+                    if (progressBar != null) progressBar.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {
                     TODO()

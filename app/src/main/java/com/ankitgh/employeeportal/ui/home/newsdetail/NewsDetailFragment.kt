@@ -39,9 +39,8 @@ class NewsDetailFragment : Fragment() {
         Glide.with(view).load(viewModel.getSelectedArticle().urlToImage).into(news_background_imageview)
         news_body_tv.text = viewModel.getSelectedArticle().content
 
-        newsDetailBackButton.setOnClickListener {
-            navController.popBackStack()
+        navBackButton.setOnClickListener {
+            navController.popBackStack(R.id.homeFragment, false)
         }
     }
-
 }

@@ -44,6 +44,7 @@ class NewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>, priv
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val inflatedView = parent.inflate(R.layout.organisation_new_item, false)
+        inflatedView.layoutParams.height = recyclerView.height / 3
         return NewsViewHolder(inflatedView)
     }
 

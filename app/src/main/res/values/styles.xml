@@ -3,12 +3,13 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/black_900</item>
         <item name="colorSurface">@color/cardBackGroundColor</item>
         <item name="colorOnBackground">@color/white_50</item>
         <item name="colorOnSurface">@color/white_50</item>
+        <item name="android:windowBackground">@drawable/splashbackground</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
@@ -35,6 +36,16 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="fontFamily">@font/jostregular</item>
         <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="TextViewStyleLightFont" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white_50</item>
+        <item name="fontFamily">@font/jostlight</item>
+    </style>
+
+    <style name="TextViewStyleBoldFont" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white_50</item>
+        <item name="fontFamily">@font/jostbold</item>
     </style>
 
     <style name="CustomFloatingActionButtonStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">

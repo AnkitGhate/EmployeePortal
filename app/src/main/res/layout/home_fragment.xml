@@ -113,7 +113,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/organisation_news_recyclerview"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:layout_below="@id/organisation_news_title"
                     android:layout_marginTop="5dp"
                     tools:itemCount="3"

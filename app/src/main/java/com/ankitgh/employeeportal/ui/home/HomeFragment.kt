@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.utils.NetworkUtil
 import com.ankitgh.employeeportal.utils.Status
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.home_fragment.*
 @AndroidEntryPoint
 class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
-    private lateinit var NewsAdapter: NewsAdapter
+    private lateinit var newsAdapter: NewsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var newsList = ArrayList<NewsArticleModel>()
     private val viewModel: HomeViewModel by viewModels()
@@ -42,6 +41,12 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
         }
     }
 
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        observeData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,31 +57,26 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = Navigation.findNavController(view)
+        setupRecyclerView()
+        awh_cardview.setOnClickListener {
+            navController.navigate(R.id.AWHDetailFragment)
+        }
+        addleavesbutton.setOnClickListener {
+            navController.navigate(R.id.addLeaveFragment)
+        }
+    }
 
+    private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)
         organisation_news_recyclerview.layoutManager = linearLayoutManager
 
-        NewsAdapter = NewsAdapter(newsList, this)
-        organisation_news_recyclerview.adapter = NewsAdapter
-
-        awh_cardview.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_AWHDetailFragment)
-        }
-
-        addleavesbutton.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_addLeaveFragment)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        observeData()
+        newsAdapter = NewsAdapter(newsList, this)
+        organisation_news_recyclerview.adapter = newsAdapter
     }
 
     private fun observeData() {
-        viewModel.getUser().observe(viewLifecycleOwner, Observer {
+        viewModel.userData.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
@@ -89,23 +89,22 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
             }
         })
 
-        viewModel.getNewsArticlesFromRemote(NetworkUtil.isNetworkConnected(requireContext()))
-            .observe(viewLifecycleOwner, Observer {
-                when (it.status) {
-                    Status.SUCCESS -> updateUI(it.data)
-                    Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
-                    Status.LOADING -> TODO("Handle loading case for when()")
-                    Status.UNKNOWN -> TODO("Handle unknown case for when()")
-                }
-            })
+        viewModel.getArticles.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Status.SUCCESS -> updateUI(it.data)
+                Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
+                Status.LOADING -> TODO("Handle loading case for when()")
+                Status.UNKNOWN -> TODO("Handle unknown case for when()")
+            }
+        })
     }
 
     private fun updateUI(newsArticleList: List<NewsArticleModel>?) {
-        NewsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
+        newsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
     }
 
     override fun onItemClicked(article: NewsArticleModel) {
         viewModel.setSelectedArticle(article)
-        navController.navigate(R.id.action_homeFragment_to_newsDetailFragment)
+        navController.navigate(R.id.newsDetailFragment)
     }
 }
