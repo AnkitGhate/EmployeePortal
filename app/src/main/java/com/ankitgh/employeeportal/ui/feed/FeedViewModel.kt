@@ -31,10 +31,11 @@ class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: Fireba
                         postList.add(
                             FeedPostModel(
                                 "",
-                                post.userSchema?.username,
-                                post.userSchema?.designation,
-                                post.creation_time,
-                                post.body
+                                username = post.userSchema?.username,
+                                designation = post.userSchema?.designation,
+                                postTime = post.creation_time,
+                                feedBody = post.body,
+                                likes = post.userSchema?.likes
                             )
                         )
                     }

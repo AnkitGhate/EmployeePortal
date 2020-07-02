@@ -9,5 +9,6 @@ data class UserSchema(
     var email: String = "",
     var photoUri: Uri? = null,
     var employeeid: String = "",
-    var isSignUpComplete: Boolean = false
+    var isSignUpComplete: Boolean = false,
+    var likes: Int? = 0
 )

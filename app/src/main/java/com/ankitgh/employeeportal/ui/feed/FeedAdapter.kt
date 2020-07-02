@@ -21,16 +21,27 @@ class FeedAdapter(feedPosts: ArrayList<FeedPostModel>) :
             itemView.feed_body_textview.text = feedPost.feedBody
             itemView.post_time_textview.text = feedPost.postTime?.let { DateUtils.getRelativeTimeSpanString(it) }
             itemView.card_container.animation = AnimationUtils.loadAnimation(itemView.context, R.anim.card_transition)
+            itemView.likecounttv.text = feedPost.likes.toString()
+            itemView.likeanimatedview.setOnClickListener(this)
         }
 
         override fun onClick(view: View?) {
             if (view != null) {
                 when (view.id) {
-                    R.id.card_container -> {
-                        TODO("Handle click of feed item views")
+                    R.id.likeanimatedview -> {
+                        itemView.likeanimatedview.playAnimation()
+                        var count = itemView.likecounttv.text.toString().toInt()
+                        count += 1
+                        itemView.likecounttv.text = count.toString()
+
+                        incrementLikesAndUpdateRemote(count)
                     }
                 }
             }
+        }
+
+        private fun incrementLikesAndUpdateRemote(text: Int) {
+
         }
     }
 
