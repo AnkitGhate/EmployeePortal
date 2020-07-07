@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.ui.home
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,10 +7,13 @@ import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.getRelativeDateTimeFromString
 import com.ankitgh.employeeportal.utils.inflate
 import kotlinx.android.synthetic.main.organisation_new_item.view.*
+import timber.log.Timber
 import java.util.*
 
-
-class NewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(
+    private var newsArticleList: ArrayList<NewsArticleModel>,
+    private val onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     lateinit var recyclerView: RecyclerView
 
@@ -24,7 +26,7 @@ class NewsAdapter(private var newsArticleList: ArrayList<NewsArticleModel>, priv
         }
 
         override fun onClick(v: View) {
-            Log.d("RecyclerView", "CLICK!")
+            Timber.d("CLICK!")
         }
 
         fun bindNews(newsArticle: NewsArticleModel, onItemClickListener: OnItemClickListener) {

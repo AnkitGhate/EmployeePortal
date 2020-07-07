@@ -17,7 +17,6 @@ class HomeActivity : BaseActivity() {
         setUpBottomNavigation()
     }
 
-
     override fun setLayoutId(): Int {
         return R.layout.activity_home
     }

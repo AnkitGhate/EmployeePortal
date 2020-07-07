@@ -15,7 +15,6 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(setLayoutId())
         navController = Navigation.findNavController(this, setNavControllerId())
-
     }
 
     fun navigateTo(destination: Int) {
@@ -47,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        //Hack for bottom nav bar to be selected on back press
+        // Hack for bottom nav bar to be selected on back press
         if (navController.currentDestination?.label == "home_fragment") {
             bottom_chip_navigation_bar.setItemSelected(R.id.home_tab)
         }

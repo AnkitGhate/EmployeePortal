@@ -11,5 +11,4 @@ fun getRelativeDateTimeFromString(datetime: String?): String {
     val instant: Instant = Instant.from(ta)
     val date = Date.from(instant)
     return DateUtils.getRelativeTimeSpanString(date.time).toString()
-
 }

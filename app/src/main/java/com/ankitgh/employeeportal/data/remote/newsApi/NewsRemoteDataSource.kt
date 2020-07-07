@@ -6,5 +6,4 @@ import com.ankitgh.employeeportal.utils.Resource
 interface NewsRemoteDataSource {
 
     suspend fun getTopHeadlines(): Resource<List<NewsArticleModel>>
-
 }

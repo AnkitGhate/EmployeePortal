@@ -33,6 +33,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsRemoteDataSource: NewsRemoteDataSource, firebaseRemoteDataSourceImpl: FirebaseRemoteDataSource): MainRepository =
+    fun provideNewsRepository(
+        newsRemoteDataSource: NewsRemoteDataSource,
+        firebaseRemoteDataSourceImpl: FirebaseRemoteDataSource
+    ): MainRepository =
         DefaultMainRepository(newsRemoteDataSource, firebaseRemoteDataSourceImpl)
 }

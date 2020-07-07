@@ -1,7 +1,6 @@
 package com.ankitgh.employeeportal.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,7 @@ import com.ankitgh.employeeportal.utils.isValidPassword
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*
+import timber.log.Timber
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
                         }
                         Status.ERROR -> {
                             // If sign in fails, display a message to the user.
-                            Log.w("LoginFragment", "signInWithEmail:${it.message}")
+                            Timber.d("signInWithEmail:${it.message}")
                             Snackbar.make(requireView(), "Authentication Failed", Snackbar.LENGTH_SHORT).show()
                             progressBar.visibility = View.GONE
                         }
@@ -89,6 +89,5 @@ class LoginFragment : Fragment() {
 
     private fun navigateTo(resId: Int) {
         onBoardingNavController.navigate(resId)
-
     }
 }

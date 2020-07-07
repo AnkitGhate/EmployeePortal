@@ -23,7 +23,8 @@ class NewsDetailFragment : Fragment() {
     private lateinit var navController: NavController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.news_detail_fragment, container, false)

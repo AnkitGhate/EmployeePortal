@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.ui.feed
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +8,7 @@ import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import timber.log.Timber
 
 class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: FirebaseFirestore) : ViewModel() {
 
@@ -20,12 +20,12 @@ class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: Fireba
             .orderBy("creation_time", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 if (exception != null && snapshot == null) {
-                    Log.e("FeedFragment", "Exception when retrieving posts from FireStore : ${exception.message}")
+                    Timber.e("Exception when retrieving posts from FireStore : ${exception.message}")
                     return@addSnapshotListener
                 }
                 postList.clear()
                 if (snapshot != null) {
-                    var postListSnapShot = snapshot.toObjects(PostSchema::class.java)
+                    val postListSnapShot = snapshot.toObjects(PostSchema::class.java)
 
                     for (post in postListSnapShot) {
                         postList.add(

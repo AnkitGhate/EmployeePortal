@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.ui.feed
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +9,7 @@ import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import timber.log.Timber
 
 class CreatePostViewModel @ViewModelInject constructor(
     private val firebaseDb: FirebaseFirestore
@@ -25,22 +25,22 @@ class CreatePostViewModel @ViewModelInject constructor(
             .get()
             .addOnSuccessListener { userSnapShot ->
                 val signedInUser = userSnapShot.toObject(UserSchema::class.java)
-                Log.i("CreatePostViewModel", "Signed in user : $signedInUser")
+                Timber.i("Signed in user : $signedInUser")
 
                 val post = PostSchema(postBody, System.currentTimeMillis(), signedInUser)
                 firebaseDb.collection("posts").add(post)
                     .addOnSuccessListener {
                         user.postValue(Resource.success(null))
-                        Log.i("CreatePostViewModel", "Post submitted to firebase")
+                        Timber.i("Post submitted to firebase")
                     }
                     .addOnFailureListener { exception ->
                         user.postValue(Resource.error(exception.message))
-                        Log.e("CreatePostViewModel", "Failed to send post to firebase : $exception")
+                        Timber.e("Failed to send post to firebase : $exception")
                     }
             }
             .addOnFailureListener { exception ->
                 user.postValue(Resource.error(exception.message))
-                Log.e("CreatePostViewModel", "Failure fetching Singed-In user : $exception")
+                Timber.e("Failure fetching Singed-In user : $exception")
             }
         return user
     }

@@ -9,5 +9,4 @@ interface FirebaseRemoteDataSource {
     suspend fun signInUserWithUserNameAndPassword(email: String, password: String): Task<AuthResult>
 
     fun getCurrentUser(): FirebaseUser?
-
 }

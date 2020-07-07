@@ -10,28 +10,29 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
+import com.db.williamchart.ExperimentalFeature
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.awh_detail_fragment.*
 import kotlinx.android.synthetic.main.titlebar.*
 
+@ExperimentalFeature
 @AndroidEntryPoint
 class AWHDetailFragment : Fragment() {
 
     private val viewModel: AWHDetailViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.awh_detail_fragment, container, false)
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        title_tv.text = "AWH Details"
+        title_tv.text = getString(R.string.awhfragment_title_text)
         setupGraph()
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,5 +77,4 @@ class AWHDetailFragment : Fragment() {
 //            "DEC" to 00.00f
         )
     }
-
 }

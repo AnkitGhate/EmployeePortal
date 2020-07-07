@@ -2,7 +2,6 @@ package com.ankitgh.employeeportal.ui.home.addLeave
 
 import android.animation.Animator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import com.ankitgh.employeeportal.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.add_leave_fragment.*
 import kotlinx.android.synthetic.main.titlebar.*
+import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
@@ -23,7 +23,8 @@ class AddLeaveFragment : Fragment() {
     private lateinit var navController: NavController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.add_leave_fragment, container, false)
@@ -32,7 +33,7 @@ class AddLeaveFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        title_tv.text = "Leaves"
+        title_tv.text = getString(R.string.title_text_leavesfragment)
         val date: Date = Calendar.getInstance().time
         calenderview.setDate(date)
         calenderview.setPreviousButtonImage(resources.getDrawable(R.drawable.ic_arrow_back, null))
@@ -43,7 +44,7 @@ class AddLeaveFragment : Fragment() {
         }
         add_leaves_button.setOnClickListener {
             val selectedDates: List<Calendar> = calenderview.selectedDates
-            Log.e("SELECTED DATES", selectedDates.toString())
+            Timber.d(selectedDates.toString())
             leavesdetailscardview.visibility = View.GONE
             loading_anim_view.visibility = View.VISIBLE
             loading_anim_view.setAnimation(R.raw.animation_loading_complete)
@@ -51,7 +52,7 @@ class AddLeaveFragment : Fragment() {
             loading_anim_view.addAnimatorUpdateListener {
                 it.addListener(object : Animator.AnimatorListener {
                     override fun onAnimationRepeat(animation: Animator?) {
-                        Log.e("tttt", "onAnimatinRepeat")
+                        Timber.d("onAnimatinRepeat")
                     }
 
                     override fun onAnimationEnd(animation: Animator?) {
@@ -59,11 +60,11 @@ class AddLeaveFragment : Fragment() {
                     }
 
                     override fun onAnimationCancel(animation: Animator?) {
-                        Log.e("tttt", "onAnimatinCancel")
+                        Timber.d("onAnimatinCancel")
                     }
 
                     override fun onAnimationStart(animation: Animator?) {
-                        Log.e("tttt", "onAnimatinStart")
+                        Timber.d("onAnimatinStart")
                     }
                 })
             }

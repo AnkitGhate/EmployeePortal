@@ -9,4 +9,3 @@ fun String.isValidEmail(): Boolean {
 fun String.isValidPassword(): Boolean {
     return this.isNotEmpty() && this.length >= 6
 }
-

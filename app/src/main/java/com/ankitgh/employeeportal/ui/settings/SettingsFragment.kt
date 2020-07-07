@@ -5,19 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.settings_fragment.*
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var viewModel: SettingsViewModel
+    private val viewModel: SettingsViewModel by viewModels()
     private lateinit var settingsNavController: NavController
 
     override fun onCreateView(
@@ -30,7 +32,6 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
         firebaseAuth = Firebase.auth
         settingsNavController = Navigation.findNavController(view)
         signout_textview.setOnClickListener {

@@ -41,7 +41,6 @@ class FeedAdapter(feedPosts: ArrayList<FeedPostModel>) :
         }
 
         private fun incrementLikesAndUpdateRemote(text: Int) {
-
         }
     }
 

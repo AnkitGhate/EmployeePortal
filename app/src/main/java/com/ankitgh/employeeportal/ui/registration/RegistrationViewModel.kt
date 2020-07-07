@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.ui.registration
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +11,7 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import timber.log.Timber
 
 class RegistrationViewModel @ViewModelInject constructor(
     private val firebaseFirestore: FirebaseFirestore,
@@ -30,7 +30,7 @@ class RegistrationViewModel @ViewModelInject constructor(
                 userRegistrationTask.isSuccessful
 
                 userSchema.photoUri?.let { photoReference.putFile(it) }
-            }.continueWithTask { imageUploadTask ->
+            }.continueWithTask {
                 // Download url of the image uploaded
                 photoReference.downloadUrl
             }.continueWithTask { downloadUrlTask ->
@@ -41,7 +41,7 @@ class RegistrationViewModel @ViewModelInject constructor(
                     build()
                 }
                 firebaseAuth.currentUser?.updateProfile(updateRequest)
-            }.continueWithTask { userUpdateTask ->
+            }.continueWithTask {
                 // Add user to firestore
                 val userData: MutableMap<String, Any> = HashMap()
                 userData["username"] = userSchema.username
@@ -50,18 +50,18 @@ class RegistrationViewModel @ViewModelInject constructor(
                 firebaseFirestore.collection("users").document(firebaseAuth.currentUser?.uid.toString())
                     .set(userData)
                     .addOnSuccessListener {
-                        Log.d("RegistrationModel", "document added successfully")
+                        Timber.d("document added successfully")
                     }
                     .addOnFailureListener { exception ->
-                        Log.e("RegistrationModel", "Error adding document", exception)
+                        Timber.e("Error adding document: $exception")
                     }
             }.addOnCompleteListener { updateFireStoreTask ->
                 if (updateFireStoreTask.isSuccessful) {
                     userObserver.postValue(Resource.success(UserSchema(isSignUpComplete = true)))
-                    Log.i("RegistrationViewModel", "All task for user registration are complete!")
+                    Timber.d("All task for user registration are complete!")
                 } else {
                     userObserver.postValue(Resource.error(updateFireStoreTask.exception.toString()))
-                    Log.e("RegistrationViewModel", "Error while user registration : Exception : ${updateFireStoreTask.exception?.stackTrace}")
+                    Timber.e("Error while user registration : Exception : ${updateFireStoreTask.exception?.stackTrace}")
                 }
             }
         return userObserver

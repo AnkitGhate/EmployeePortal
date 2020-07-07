@@ -12,5 +12,3 @@ data class NewsArticleModel(
     val urlToImage: String?,
     val content: String?
 )
-
-

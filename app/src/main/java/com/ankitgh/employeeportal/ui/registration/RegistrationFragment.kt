@@ -5,7 +5,6 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.registration_fragment.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 
 @AndroidEntryPoint
 class RegistrationFragment : Fragment(), View.OnClickListener {
@@ -76,7 +76,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             result = false
         }
         if (userSchema.photoUri == null) {
-            Log.e("RegistrationFragment", "Profile URI is null")
+            Timber.e("Profile URI is null")
             result = false
         }
         return result
@@ -101,7 +101,11 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         return EasyPermissions.hasPermissions(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         // EasyPermissions handles the request result.
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
@@ -148,14 +152,14 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
                 when (it.status) {
                     Status.ERROR -> {
                         progressBar.visibility = View.GONE
-                        Log.e("RegistrationFragment", "Error while registering user : Exception - ${it.message}")
+                        Timber.e("Error while registering user : Exception - ${it.message}")
                         Snackbar.make(
                             requireView(), "[Error] : There seems to be some issue while creating user.Please try again later",
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
                     Status.SUCCESS -> {
-                        Log.i("RegistrationFragment", "User is registered")
+                        Timber.d("User is registered")
                         progressBar.visibility = View.GONE
                         navigateToHomeActivity()
                     }

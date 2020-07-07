@@ -18,7 +18,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 
-
 @AndroidEntryPoint
 class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
@@ -40,7 +39,6 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
             transaction.commit()
         }
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

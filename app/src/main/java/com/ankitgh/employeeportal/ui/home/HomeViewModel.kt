@@ -1,7 +1,6 @@
 package com.ankitgh.employeeportal.ui.home
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +14,7 @@ import com.ankitgh.employeeportal.utils.Status
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(
     private val firebaseAuth: FirebaseAuth,
@@ -38,7 +38,6 @@ class HomeViewModel @ViewModelInject constructor(
         _getArticles = getNewsArticlesFromRemote()
     }
 
-
     fun getUser(): MutableLiveData<Resource<UserSchema>> {
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
@@ -50,11 +49,11 @@ class HomeViewModel @ViewModelInject constructor(
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
                 }
                 _userData.value = Resource.success(signedInUser)
-                Log.i("CreatePostViewModel", "Signed in user : $signedInUser")
+                Timber.i("Signed in user : $signedInUser")
             }
             .addOnFailureListener { exception ->
                 _userData.value = Resource.error(exception.message)
-                Log.e("CreatePostViewModel", "Failure fetching Singed-In user : $exception")
+                Timber.e("Failure fetching Singed-In user : $exception")
             }
         return _userData
     }
