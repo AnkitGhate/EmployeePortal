@@ -75,7 +75,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             password_inputlayout.error = "Please enter a valid password"
             result = false
         }
-        if (userSchema.photoUri == null) {
+        if (userSchema.photoUrl == null) {
             Timber.e("Profile URI is null")
             result = false
         }
@@ -144,7 +144,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             designation = designation_editext.text.toString(),
             email = email_editext.text.toString(),
             password = password_editext.text.toString(),
-            photoUri = mPickedImageURI
+            photoUrl = mPickedImageURI
         )
         if (validateUser(user)) {
             progressBar.visibility = View.VISIBLE

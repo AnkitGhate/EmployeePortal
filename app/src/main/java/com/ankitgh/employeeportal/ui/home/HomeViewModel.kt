@@ -38,14 +38,14 @@ class HomeViewModel @ViewModelInject constructor(
         _getArticles = getNewsArticlesFromRemote()
     }
 
-    fun getUser(): MutableLiveData<Resource<UserSchema>> {
+    private fun getUser(): MutableLiveData<Resource<UserSchema>> {
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
             .get()
             .addOnSuccessListener { userSnapShot ->
                 val signedInUser = userSnapShot.toObject(UserSchema::class.java)
                 if (signedInUser != null) {
-                    signedInUser.photoUri = firebaseAuth.currentUser?.photoUrl
+                    signedInUser.photoUrl = firebaseAuth.currentUser?.photoUrl
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
                 }
                 _userData.value = Resource.success(signedInUser)

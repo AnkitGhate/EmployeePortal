@@ -7,7 +7,6 @@
     style="@style/Widget.App.CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
     app:cardCornerRadius="16dp">
 
     <RelativeLayout
@@ -19,6 +18,9 @@
             android:id="@+id/profile_imageview"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/white_50"
             android:layout_alignParentStart="true"
             android:src="@drawable/placeholder_avatar_1" />
 

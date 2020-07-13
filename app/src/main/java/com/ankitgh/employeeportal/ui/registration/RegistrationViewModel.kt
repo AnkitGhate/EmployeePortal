@@ -28,8 +28,7 @@ class RegistrationViewModel @ViewModelInject constructor(
             .continueWithTask { userRegistrationTask ->
                 // Upload profile image to firebase storage
                 userRegistrationTask.isSuccessful
-
-                userSchema.photoUri?.let { photoReference.putFile(it) }
+                userSchema.photoUrl?.let { photoReference.putFile(it) }
             }.continueWithTask {
                 // Download url of the image uploaded
                 photoReference.downloadUrl

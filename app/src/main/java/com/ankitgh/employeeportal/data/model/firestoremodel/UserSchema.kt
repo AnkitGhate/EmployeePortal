@@ -7,7 +7,7 @@ data class UserSchema(
     var designation: String = "",
     var password: String = "",
     var email: String = "",
-    var photoUri: Uri? = null,
+    var photoUrl: Uri? = null,
     var employeeid: String = "",
     var isSignUpComplete: Boolean = false,
     var likes: Int? = 0

@@ -60,7 +60,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/password_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +92,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/signin_button"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 

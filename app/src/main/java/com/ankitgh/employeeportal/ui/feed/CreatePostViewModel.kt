@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ankitgh.employeeportal.data.model.firestoremodel.BasicUserInfoSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Resource
@@ -12,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
 class CreatePostViewModel @ViewModelInject constructor(
-    private val firebaseDb: FirebaseFirestore
+    private val firebaseDb: FirebaseFirestore, private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
     var user = MutableLiveData<Resource<UserSchema>>()
@@ -24,10 +25,16 @@ class CreatePostViewModel @ViewModelInject constructor(
             .document(FirebaseAuth.getInstance().currentUser?.uid as String)
             .get()
             .addOnSuccessListener { userSnapShot ->
-                val signedInUser = userSnapShot.toObject(UserSchema::class.java)
+                val signedInUser = userSnapShot.toObject(BasicUserInfoSchema::class.java)
                 Timber.i("Signed in user : $signedInUser")
-
-                val post = PostSchema(postBody, System.currentTimeMillis(), signedInUser)
+                val post = PostSchema(
+                    postBody, System.currentTimeMillis(), BasicUserInfoSchema(
+                        username = signedInUser?.username,
+                        designation = signedInUser?.designation,
+                        email = firebaseAuth.currentUser?.email.toString(),
+                        photourl = firebaseAuth.currentUser?.photoUrl.toString()
+                    )
+                )
                 firebaseDb.collection("posts").add(post)
                     .addOnSuccessListener {
                         user.postValue(Resource.success(null))

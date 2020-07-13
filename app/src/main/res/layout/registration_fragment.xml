@@ -13,6 +13,9 @@
         android:id="@+id/add_profile_imageview"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="1dp"
+        app:civ_circle_background_color="@color/white_50"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:src="@drawable/add_profile_placeholder"
@@ -49,7 +52,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/designation_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +83,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/email_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +115,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/register_button"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +147,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/password_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,7 +179,7 @@
             android:maxLines="1"
             android:nextFocusDown="@id/username_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -13,4 +13,6 @@ interface MainRepository {
     suspend fun getTopHeadlines(isConnectivityAvailable: Boolean): Resource<List<NewsArticleModel>>
 
     suspend fun signInUser(email: String, password: String): Task<AuthResult>
+
+    fun isUserAlreadyRegistered(): Boolean
 }

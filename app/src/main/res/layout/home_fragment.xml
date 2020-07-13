@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeActivity">
+    tools:context=".ui.home.HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_home_fragment"
@@ -37,8 +37,10 @@
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="@android:color/white"
-                    android:src="@drawable/placeholder_avatar_1" />
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="1dp"
+                    app:civ_circle_background_color="@color/white_50"
+                    tools:src="@drawable/ic_default_profile_avatar" />
 
                 <TextView
                     android:id="@+id/username"

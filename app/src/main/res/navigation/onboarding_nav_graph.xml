@@ -31,7 +31,7 @@
     </fragment>
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.ankitgh.employeeportal.ui.HomeActivity"
+        android:name="com.ankitgh.employeeportal.ui.home.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
     <fragment

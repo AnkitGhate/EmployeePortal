@@ -30,7 +30,7 @@ class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: Fireba
                     for (post in postListSnapShot) {
                         postList.add(
                             FeedPostModel(
-                                "",
+                                profileImage = post.userSchema?.photourl,
                                 username = post.userSchema?.username,
                                 designation = post.userSchema?.designation,
                                 postTime = post.creation_time,

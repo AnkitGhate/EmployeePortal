@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
-    android:padding="10dp"
+    android:padding="20dp"
     tools:context=".ui.feed.FeedFragment">
 
     <TextView
         android:id="@+id/title_network"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/jostlight"
         android:text="Feed"
         android:textColor="@color/colorAccent"
@@ -29,10 +28,7 @@
         android:id="@+id/feed_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,7 +1,6 @@
 package com.ankitgh.employeeportal.ui.onboarding
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -9,17 +8,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OnBoardingActivity : BaseActivity() {
 
-    private val viewModel: OnBoardingActivityViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (viewModel.getCurrentUser() != null) {
-            navigateTo(R.id.homeActivity)
-            finish()
-        } else {
-            navigateTo(R.id.letsGetStartedFragment)
-        }
+        navigateTo(R.id.letsGetStartedFragment)
     }
 
     override fun setLayoutId(): Int {

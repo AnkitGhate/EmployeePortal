@@ -25,4 +25,8 @@ class DefaultMainRepository @Inject constructor(
     override suspend fun signInUser(email: String, password: String): Task<AuthResult> {
         return firebaseRemoteDataSource.signInUserWithUserNameAndPassword(email, password)
     }
+
+    override fun isUserAlreadyRegistered(): Boolean {
+        return firebaseRemoteDataSource.getCurrentUser() != null
+    }
 }

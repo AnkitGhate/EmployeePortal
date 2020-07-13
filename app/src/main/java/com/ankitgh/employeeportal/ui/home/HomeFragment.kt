@@ -79,7 +79,11 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
-                    Glide.with(this).load(it.data?.photoUri).into(profileimage)
+                    Glide.with(this)
+                        .load(it.data?.photoUrl)
+                        .placeholder(R.drawable.ic_default_profile_avatar)
+                        .into(profileimage)
+
                 }
                 Status.ERROR -> TODO("Handle error case for when()")
                 Status.LOADING -> TODO("Handle loading case for when()")

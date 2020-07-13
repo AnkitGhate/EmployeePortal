@@ -1,8 +1,8 @@
-package com.ankitgh.employeeportal.ui
+package com.ankitgh.employeeportal.ui.home
 
 import android.os.Bundle
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.ui.home.HomeFragment
+import com.ankitgh.employeeportal.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

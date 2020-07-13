@@ -74,6 +74,7 @@ dependencies {
     // LifeCycle
     implementation(Lifecycle.LIFECYCLE_EXTENSIONS)
     implementation(Lifecycle.LIFECYCLE_VIEWMODEL_KTX)
+    implementation(Lifecycle.LIFECYCLE_LIVE_DATA_KTX)
 
     // Firebase
     implementation(Firebase.FIREBASE_STORAGE)
