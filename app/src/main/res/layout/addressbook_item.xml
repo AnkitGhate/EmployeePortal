@@ -28,6 +28,9 @@
             android:id="@+id/profile_imageview"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/white_50"
             android:src="@drawable/placeholder_avatar_1" />
 
         <TextView

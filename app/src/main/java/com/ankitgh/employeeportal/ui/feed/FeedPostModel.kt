@@ -5,5 +5,6 @@ data class FeedPostModel(
     val username: String?,
     val designation: String?,
     val postTime: Long?,
-    val feedBody: String?
+    val feedBody: String?,
+    val likes: Int?
 )

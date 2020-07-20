@@ -1,17 +1,16 @@
 package com.ankitgh.employeeportal.utils
 
 import com.ankitgh.employeeportal.ui.addressbook.ContactItem
-import com.ankitgh.employeeportal.ui.home.NewsArticleModel
 
-fun getPlaceHolderListOfNews() = arrayListOf(
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "2nd June 2020"),
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "3nd June 2020"),
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "4nd June 2020"),
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "5nd June 2020"),
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "6nd June 2020"),
-    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "7nd June 2020")
-
-)
+// fun getPlaceHolderListOfNews() = arrayListOf(
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "2nd June 2020"),
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "3nd June 2020"),
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "4nd June 2020"),
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "5nd June 2020"),
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "6nd June 2020"),
+//    NewsArticleModel("Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "7nd June 2020")
+//
+// )
 
 fun getPlaceHolderListOfContacts() = arrayListOf(
     ContactItem("", "Ankit Ghate", "Sr.Software Developer"),

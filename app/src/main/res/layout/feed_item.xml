@@ -7,18 +7,20 @@
     style="@style/Widget.App.CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="6dp">
+    app:cardCornerRadius="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_margin="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_imageview"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/white_50"
             android:layout_alignParentStart="true"
             android:src="@drawable/placeholder_avatar_1" />
 
@@ -26,7 +28,10 @@
             android:id="@+id/user_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/profile_imageview"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/profile_imageview"
             android:layout_toRightOf="@id/profile_imageview"
             android:fontFamily="@font/jostregular"
             android:textColor="@color/off_white"
@@ -38,7 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_title"
+            android:layout_alignBottom="@+id/profile_imageview"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="-3dp"
             android:layout_toRightOf="@id/profile_imageview"
             android:fontFamily="@font/jostlight"
             android:textColor="@color/off_white"
@@ -50,7 +57,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/user_title"
+            android:layout_alignTop="@+id/user_title"
+            android:layout_alignBottom="@+id/user_title"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
             android:fontFamily="@font/jostregular"
             android:textColor="@color/grey"
             android:textSize="14sp"
@@ -69,27 +80,38 @@
             android:textColor="@color/off_white"
             android:textSize="16sp" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/feed_body_textview"
             android:layout_marginTop="8dp"
+            android:gravity="start|center_vertical"
             android:orientation="horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             android:weightSum="3">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@mipmap/ic_favorite_comment" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/likeanimatedview"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:lottie_rawRes="@raw/animation_like"
+                app:lottie_repeatCount="0" />
 
-            <ImageView
+            <TextView
+                android:id="@+id/likecounttv"
+                style="@style/TextViewStyleRegularFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@mipmap/ic_favorite_share" />
+                android:text="12"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/TextViewStyleRegularFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Likes"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </RelativeLayout>

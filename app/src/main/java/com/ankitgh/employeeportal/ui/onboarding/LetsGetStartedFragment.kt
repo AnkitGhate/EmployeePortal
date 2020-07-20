@@ -1,7 +1,6 @@
 package com.ankitgh.employeeportal.ui.onboarding
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.toggleHideyBar
 import kotlinx.android.synthetic.main.fragment_lets_get_started.*
+import timber.log.Timber
 
 class LetsGetStartedFragment : Fragment() {
 
@@ -42,9 +42,9 @@ class LetsGetStartedFragment : Fragment() {
         val decorView = requireActivity().window.decorView
         decorView.setOnSystemUiVisibilityChangeListener {
             val height = decorView.height
-            Log.i("TAG", "Current height: $height")
+            Timber.d("Current height: $height")
         }
-        var uiOptions = requireActivity().window.decorView.systemUiVisibility
-        uiOptions = toggleHideyBar(uiOptions)
+        val uiOptions = requireActivity().window.decorView.systemUiVisibility
+        toggleHideyBar(uiOptions)
     }
 }

@@ -8,22 +8,24 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.common.Status
-import com.ankitgh.employeeportal.utils.NetworkUtil
+import com.ankitgh.employeeportal.utils.Status
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
-    private lateinit var OrgNewsAdapter: OrgNewsAdapter
+    private lateinit var newsAdapter: NewsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var newsList = ArrayList<NewsArticleModel>()
     private val viewModel: HomeViewModel by viewModels()
+    private lateinit var navController: NavController
 
     companion object {
         fun launchFragment(
@@ -38,6 +40,11 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        observeData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,41 +55,58 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        setupRecyclerView()
+        awh_cardview.setOnClickListener {
+            navController.navigate(R.id.AWHDetailFragment)
+        }
+        addleavesbutton.setOnClickListener {
+            navController.navigate(R.id.addLeaveFragment)
+        }
+    }
 
-        viewModel.getUser().observe(viewLifecycleOwner, Observer {
+    private fun setupRecyclerView() {
+        linearLayoutManager = LinearLayoutManager(activity)
+        organisation_news_recyclerview.layoutManager = linearLayoutManager
+
+        newsAdapter = NewsAdapter(newsList, this)
+        organisation_news_recyclerview.adapter = newsAdapter
+    }
+
+    private fun observeData() {
+        viewModel.userData.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     username.text = it.data?.username.toString().capitalize()
                     designation.text = it.data?.designation?.toUpperCase()
-                    Glide.with(this).load(it.data?.photoUri).into(profileimage)
+                    Glide.with(this)
+                        .load(it.data?.photoUrl)
+                        .placeholder(R.drawable.ic_default_profile_avatar)
+                        .into(profileimage)
+
                 }
+                Status.ERROR -> TODO("Handle error case for when()")
+                Status.LOADING -> TODO("Handle loading case for when()")
+                Status.UNKNOWN -> TODO("Handle unknown case for when()")
             }
         })
 
-        linearLayoutManager = LinearLayoutManager(activity)
-        organisation_news_recyclerview.layoutManager = linearLayoutManager
-
-        OrgNewsAdapter = OrgNewsAdapter(newsList)
-        organisation_news_recyclerview.adapter = OrgNewsAdapter
-    }
-
-    override fun onStart() {
-        super.onStart()
-        observeData()
-    }
-
-    private fun observeData() {
-        viewModel.getNewsArticlesFromRemote(NetworkUtil.isNetworkConnected(requireContext()))
-            .observe(viewLifecycleOwner, Observer {
-                when (it.status) {
-                    Status.SUCCESS -> updateUI(it.data)
-                    Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
-                    Status.LOADING -> TODO()
-                }
-            })
+        viewModel.getArticles.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Status.SUCCESS -> updateUI(it.data)
+                Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
+                Status.LOADING -> TODO("Handle loading case for when()")
+                Status.UNKNOWN -> TODO("Handle unknown case for when()")
+            }
+        })
     }
 
     private fun updateUI(newsArticleList: List<NewsArticleModel>?) {
-        OrgNewsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
+        newsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
+    }
+
+    override fun onItemClicked(article: NewsArticleModel) {
+        viewModel.setSelectedArticle(article)
+        navController.navigate(R.id.newsDetailFragment)
     }
 }

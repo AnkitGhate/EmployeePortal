@@ -1,8 +1,8 @@
 package com.ankitgh.employeeportal.utils
 
 import android.os.Build
-import android.util.Log
 import android.view.View
+import timber.log.Timber
 
 fun toggleHideyBar(uiOptions: Int): Int {
 
@@ -16,9 +16,9 @@ fun toggleHideyBar(uiOptions: Int): Int {
     val isImmersiveModeEnabled =
         uiOptions or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY == uiOptions
     if (isImmersiveModeEnabled) {
-        Log.i("TAG", "Turning immersive mode mode off. ")
+        Timber.d("Turning immersive mode mode off. ")
     } else {
-        Log.i("TAG", "Turning immersive mode mode on.")
+        Timber.d("Turning immersive mode mode on.")
     }
 
     // Navigation bar hiding:  Backwards compatible to ICS.

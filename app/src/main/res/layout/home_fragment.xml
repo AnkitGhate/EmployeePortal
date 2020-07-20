@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeActivity">
+    tools:context=".ui.home.HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_home_fragment"
@@ -37,8 +37,10 @@
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:backgroundTint="@android:color/white"
-                    android:src="@drawable/placeholder_avatar_1" />
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="1dp"
+                    app:civ_circle_background_color="@color/white_50"
+                    tools:src="@drawable/ic_default_profile_avatar" />
 
                 <TextView
                     android:id="@+id/username"
@@ -113,7 +115,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/organisation_news_recyclerview"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:layout_below="@id/organisation_news_title"
                     android:layout_marginTop="5dp"
                     tools:itemCount="3"
@@ -142,7 +144,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/addleavesbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

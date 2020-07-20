@@ -13,4 +13,6 @@
     <string name="empty"> </string>
     <string name="register_button_text">REGISTER</string>
     <string name="username_hint_text">Username</string>
+    <string name="awhfragment_title_text">AWH Details</string>
+    <string name="title_text_leavesfragment">Leaves</string>
 </resources>
