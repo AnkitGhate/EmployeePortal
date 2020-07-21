@@ -89,12 +89,15 @@ dependencies {
 
     // Testing---begin---
     testImplementation(Testing.JUNIT)
+    testImplementation(Coroutines.TEST_KOTLINX_COROUTINES_TEST)
     androidTestImplementation(Testing.TEST_CORE)
     androidTestImplementation(Testing.TEST_RUNNER)
     androidTestImplementation(Testing.TEST_RULE)
     androidTestImplementation(Testing.TEST_EXT_JUNIT)
     androidTestImplementation(Testing.TEST_EXT_TRUTH)
     androidTestImplementation(Testing.TEST_GOOGLE_TRUTH)
+    androidTestImplementation(Coroutines.TEST_KOTLINX_COROUTINES_TEST)
+    testImplementation(Androidx.ARCH_TESTING)
 
     // Espresso dependencies
     androidTestImplementation(Testing.Espresso.ESPRESSO_CORE)

@@ -8,6 +8,8 @@ object Testing {
     const val TEST_EXT_TRUTH = "androidx.test.ext:truth:1.2.0"
     const val TEST_GOOGLE_TRUTH = "com.google.truth:truth:1.0.1"
 
+
+
     object Espresso {
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.2.0"
         const val ESPRESSO_CONTRIB = "androidx.test.espresso:espresso-contrib:3.2.0"
@@ -64,6 +66,8 @@ object OkHttp {
 object Coroutines {
     const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+
+    const val TEST_KOTLINX_COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.1"
 }
 
 object Androidx {
@@ -73,6 +77,7 @@ object Androidx {
     const val LEGACY_SUPPORT_V4 = "androidx.legacy:legacy-support-v4:1.0.0"
     const val NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:2.3.0-rc01"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
+    const val ARCH_TESTING = "androidx.arch.core:core-testing:2.1.0"
 }
 
 object Google {

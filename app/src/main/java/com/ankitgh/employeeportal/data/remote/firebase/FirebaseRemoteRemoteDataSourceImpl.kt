@@ -10,6 +10,10 @@ import javax.inject.Inject
 
 class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(private val firebaseAuth: FirebaseAuth) : FirebaseRemoteDataSource {
 
+    companion object {
+        val TAG = FirebaseRemoteRemoteDataSourceImpl.javaClass.simpleName
+    }
+
     override suspend fun signInUserWithUserNameAndPassword(email: String, password: String): Task<AuthResult> {
         return withContext(Dispatchers.IO) {
             return@withContext firebaseAuth.signInWithEmailAndPassword(email, password)
