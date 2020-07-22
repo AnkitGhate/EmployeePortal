@@ -49,7 +49,7 @@
             android:fontFamily="@font/jostregular"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:nextFocusDown="@id/login_password_inputlayout"
+            android:nextFocusDown="@id/register_password_inputlayout"
             android:singleLine="true"
             android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />

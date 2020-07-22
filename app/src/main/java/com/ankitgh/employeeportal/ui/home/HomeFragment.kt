@@ -21,10 +21,10 @@ import kotlinx.android.synthetic.main.home_fragment.*
 @AndroidEntryPoint
 class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
+    private val viewModel: HomeViewModel by viewModels()
+    private var newsList = ArrayList<NewsArticleModel>()
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private var newsList = ArrayList<NewsArticleModel>()
-    private val viewModel: HomeViewModel by viewModels()
     private lateinit var navController: NavController
 
     companion object {
@@ -57,32 +57,32 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         setupRecyclerView()
-        awh_cardview.setOnClickListener {
+        home_awh_cardview.setOnClickListener {
             navController.navigate(R.id.AWHDetailFragment)
         }
-        addleavesbutton.setOnClickListener {
+        home_add_leaves_button.setOnClickListener {
             navController.navigate(R.id.addLeaveFragment)
         }
     }
 
     private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)
-        organisation_news_recyclerview.layoutManager = linearLayoutManager
+        home_organisation_news_recyclerview.layoutManager = linearLayoutManager
 
         newsAdapter = NewsAdapter(newsList, this)
-        organisation_news_recyclerview.adapter = newsAdapter
+        home_organisation_news_recyclerview.adapter = newsAdapter
     }
 
     private fun observeData() {
         viewModel.userData.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    username.text = it.data?.username.toString().capitalize()
-                    designation.text = it.data?.designation?.toUpperCase()
+                    home_username_title.text = it.data?.username.toString().capitalize()
+                    home_designation_title.text = it.data?.designation?.toUpperCase()
                     Glide.with(this)
                         .load(it.data?.photoUrl)
                         .placeholder(R.drawable.ic_default_profile_avatar)
-                        .into(profileimage)
+                        .into(home_profile_image)
 
                 }
                 Status.ERROR -> TODO("Handle error case for when()")

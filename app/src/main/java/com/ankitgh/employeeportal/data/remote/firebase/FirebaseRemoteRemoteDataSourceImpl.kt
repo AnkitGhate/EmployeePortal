@@ -3,8 +3,8 @@ package com.ankitgh.employeeportal.data.remote.firebase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
+import com.ankitgh.employeeportal.utils.FirebaseConstants.USER_COLLECTION
 import com.ankitgh.employeeportal.utils.Resource
-import com.ankitgh.employeeportal.utils.Status
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -14,17 +14,18 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
+/**
+ * Class to provide data from FirebaseAuth / FirebaseStorage / FirebaseFirestore which have user
+ * details for login and firestore contains list of users and posts while storage contains
+ * profile images.
+ */
 class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
-    private val firebaseAuth: FirebaseAuth,
-    private val firebaseStorage: StorageReference,
-    private val firebaseFirestore: FirebaseFirestore
+    private val firebaseAuth: FirebaseAuth, private val firebaseStorage: StorageReference,
+    private val fireBaseFireStore: FirebaseFirestore
 ) : FirebaseRemoteDataSource {
 
     override suspend fun signInUserWithUserNameAndPassword(email: String, password: String): Task<AuthResult> {
@@ -37,13 +38,9 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
         return firebaseAuth.currentUser
     }
 
-    /**
-     * Get user information mapped to current signed in userinfo from FirebaseAuth and as FirebaseFirestore.collect already
-     * run on a different thread so no need to run on different thread.
-     */
     override fun getUser(): MutableLiveData<Resource<UserSchema>> {
         val result = MutableLiveData<Resource<UserSchema>>()
-        firebaseFirestore.collection("users")
+        fireBaseFireStore.collection(USER_COLLECTION)
             .document(firebaseAuth.currentUser?.uid as String)
             .get()
             .addOnSuccessListener { userSnapShot ->
@@ -62,12 +59,11 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
         return result
     }
 
-
     override fun registerUser(userSchema: UserSchema): LiveData<Resource<UserSchema>> {
         val userObserver = MutableLiveData<Resource<UserSchema>>()
-
         val photoReference = firebaseStorage.child("profile_images/${System.currentTimeMillis()}-${userSchema.username}-profile-photo.jpg")
 
+        userObserver.postValue(Resource.loading(true))
         firebaseAuth.createUserWithEmailAndPassword(userSchema.email, userSchema.password)
             .continueWithTask { userRegistrationTask ->
                 // Upload profile image to firebase storage
@@ -90,7 +86,7 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
                 userData["username"] = userSchema.username
                 userData["designation"] = userSchema.designation
 
-                firebaseFirestore.collection("users").document(firebaseAuth.currentUser?.uid.toString())
+                fireBaseFireStore.collection(USER_COLLECTION).document(firebaseAuth.currentUser?.uid.toString())
                     .set(userData)
                     .addOnSuccessListener {
                         Timber.d("document added successfully")

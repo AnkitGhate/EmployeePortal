@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,7 +19,7 @@ import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Status
 import com.ankitgh.employeeportal.utils.isValidEmail
 import com.ankitgh.employeeportal.utils.isValidPassword
-import com.google.android.material.snackbar.Snackbar
+import com.ankitgh.employeeportal.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.registration_fragment.*
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -31,11 +32,12 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     companion object {
         private const val RC_STORAGE_PERMISSION: Int = 101
         private const val REQUEST_CODE_GALLERY_INTENT: Int = 102
+        private const val GALLERY_INTENT_TYPE: String = "image/*"
     }
 
     private lateinit var navController: NavController
-    private val mViewModel: RegistrationViewModel by viewModels()
-    private var mPickedImageURI: Uri? = null
+    private val viewModel: RegistrationViewModel by viewModels()
+    private var pickedImageURI: Uri = Uri.EMPTY
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,36 +49,55 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.clearFocus()
         navController = Navigation.findNavController(view)
-        add_profile_imageview.setOnClickListener(this)
+        register_profile_imageview.setOnClickListener(this)
         register_button.setOnClickListener(this)
+        observeEditFieldsAndClearOnEdit()
+    }
+
+    private fun observeEditFieldsAndClearOnEdit() {
+        register_employeeid_editext.doAfterTextChanged {
+            if (register_employeeId_inputLayout.isErrorEnabled) register_employeeId_inputLayout.error = null
+        }
+        register_username_editext.doAfterTextChanged {
+            if (register_username_inputlayout.isErrorEnabled) register_username_inputlayout.error = null
+        }
+        register_designation_editext.doAfterTextChanged {
+            if (register_designation_inputlayout.isErrorEnabled) register_designation_inputlayout.error = null
+        }
+        register_email_editext.doAfterTextChanged {
+            if (register_email_inputlayout.isErrorEnabled) register_email_inputlayout.error = null
+        }
+        register_password_editext.doAfterTextChanged {
+            if (register_password_inputlayout.isErrorEnabled) register_password_inputlayout.error = null
+        }
     }
 
     private fun validateUser(userSchema: UserSchema): Boolean {
         var result = true
-
         if (userSchema.employeeid.isEmpty()) {
-            login_password_inputlayout.error = "Please enter a valid employeeID"
+            register_employeeId_inputLayout.error = getString(R.string.error_enter_valid_employeeid)
             result = false
         }
         if (userSchema.username.isEmpty()) {
-            login_password_inputlayout.error = "Please enter a valid username"
+            register_username_inputlayout.error = getString(R.string.error_enter_valid_username)
             result = false
         }
         if (userSchema.designation.isEmpty()) {
-            login_password_inputlayout.error = "Please enter a valid designation"
+            register_designation_inputlayout.error = getString(R.string.error_enter_valid_designation)
             result = false
         }
         if (!userSchema.email.isValidEmail()) {
-            email_inputlayout.error = "Please enter a valid email"
+            register_email_inputlayout.error = getString(R.string.error_enter_valid_email)
             result = false
         }
         if (!userSchema.password.isValidPassword()) {
-            login_password_inputlayout.error = "Please enter a valid password"
+            register_password_inputlayout.error = getString(R.string.error_enter_valid_password)
             result = false
         }
-        if (userSchema.photoUrl == null) {
-            Timber.e("Profile URI is null")
+        if (userSchema.photoUrl == null || userSchema.photoUrl == Uri.EMPTY) {
+            Timber.e("Profile image is not set")
             result = false
         }
         return result
@@ -90,7 +111,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             // Ask for one permission
             EasyPermissions.requestPermissions(
                 this,
-                "",
+                getString(R.string.storage_rationale),
                 RC_STORAGE_PERMISSION,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             )
@@ -115,56 +136,46 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_GALLERY_INTENT && data != null) {
-            mPickedImageURI = data.data
-            add_profile_imageview.setImageURI(mPickedImageURI)
+            pickedImageURI = data.data ?: Uri.EMPTY
+            register_profile_imageview.setImageURI(pickedImageURI)
         }
     }
 
-    override fun onClick(v: View?) {
-        when (v) {
-            add_profile_imageview -> {
-                externalStorageRequestTask()
-            }
-            register_button -> {
-                registerUser()
-            }
+    override fun onClick(view: View?) {
+        when (view) {
+            register_profile_imageview -> externalStorageRequestTask()
+            register_button -> registerUser()
         }
     }
 
     private fun openGallery() {
         val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
-        galleryIntent.type = "image/*"
+        galleryIntent.type = GALLERY_INTENT_TYPE
         startActivityForResult(galleryIntent, REQUEST_CODE_GALLERY_INTENT)
     }
 
     private fun registerUser() {
         val user = UserSchema(
-            employeeid = employeeid_editext.text.toString(),
-            username = username_editext.text.toString(),
-            designation = designation_editext.text.toString(),
-            email = email_editext.text.toString(),
-            password = password_editext.text.toString(),
-            photoUrl = mPickedImageURI
+            employeeid = register_employeeid_editext.text.toString(),
+            username = register_username_editext.text.toString(),
+            designation = register_designation_editext.text.toString(),
+            email = register_email_editext.text.toString(),
+            password = register_password_editext.text.toString(),
+            photoUrl = pickedImageURI
         )
         if (validateUser(user)) {
-            login_progressBar.visibility = View.VISIBLE
-            mViewModel.registerUser(user).observe(viewLifecycleOwner, Observer {
+            viewModel.registerUser(user).observe(viewLifecycleOwner, Observer {
                 when (it.status) {
                     Status.ERROR -> {
-                        login_progressBar.visibility = View.GONE
                         Timber.e("Error while registering user : Exception - ${it.message}")
-                        Snackbar.make(
-                            requireView(), "[Error] : There seems to be some issue while creating user.Please try again later",
-                            Snackbar.LENGTH_LONG
-                        ).show()
+                        showSnackBar(requireView(), getString(R.string.error_in_user_creation))
                     }
                     Status.SUCCESS -> {
                         Timber.d("User is registered")
-                        login_progressBar.visibility = View.GONE
                         navigateToHomeActivity()
                     }
                     Status.LOADING -> {
-                        login_progressBar.visibility = View.VISIBLE
+                        if (it.isloading) register_login_progress.visibility = View.VISIBLE else register_login_progress.visibility = View.GONE
                     }
                 }
             })
@@ -172,6 +183,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
     }
 
     private fun navigateToHomeActivity() {
+        Timber.d("Navigating to HomeActivity from RegistrationActivity")
         navController.navigate(R.id.action_registrationFragment_to_homeActivity)
         requireActivity().finish()
     }

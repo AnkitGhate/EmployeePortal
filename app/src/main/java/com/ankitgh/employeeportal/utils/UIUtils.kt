@@ -1,7 +1,12 @@
 package com.ankitgh.employeeportal.utils
 
+import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.ankitgh.employeeportal.R
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 fun toggleHideyBar(uiOptions: Int): Int {
@@ -45,4 +50,12 @@ fun toggleHideyBar(uiOptions: Int): Int {
 
     return newUiOptions
     // END_INCLUDE (set_ui_flags)
+}
+
+fun showSnackBar(view: View, message: String) {
+    val snackBar: Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        .setTextColor(ContextCompat.getColor(view.context, R.color.white_50))
+    val snackBarView = snackBar.view
+    snackBarView.setBackgroundColor(ContextCompat.getColor(view.context, R.color.colorAccent))
+    snackBar.show()
 }

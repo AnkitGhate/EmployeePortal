@@ -4,7 +4,7 @@
     <string name="welcome_title_text">Welcome,\nLet\'s get you started</string>
     <string name="placeholder_text">loremipsum</string>
     <string name="placeholder_text_for_lists">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
-    <string name="text_input_layout_username_hint">Cybage ID</string>
+    <string name="hint_employeeid">Cybage ID</string>
     <string name="placeholder_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis metus ut ornare ultrices. Quisque fringilla hendrerit ipsum pellentesque viverra. Quisque tincidunt felis vitae turpis accumsan dapibus. Aliquam efficitur pulvinar leo, sit amet ornare elit faucibus quis. Pellentesque et magna ornare, tincidunt ante ac,</string>
     <string name="login_body_text">Login with credentials registered with your organisation</string>
     <string name="password_text">Password</string>
@@ -18,4 +18,21 @@
     <string name="text_button_start">Start</string>
     <string name="login_button_text">REGISTER</string>
     <string name="authentication_failed_message">Authentication Failed. Please check your Credentials and login again</string>
+    <string name="error_enter_valid_employeeid">Please enter a valid employeeID</string>
+    <string name="error_enter_valid_username">Please enter a valid username</string>
+    <string name="error_enter_valid_designation">Please enter a valid designation</string>
+    <string name="error_enter_valid_email">Please enter a valid email</string>
+    <string name="error_enter_valid_password">Please enter a valid password</string>
+    <string name="hint_designation">Designation</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="storage_rationale">Please provide permission for Storage for setting profile photo</string>
+    <string name="error_in_user_creation">[Error] : There seems to be some issue while creating user.Please try again later</string>
+    <string name="cardtitle_organisation_news">Organisation News</string>
+    <string name="cardtitle_leave_balance">Leave Balance</string>
+    <string name="cardtitle_awh">AWH</string>
+    <string name="cardtitle_gratify_balance">Gratify Balance</string>
+    <string name="cd_add_leaves_button">Add Leaves Button</string>
+    <string name="home_average_in_time_title">Average In Time</string>
+    <string name="home_actual_work_hour_title">Actual Work Hour</string>
 </resources>

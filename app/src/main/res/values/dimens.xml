@@ -12,4 +12,8 @@
     <dimen name="size_20sp">20sp</dimen>
     <dimen name="margin_bottom_16dp">16dp</dimen>
     <dimen name="margin_bottom_40dp">40dp</dimen>
+    <dimen name="profileimage_width">90dp</dimen>
+    <dimen name="profileimage_height">90dp</dimen>
+    <dimen name="home_cardview_corner_radius">6dp</dimen>
+    <dimen name="home_cardview_elevation">24dp</dimen>
 </resources>

@@ -14,8 +14,11 @@ import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.Status
 import com.ankitgh.employeeportal.utils.isValidEmail
 import com.ankitgh.employeeportal.utils.isValidPassword
+import com.ankitgh.employeeportal.utils.showSnackBar
+import com.google.android.gms.common.util.Strings
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.opencensus.internal.StringUtils
 import kotlinx.android.synthetic.main.login_fragment.*
 import timber.log.Timber
 
@@ -35,6 +38,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onBoardingNavController = Navigation.findNavController(view)
+        login_button_register.setOnClickListener(this)
+        login_button_signin.setOnClickListener(this)
+        observeEditFieldsAndClearOnEdit()
+    }
+
+    private fun observeEditFieldsAndClearOnEdit() {
         login_email_input_edittext.doAfterTextChanged {
             if (login_email_input_layout.isErrorEnabled) login_email_input_layout.error = null
         }
@@ -61,7 +70,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
                         requireActivity().finish()
                     }
                     Status.ERROR -> {
-                        showSnackBar(getString(R.string.authentication_failed_message))
+                        clearFieldsData()
+                        showSnackBar(requireView(), getString(R.string.authentication_failed_message))
                         Timber.d("signInWithEmail:${it.message}")
                     }
                     Status.LOADING -> if (it.isloading) login_progressBar.visibility = View.VISIBLE else login_progressBar.visibility = View.GONE
@@ -70,13 +80,18 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun showSnackBar(message: String) {
-        val snackBar: Snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
-            .setTextColor(ContextCompat.getColor(requireActivity(), R.color.white_50))
-        val snackBarView = snackBar.view
-        snackBarView.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.colorAccent))
-        snackBar.show()
+    private fun clearFieldsData() {
+        login_email_input_edittext.text?.clear()
+        login_password_input_edittext.text?.clear()
     }
+
+//    private fun showSnackBar(message: String) {
+//        val snackBar: Snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+//            .setTextColor(ContextCompat.getColor(requireActivity(), R.color.white_50))
+//        val snackBarView = snackBar.view
+//        snackBarView.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.colorAccent))
+//        snackBar.show()
+//    }
 
     private fun validateUser(email: String, password: String): Boolean {
         var result = true

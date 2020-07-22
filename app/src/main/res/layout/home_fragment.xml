@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/padding_8"
     tools:context=".ui.home.HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,13 +16,10 @@
         tools:context=".ui.home.HomeFragment">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/userprofile_cardview"
+            android:id="@+id/home_user_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="24dp"
             app:contentPadding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +30,7 @@
                 android:layout_height="match_parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileimage"
+                    android:id="@+id/home_profile_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
@@ -43,60 +41,39 @@
                     tools:src="@drawable/ic_default_profile_avatar" />
 
                 <TextView
-                    android:id="@+id/username"
+                    android:id="@+id/home_username_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jostregular"
                     android:textColor="@color/off_white"
                     android:textSize="25sp"
+                    tools:ignore="RelativeOverlap"
                     tools:text="Ankit Ghate" />
 
                 <TextView
-                    android:id="@+id/designation"
+                    android:id="@+id/home_designation_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/username"
-                    android:layout_marginTop="-4dp"
+                    android:layout_below="@id/home_username_title"
+                    android:layout_marginTop="-2dp"
                     android:fontFamily="@font/jostlight"
                     android:textColor="#DDDDDD"
                     android:textSize="12sp"
                     tools:text="Senior Android Developer" />
 
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/project_title"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_below="@id/designation"-->
-                <!--                    android:layout_marginTop="10dp"-->
-                <!--                    android:fontFamily="@font/jostregular"-->
-                <!--                    android:text="PROJECT"-->
-                <!--                    android:textColor="@color/off_white" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/project_name"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_alignBaseline="@id/project_title"-->
-                <!--                    android:layout_marginStart="10dp"-->
-                <!--                    android:layout_toRightOf="@id/project_title"-->
-                <!--                    android:fontFamily="@font/jostregular"-->
-                <!--                    android:text="Cybage Resource Pool"-->
-                <!--                    android:textColor="@color/off_white" />-->
-
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/organisation_news_cardview"
+            android:id="@+id/home_organisation_news_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="15dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+            app:cardElevation="@dimen/home_cardview_elevation"
             app:contentPadding="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/userprofile_cardview"
+            app:layout_constraintTop_toBottomOf="@id/home_user_cardview"
             tools:layout_editor_absoluteX="1dp">
 
             <RelativeLayout
@@ -104,19 +81,19 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/organisation_news_title"
+                    android:id="@+id/home_organisation_news_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jostbold"
-                    android:text="Organisation News"
+                    android:text="@string/cardtitle_organisation_news"
                     android:textColor="@color/colorAccent"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/organisation_news_recyclerview"
+                    android:id="@+id/home_organisation_news_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:layout_below="@id/organisation_news_title"
+                    android:layout_below="@id/home_organisation_news_title"
                     android:layout_marginTop="5dp"
                     tools:itemCount="3"
                     tools:listitem="@layout/organisation_new_item" />
@@ -124,78 +101,82 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/leave_balance_cardview"
+            android:id="@+id/home_leave_balance_cardview"
             style="@style/Widget.App.CardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="9dp"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="15dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+            app:cardElevation="@dimen/home_cardview_elevation"
             app:contentPadding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organisation_news_cardview">
+            app:layout_constraintTop_toBottomOf="@id/home_organisation_news_cardview">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/addleavesbutton"
+                    android:id="@+id/home_add_leaves_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/cd_add_leaves_button"
                     android:elevation="20sp"
                     android:src="@mipmap/ic_add" />
 
                 <TextView
-                    android:id="@+id/leave_balance_title"
+                    android:id="@+id/home_leave_balance_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/jostbold"
-                    android:text="Leave Balance"
+                    android:text="@string/cardtitle_leave_balance"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/leave_balance_title"
+                    android:layout_below="@id/home_leave_balance_title"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     android:weightSum="3">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/floating_holidays_cardview"
+                        android:id="@+id/home_floating_holidays_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/leave_balance_title"
                         android:layout_marginEnd="5dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                        app:cardElevation="@dimen/home_cardview_elevation">
 
                         <include layout="@layout/planned_leaves_item" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/unplaneed_leaves_cardview"
+                        android:id="@+id/home_unplaneed_leaves_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                        app:cardElevation="@dimen/home_cardview_elevation">
 
                         <include layout="@layout/unplanned_leaves_item" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/planned_leaves_cardview"
+                        android:id="@+id/home_planned_leaves_cardview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                        app:cardElevation="@dimen/home_cardview_elevation">
 
                         <include layout="@layout/floating_leaves_item" />
                     </com.google.android.material.card.MaterialCardView>
@@ -207,19 +188,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal"
             android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/leave_balance_cardview">
+            app:layout_constraintTop_toBottomOf="@id/home_leave_balance_cardview">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/awh_cardview"
+                android:id="@+id/home_awh_cardview"
                 style="@style/Widget.App.CardView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:cardCornerRadius="6dp">
+                app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                app:cardElevation="@dimen/home_cardview_elevation">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -233,7 +215,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jostbold"
-                        android:text="My AWH"
+                        android:text="@string/cardtitle_awh"
                         android:textColor="@color/colorAccent"
                         android:textSize="16sp" />
 
@@ -243,13 +225,14 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/gratify_cardview"
+                android:id="@+id/home_gratify_cardview"
                 style="@style/Widget.App.CardView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="6dp">
+                app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                app:cardElevation="@dimen/home_cardview_elevation">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -257,23 +240,19 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/gratify_title"
+                        android:id="@+id/home_gratify_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/jostbold"
-                        android:text="Gratify Balance"
+                        android:text="@string/cardtitle_gratify_balance"
                         android:textColor="@color/colorAccent"
                         android:textSize="16sp" />
 
                     <include layout="@layout/gratify_item" />
                 </LinearLayout>
-
-
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
