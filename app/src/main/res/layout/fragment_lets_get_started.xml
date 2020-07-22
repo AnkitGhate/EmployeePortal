@@ -6,31 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
-    android:padding="@dimen/padding_30"
+    android:padding="@dimen/padding_24"
     tools:context=".ui.onboarding.LetsGetStartedFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/lgs_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
         android:text="@string/welcome_title_text"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/margin_40"
+        android:textSize="@dimen/size_40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.175" />
 
     <Button
-        android:id="@+id/startButton"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/lgs_start_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
-        android:text="Start"
+        android:text="@string/text_button_start"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
+        android:textSize="@dimen/size_20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.939"

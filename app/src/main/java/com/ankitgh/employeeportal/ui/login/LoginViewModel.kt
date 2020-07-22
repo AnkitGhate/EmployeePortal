@@ -10,13 +10,16 @@ import kotlinx.coroutines.launch
 class LoginViewModel @ViewModelInject constructor(private val signInUseCase: SignInUseCase) : ViewModel() {
 
     fun signInUser(email: String, password: String, callback: (Resource<Boolean>) -> Unit) {
+        callback(Resource.loading(isloading = true))
         viewModelScope.launch {
             signInUseCase.signInUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     callback(Resource.success(true))
+                    callback(Resource.loading(isloading = false))
                 }
                 .addOnFailureListener {
                     callback(Resource.error(it.message))
+                    callback(Resource.loading(isloading = false))
                 }
         }
     }

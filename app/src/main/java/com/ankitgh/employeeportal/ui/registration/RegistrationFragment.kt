@@ -56,15 +56,15 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
         var result = true
 
         if (userSchema.employeeid.isEmpty()) {
-            password_inputlayout.error = "Please enter a valid employeeID"
+            login_password_inputlayout.error = "Please enter a valid employeeID"
             result = false
         }
         if (userSchema.username.isEmpty()) {
-            password_inputlayout.error = "Please enter a valid username"
+            login_password_inputlayout.error = "Please enter a valid username"
             result = false
         }
         if (userSchema.designation.isEmpty()) {
-            password_inputlayout.error = "Please enter a valid designation"
+            login_password_inputlayout.error = "Please enter a valid designation"
             result = false
         }
         if (!userSchema.email.isValidEmail()) {
@@ -72,7 +72,7 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             result = false
         }
         if (!userSchema.password.isValidPassword()) {
-            password_inputlayout.error = "Please enter a valid password"
+            login_password_inputlayout.error = "Please enter a valid password"
             result = false
         }
         if (userSchema.photoUrl == null) {
@@ -147,11 +147,11 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
             photoUrl = mPickedImageURI
         )
         if (validateUser(user)) {
-            progressBar.visibility = View.VISIBLE
+            login_progressBar.visibility = View.VISIBLE
             mViewModel.registerUser(user).observe(viewLifecycleOwner, Observer {
                 when (it.status) {
                     Status.ERROR -> {
-                        progressBar.visibility = View.GONE
+                        login_progressBar.visibility = View.GONE
                         Timber.e("Error while registering user : Exception - ${it.message}")
                         Snackbar.make(
                             requireView(), "[Error] : There seems to be some issue while creating user.Please try again later",
@@ -160,13 +160,12 @@ class RegistrationFragment : Fragment(), View.OnClickListener {
                     }
                     Status.SUCCESS -> {
                         Timber.d("User is registered")
-                        progressBar.visibility = View.GONE
+                        login_progressBar.visibility = View.GONE
                         navigateToHomeActivity()
                     }
                     Status.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
+                        login_progressBar.visibility = View.VISIBLE
                     }
-                    Status.UNKNOWN -> TODO()
                 }
             })
         }

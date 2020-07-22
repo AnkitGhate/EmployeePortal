@@ -1,24 +1,20 @@
 package com.ankitgh.employeeportal.ui.home
 
+import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
+import com.ankitgh.employeeportal.domain.GetUserInfoUserCase
 import com.ankitgh.employeeportal.utils.NetworkUtil
 import com.ankitgh.employeeportal.utils.Resource
-import com.ankitgh.employeeportal.utils.Status
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.ankitgh.employeeportal.utils.Status.*
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(
-    private val firebaseAuth: FirebaseAuth,
-    private val fireStoreDb: FirebaseFirestore,
-    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase
+    private val getUserInfoUserCase: GetUserInfoUserCase,
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
+    private val appContext: Application
 ) : ViewModel() {
 
     private var _userData = MutableLiveData<Resource<UserSchema>>()
@@ -32,39 +28,28 @@ class HomeViewModel @ViewModelInject constructor(
     }
 
     init {
-        _userData = getUser()
-        _getArticles = getNewsArticlesFromRemote()
+        viewModelScope.launch {
+            _userData = getUser()
+            _getArticles = getNewsArticlesFromRemote()
+        }
     }
 
     private fun getUser(): MutableLiveData<Resource<UserSchema>> {
-        fireStoreDb.collection("users")
-            .document(firebaseAuth.currentUser?.uid as String)
-            .get()
-            .addOnSuccessListener { userSnapShot ->
-                val signedInUser = userSnapShot.toObject(UserSchema::class.java)
-                if (signedInUser != null) {
-                    signedInUser.photoUrl = firebaseAuth.currentUser?.photoUrl
-                    signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
-                }
-                _userData.value = Resource.success(signedInUser)
-                Timber.i("Signed in user : $signedInUser")
+        getUserInfoUserCase.getUser().observeForever(Observer {
+            when (it.status) {
+                SUCCESS -> _userData.value = it
+                ERROR -> _userData.value = it
             }
-            .addOnFailureListener { exception ->
-                _userData.value = Resource.error(exception.message)
-                Timber.e("Failure fetching Singed-In user : $exception")
-            }
+        })
         return _userData
     }
 
-    private fun getNewsArticlesFromRemote(): MutableLiveData<Resource<List<NewsArticleModel>>> {
-        viewModelScope.launch {
-            getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected()).let {
-                when (it.status) {
-                    Status.SUCCESS -> _getArticles.value = Resource.success(it.data)
-                    Status.ERROR -> _getArticles.value = Resource.success(it.data)
-                    Status.LOADING -> TODO("Handle loading case for when()")
-                    Status.UNKNOWN -> TODO("Handle unloading case for when()")
-                }
+    private suspend fun getNewsArticlesFromRemote(): MutableLiveData<Resource<List<NewsArticleModel>>> {
+        getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected(appContext)).let {
+            when (it.status) {
+                SUCCESS -> _getArticles.value = Resource.success(it.data)
+                ERROR -> _getArticles.value = Resource.success(it.data)
+                LOADING -> TODO("Handle loading case for when()")
             }
         }
         return _getArticles

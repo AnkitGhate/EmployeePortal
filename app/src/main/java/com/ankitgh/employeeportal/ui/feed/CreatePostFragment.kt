@@ -32,21 +32,20 @@ class CreatePostFragment : BottomSheetDialogFragment() {
             if (post_input_editext.text.toString().isBlank()) {
                 post_textinputlayout.error = "Please enter something before sending"
             }
-            progressBar.visibility = View.VISIBLE
+            login_progressBar.visibility = View.VISIBLE
             viewModel.sendPostToFirebaseDB(post_input_editext.text.toString()).observe(this, Observer {
                 when (it.status) {
                     Status.ERROR -> {
-                        progressBar.visibility = View.GONE
+                        login_progressBar.visibility = View.GONE
                         dismiss()
                     }
                     Status.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
+                        login_progressBar.visibility = View.VISIBLE
                     }
                     Status.SUCCESS -> {
-                        progressBar.visibility = View.GONE
+                        login_progressBar.visibility = View.GONE
                         dismiss()
                     }
-                    Status.UNKNOWN -> TODO()
                 }
             })
         }

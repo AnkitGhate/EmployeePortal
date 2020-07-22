@@ -33,7 +33,7 @@ class LetsGetStartedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setFragmentToFullScreen()
-        startButton.setOnClickListener {
+        lgs_start_button.setOnClickListener {
             onBoardingNavController.navigate(R.id.action_letsGetStartedFragment_to_loginFragment)
         }
     }

@@ -53,16 +53,15 @@ class FeedFragment : Fragment() {
         viewModel.fetchPostsFromDatabase(postList).observe(requireActivity(), Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    if (progressBar != null) progressBar.visibility = View.GONE
+                    if (login_progressBar != null) login_progressBar.visibility = View.GONE
                     feedAdapter.notifyDataSetChanged()
                 }
                 Status.LOADING -> {
-                    if (progressBar != null) progressBar.visibility = View.VISIBLE
+                    if (login_progressBar != null) login_progressBar.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {
                     TODO()
                 }
-                Status.UNKNOWN -> TODO()
             }
         })
     }

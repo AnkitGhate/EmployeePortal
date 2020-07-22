@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.utils.Resource
+import com.ankitgh.employeeportal.utils.Status
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -11,9 +12,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,10 +27,6 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore
 ) : FirebaseRemoteDataSource {
 
-    companion object {
-        val TAG = FirebaseRemoteRemoteDataSourceImpl.javaClass.simpleName
-    }
-
     override suspend fun signInUserWithUserNameAndPassword(email: String, password: String): Task<AuthResult> {
         return withContext(Dispatchers.IO) {
             return@withContext firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -37,6 +36,32 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
     override fun getCurrentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
+
+    /**
+     * Get user information mapped to current signed in userinfo from FirebaseAuth and as FirebaseFirestore.collect already
+     * run on a different thread so no need to run on different thread.
+     */
+    override fun getUser(): MutableLiveData<Resource<UserSchema>> {
+        val result = MutableLiveData<Resource<UserSchema>>()
+        firebaseFirestore.collection("users")
+            .document(firebaseAuth.currentUser?.uid as String)
+            .get()
+            .addOnSuccessListener { userSnapShot ->
+                val signedInUser = userSnapShot.toObject(UserSchema::class.java)
+                if (signedInUser != null) {
+                    signedInUser.photoUrl = firebaseAuth.currentUser?.photoUrl
+                    signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
+                }
+                result.postValue(Resource.success(signedInUser))
+                Timber.i("Signed in user : $signedInUser")
+            }
+            .addOnFailureListener { exception ->
+                result.postValue(Resource.error(exception.message))
+                Timber.e("Failure fetching Singed-In user : $exception")
+            }
+        return result
+    }
+
 
     override fun registerUser(userSchema: UserSchema): LiveData<Resource<UserSchema>> {
         val userObserver = MutableLiveData<Resource<UserSchema>>()

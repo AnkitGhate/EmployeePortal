@@ -19,7 +19,7 @@ class CreatePostViewModel @ViewModelInject constructor(
     var user = MutableLiveData<Resource<UserSchema>>()
 
     fun sendPostToFirebaseDB(postBody: String): LiveData<Resource<UserSchema>> {
-        user.postValue(Resource.loading())
+        user.postValue(Resource.loading(isloading = true))
 
         firebaseDb.collection("users")
             .document(FirebaseAuth.getInstance().currentUser?.uid as String)

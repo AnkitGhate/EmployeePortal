@@ -15,7 +15,7 @@ class FeedViewModel @ViewModelInject constructor(private val fireStoreDb: Fireba
     private val postLiveData = MutableLiveData<Resource<PostSchema>>()
 
     fun fetchPostsFromDatabase(postList: ArrayList<FeedPostModel>): LiveData<Resource<PostSchema>> {
-        postLiveData.postValue(Resource.loading())
+        postLiveData.postValue(Resource.loading(isloading = true))
         fireStoreDb.collection("posts")
             .orderBy("creation_time", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->

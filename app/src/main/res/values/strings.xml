@@ -6,7 +6,7 @@
     <string name="placeholder_text_for_lists">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="text_input_layout_username_hint">Cybage ID</string>
     <string name="placeholder_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis metus ut ornare ultrices. Quisque fringilla hendrerit ipsum pellentesque viverra. Quisque tincidunt felis vitae turpis accumsan dapibus. Aliquam efficitur pulvinar leo, sit amet ornare elit faucibus quis. Pellentesque et magna ornare, tincidunt ante ac,</string>
-    <string name="login_body_text">Login with credentials registered with \nyour company</string>
+    <string name="login_body_text">Login with credentials registered with your organisation</string>
     <string name="password_text">Password</string>
     <string name="sign_in_text">SIGN IN</string>
     <string name="search">Search</string>
@@ -15,4 +15,7 @@
     <string name="username_hint_text">Username</string>
     <string name="awhfragment_title_text">AWH Details</string>
     <string name="title_text_leavesfragment">Leaves</string>
+    <string name="text_button_start">Start</string>
+    <string name="login_button_text">REGISTER</string>
+    <string name="authentication_failed_message">Authentication Failed. Please check your Credentials and login again</string>
 </resources>

@@ -4,6 +4,7 @@ import com.ankitgh.employeeportal.BuildConfig
 import com.ankitgh.employeeportal.data.MainRepository
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
+import com.ankitgh.employeeportal.domain.GetUserInfoUserCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,4 +46,8 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun getTopHeadlinesUseCase(mainRepository: MainRepository): GetTopHeadlinesUseCase = GetTopHeadlinesUseCase(mainRepository)
+
+    @Provides
+    @Singleton
+    fun getUserInfoUseCase(mainRepository: MainRepository): GetUserInfoUserCase = GetUserInfoUserCase(mainRepository)
 }

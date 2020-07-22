@@ -88,7 +88,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_inputlayout"
+        android:id="@+id/login_password_inputlayout"
         style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         android:textColorHint="@color/colorAccent"
         app:errorEnabled="true"
         app:hintTextColor="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/password_inputlayout"
+        app:layout_constraintBottom_toTopOf="@+id/login_password_inputlayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +145,7 @@
             android:fontFamily="@font/jostregular"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:nextFocusDown="@id/password_inputlayout"
+            android:nextFocusDown="@id/login_password_inputlayout"
             android:singleLine="true"
             android:textColor="@color/white_50"
             android:textCursorDrawable="@color/colorAccent" />
@@ -185,7 +185,7 @@
 
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/login_progressBar"
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -210,7 +210,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_inputlayout"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_inputlayout"
         app:rippleColor="@color/card_background" />
 
 

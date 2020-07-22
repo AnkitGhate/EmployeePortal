@@ -87,7 +87,6 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
                 }
                 Status.ERROR -> TODO("Handle error case for when()")
                 Status.LOADING -> TODO("Handle loading case for when()")
-                Status.UNKNOWN -> TODO("Handle unknown case for when()")
             }
         })
 
@@ -96,7 +95,6 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
                 Status.SUCCESS -> updateUI(it.data)
                 Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
                 Status.LOADING -> TODO("Handle loading case for when()")
-                Status.UNKNOWN -> TODO("Handle unknown case for when()")
             }
         })
     }
