@@ -1,6 +1,5 @@
 package com.ankitgh.employeeportal.ui.home
 
-import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,8 +18,7 @@ import timber.log.Timber
 class HomeViewModel @ViewModelInject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val fireStoreDb: FirebaseFirestore,
-    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
-    private val appContext: Application
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase
 ) : ViewModel() {
 
     private var _userData = MutableLiveData<Resource<UserSchema>>()
@@ -58,9 +56,9 @@ class HomeViewModel @ViewModelInject constructor(
         return _userData
     }
 
-    fun getNewsArticlesFromRemote(): MutableLiveData<Resource<List<NewsArticleModel>>> {
+    private fun getNewsArticlesFromRemote(): MutableLiveData<Resource<List<NewsArticleModel>>> {
         viewModelScope.launch {
-            getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected(appContext)).let {
+            getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected()).let {
                 when (it.status) {
                     Status.SUCCESS -> _getArticles.value = Resource.success(it.data)
                     Status.ERROR -> _getArticles.value = Resource.success(it.data)

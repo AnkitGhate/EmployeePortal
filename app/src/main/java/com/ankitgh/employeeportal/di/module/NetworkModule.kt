@@ -8,6 +8,9 @@ import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsRemoteDataSource
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsRemoteDataSourceImpl
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +32,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseRemoteDataSource(firebaseAuth: FirebaseAuth): FirebaseRemoteDataSource = FirebaseRemoteRemoteDataSourceImpl(firebaseAuth)
+    fun provideFirebaseRemoteDataSource(
+        firebaseAuth: FirebaseAuth,
+        storageReference: StorageReference,
+        firebaseFirestore: FirebaseFirestore
+    ): FirebaseRemoteDataSource =
+        FirebaseRemoteRemoteDataSourceImpl(firebaseAuth,storageReference,firebaseFirestore)
 
     @Provides
     @Singleton

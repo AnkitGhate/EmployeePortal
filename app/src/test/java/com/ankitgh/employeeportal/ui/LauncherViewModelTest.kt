@@ -5,13 +5,17 @@ import com.ankitgh.employeeportal.data.MainRepository
 import com.ankitgh.employeeportal.util.MainCoroutineRule
 import com.ankitgh.employeeportal.util.observeForTesting
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
 import org.mockito.Mockito.doReturn
-import org.mockito.Mockito.mock
+import org.mockito.junit.MockitoJUnitRunner
 
+@ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
 class LauncherViewModelTest {
 
     @Rule
@@ -23,9 +27,10 @@ class LauncherViewModelTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-    lateinit var SUT: LauncherViewModel
+    private lateinit var SUT: LauncherViewModel
 
-    private val mainRepository = mock(MainRepository::class.java)
+    @Mock
+    private lateinit var mainRepository: MainRepository
 
     @Before
     fun setUp() {
@@ -35,18 +40,18 @@ class LauncherViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun launchDestination_ifUserRegistered_returnsTrue() {
+    fun ifUserRegistered_returnsTrue() {
         SUT.launchDestination.observeForTesting {
-            Assert.assertEquals(SUT.launchDestination.value, Destination.HOME)
+            assertEquals(Destination.HOME, SUT.launchDestination.value)
         }
     }
 
     @ExperimentalCoroutinesApi
     @Test
-    fun launchDestination_ifUserRegistered_returnsFalse() {
+    fun ifUserRegistered_returnsFalse() {
         failure(mainRepository)
         SUT.launchDestination.observeForTesting {
-            Assert.assertEquals(SUT.launchDestination.value, Destination.ONBOARDING)
+            assertEquals(Destination.ONBOARDING, SUT.launchDestination.value)
         }
     }
 

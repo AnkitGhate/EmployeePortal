@@ -26,6 +26,5 @@ private class CrashReportingTree : Timber.Tree() {
             return
         }
     }
-
     // Log crashlytics bug here for crash/error/warning etc
 }

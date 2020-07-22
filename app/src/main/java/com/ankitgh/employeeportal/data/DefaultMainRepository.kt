@@ -1,5 +1,7 @@
 package com.ankitgh.employeeportal.data
 
+import androidx.lifecycle.LiveData
+import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.data.remote.firebase.FirebaseRemoteDataSource
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsRemoteDataSource
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
@@ -28,5 +30,9 @@ class DefaultMainRepository @Inject constructor(
 
     override fun isUserAlreadyRegistered(): Boolean {
         return firebaseRemoteDataSource.getCurrentUser() != null
+    }
+
+    override fun registerUser(userSchema: UserSchema): LiveData<Resource<UserSchema>> {
+        return firebaseRemoteDataSource.registerUser(userSchema)
     }
 }
