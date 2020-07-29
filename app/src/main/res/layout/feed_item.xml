@@ -7,49 +7,45 @@
     style="@style/Widget.App.CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    app:contentPadding="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_imageview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/placeholder_avatar_1"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="1dp"
-            app:civ_circle_background_color="@color/white_50"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/placeholder_avatar_1" />
+            app:civ_circle_background_color="@color/dark_default_color_on_surface"
+            tools:src="@drawable/avatar_2" />
 
         <TextView
             android:id="@+id/user_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/profile_imageview"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/profile_imageview"
-            android:layout_toRightOf="@id/profile_imageview"
-            android:fontFamily="@font/jostregular"
-            android:textColor="@color/off_white"
-            android:textSize="18sp"
+            android:includeFontPadding="false"
+            android:textColor="@color/dark_default_color_on_surface"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:text="Ankit Ghate" />
 
         <TextView
             android:id="@+id/designation_title"
+            style="@style/TextAppearance.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_title"
-            android:layout_alignBottom="@+id/profile_imageview"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="-3dp"
-            android:layout_toRightOf="@id/profile_imageview"
-            android:fontFamily="@font/jostlight"
-            android:textColor="@color/off_white"
-            android:textSize="14sp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/profile_imageview"
+            android:includeFontPadding="false"
             tools:text="Senior Developer" />
 
         <TextView
@@ -62,8 +58,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
-            android:fontFamily="@font/jostregular"
-            android:textColor="@color/grey"
+            android:includeFontPadding="false"
+            android:textColor="@color/subtitle_text_color"
             android:textSize="14sp"
             tools:text="10 min ago" />
 
@@ -71,13 +67,14 @@
             android:id="@+id/feed_body_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile_imageview"
-            android:layout_marginTop="10dp"
+            android:layout_below="@id/designation_title"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
-            android:fontFamily="@font/jostregular"
+            android:includeFontPadding="false"
             android:maxLines="4"
             android:text="@string/placeholder_text_paragraph"
-            android:textColor="@color/off_white"
+            android:textColor="@color/dark_default_color_on_surface"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -99,20 +96,19 @@
 
             <TextView
                 android:id="@+id/likecounttv"
-                style="@style/TextViewStyleRegularFont"
+                android:textAppearance="@style/TextAppearance.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
-                style="@style/TextViewStyleRegularFont"
+                android:textAppearance="@style/TextAppearance.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="Likes"
-                android:textSize="16sp" />
-
+                android:textSize="12sp" />
         </LinearLayout>
     </RelativeLayout>
 

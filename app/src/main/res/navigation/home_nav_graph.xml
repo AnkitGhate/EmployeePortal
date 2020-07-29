@@ -19,6 +19,15 @@
             android:id="@+id/action_homeFragment_pop2"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_AWHDetailFragment"
+            app:destination="@id/AWHDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addLeaveFragment"
+            app:destination="@id/addLeaveFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
@@ -83,15 +92,27 @@
         android:id="@+id/newsDetailFragment"
         android:name="com.ankitgh.employeeportal.ui.home.newsdetail.NewsDetailFragment"
         android:label="news_detail_fragment"
-        tools:layout="@layout/news_detail_fragment" />
+        tools:layout="@layout/news_detail_fragment">
+        <argument
+            android:name="shared_motion_element"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/AWHDetailFragment"
         android:name="com.ankitgh.employeeportal.ui.home.awhdetail.AWHDetailFragment"
         android:label="awh_detail_fragment"
-        tools:layout="@layout/awh_detail_fragment" />
+        tools:layout="@layout/awh_detail_fragment">
+        <argument
+            android:name="awh_shared_motion_element"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/addLeaveFragment"
         android:name="com.ankitgh.employeeportal.ui.home.addLeave.AddLeaveFragment"
         android:label="add_leave_fragment"
-        tools:layout="@layout/add_leave_fragment" />
+        tools:layout="@layout/add_leave_fragment">
+        <argument
+            android:name="addleaves_shared_motion_element"
+            app:argType="string" />
+    </fragment>
 </navigation>

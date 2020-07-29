@@ -3,8 +3,10 @@ package com.ankitgh.employeeportal.di.module
 import com.ankitgh.employeeportal.BuildConfig
 import com.ankitgh.employeeportal.data.MainRepository
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
+import com.ankitgh.employeeportal.domain.FetchPostsUserCase
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
 import com.ankitgh.employeeportal.domain.GetUserInfoUserCase
+import com.ankitgh.employeeportal.ui.home.newsdetail.ContainerTransformConfiguration
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,4 +52,13 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun getUserInfoUseCase(mainRepository: MainRepository): GetUserInfoUserCase = GetUserInfoUserCase(mainRepository)
+
+    @Provides
+    @Singleton
+    fun getPostsUseCase(mainRepository: MainRepository): FetchPostsUserCase = FetchPostsUserCase(mainRepository)
+
+    @Provides
+    fun provideContainerTransformConfiguration(): ContainerTransformConfiguration? {
+        return ContainerTransformConfiguration()
+    }
 }

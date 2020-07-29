@@ -12,17 +12,24 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.Status
+import com.ankitgh.employeeportal.utils.showSnackBar
+import com.google.android.material.transition.Hold
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.feed_fragment.*
 
 @AndroidEntryPoint
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment(), View.OnClickListener {
 
     private lateinit var navController: NavController
     private lateinit var feedAdapter: FeedAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private val viewModel: FeedViewModel by viewModels()
     var postList = ArrayList<FeedPostModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = Hold()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,35 +41,40 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-
+        initView(view)
         setupObserver()
+    }
 
+    private fun initView(view: View) {
+        navController = Navigation.findNavController(view)
         linearLayoutManager = LinearLayoutManager(activity)
         feed_recyclerview.layoutManager = linearLayoutManager
-
         feedAdapter = FeedAdapter(postList)
         feed_recyclerview.adapter = feedAdapter
-
-        button_add_post_fab.setOnClickListener {
-            navController.navigate(R.id.createPostFragment)
-        }
+        feed_button_add_post_fab.setOnClickListener(this)
     }
 
     private fun setupObserver() {
-        viewModel.fetchPostsFromDatabase(postList).observe(requireActivity(), Observer {
+        viewModel.fetchPosts(postList).observe(requireActivity(), Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    if (login_progressBar != null) login_progressBar.visibility = View.GONE
                     feedAdapter.notifyDataSetChanged()
                 }
                 Status.LOADING -> {
-                    if (login_progressBar != null) login_progressBar.visibility = View.VISIBLE
+                    if (it.isloading) feed_progressBar.visibility = View.VISIBLE else feed_progressBar.visibility = View.GONE
                 }
                 Status.ERROR -> {
-                    TODO()
+                    showSnackBar(requireView(), it.message.toString())
                 }
             }
         })
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            feed_button_add_post_fab -> {
+                navController.navigate(R.id.createPostFragment)
+            }
+        }
     }
 }

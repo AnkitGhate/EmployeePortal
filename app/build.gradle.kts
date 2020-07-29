@@ -10,17 +10,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(30)
     buildToolsVersion("29.0.3")
-
-    useLibrary("android.test.runner")
-    useLibrary("android.test.base")
-    useLibrary("android.test.mock")
 
     defaultConfig {
         applicationId = "com.ankitgh.employeeportal"
         minSdkVersion(28)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
 
@@ -34,8 +30,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
         getByName("debug") {
@@ -61,6 +56,7 @@ dependencies {
     implementation(Coroutines.COROUTINES_ANDROID)
     implementation(Coroutines.COROUTINES_CORE)
 
+    //Material Design
     implementation(Google.MATERIAL)
 
     // Androidx
@@ -70,6 +66,7 @@ dependencies {
     implementation(Androidx.LEGACY_SUPPORT_V4)
     implementation(Androidx.NAVIGATION_FRAGMENT_KTX)
     implementation(Androidx.NAVIGATION_UI_KTX)
+    implementation(Androidx.BIOMETRIC)
 
     // LifeCycle
     implementation(Lifecycle.LIFECYCLE_EXTENSIONS)

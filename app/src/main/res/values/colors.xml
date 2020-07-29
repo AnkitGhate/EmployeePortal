@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#121212</color>
-    <color name="colorPrimaryDark">#393E46</color>
-    <color name="card_background">#323232</color>
     <color name="colorAccent">#00ADB5</color>
-    <color name="black_overlay">#464D55</color>
-    <color name="off_white">#EEEEEE</color>
-    <color name="grey">#A3A6AD</color>
 
     <color name="black_800">#030303</color>
     <color name="black_900">#000000</color>
-    <color name="white_50">#ffffff</color>
-    <color name="cardBackGroundColor">#030303</color>
+    <color name="cardBackGroundColor">#121212</color>
+    <color name="ripple_background">#323232</color>
+    <color name="subtitle_text_color">#99FFFFFF</color>
+
+    <color name="dark_default_color_background">#121212</color>
+    <color name="dark_default_color_on_background">#FFFFFF</color>
+
+    <color name="dark_default_color_primary">#00ADB5</color>
+    <color name="dark_default_color_on_primary">#000000</color>
+
+    <color name="dark_default_color_error">#CF6679</color>
+    <color name="dark_default_color_on_error">#000000</color>
+
+    <color name="dark_default_color_secondary">#03DAC6</color>
+    <color name="dark_default_color_on_secondary">#000000</color>
+
+    <color name="dark_default_color_surface">#121212</color>
+    <color name="dark_default_color_on_surface">#DEFFFFFF</color>
+
+    <color name="dark_default_color_primary_dark">#000000</color>
+    <color name="dark_default_color_primary_variant">#3700B3</color>
+    <color name="dark_default_color_secondary_variant">#03DAC6</color>
 </resources>

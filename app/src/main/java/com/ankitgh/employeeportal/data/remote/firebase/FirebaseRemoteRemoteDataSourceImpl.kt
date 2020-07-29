@@ -2,7 +2,10 @@ package com.ankitgh.employeeportal.data.remote.firebase
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
+import com.ankitgh.employeeportal.ui.feed.FeedPostModel
+import com.ankitgh.employeeportal.utils.FirebaseConstants
 import com.ankitgh.employeeportal.utils.FirebaseConstants.USER_COLLECTION
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.android.gms.tasks.Task
@@ -12,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -20,7 +24,7 @@ import javax.inject.Inject
 
 /**
  * Class to provide data from FirebaseAuth / FirebaseStorage / FirebaseFirestore which have user
- * details for login and firestore contains list of users and posts while storage contains
+ * details for login and fireStore contains list of users and posts while storage contains
  * profile images.
  */
 class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
@@ -39,6 +43,7 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
     }
 
     override fun getUser(): MutableLiveData<Resource<UserSchema>> {
+        Resource.loading<UserSchema>(isloading = true)
         val result = MutableLiveData<Resource<UserSchema>>()
         fireBaseFireStore.collection(USER_COLLECTION)
             .document(firebaseAuth.currentUser?.uid as String)
@@ -50,11 +55,13 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
                     signedInUser.username = firebaseAuth.currentUser?.displayName.toString()
                 }
                 result.postValue(Resource.success(signedInUser))
+                Resource.loading<UserSchema>(isloading = false)
                 Timber.i("Signed in user : $signedInUser")
             }
             .addOnFailureListener { exception ->
                 result.postValue(Resource.error(exception.message))
                 Timber.e("Failure fetching Singed-In user : $exception")
+                Resource.loading<UserSchema>(isloading = false)
             }
         return result
     }
@@ -104,5 +111,40 @@ class FirebaseRemoteRemoteDataSourceImpl @Inject constructor(
                 }
             }
         return userObserver
+    }
+
+    override fun fetchPosts(postList: ArrayList<FeedPostModel>): LiveData<Resource<PostSchema>> {
+        val postLiveData = MutableLiveData<Resource<PostSchema>>()
+        postLiveData.postValue(Resource.loading(isloading = true))
+        fireBaseFireStore.collection(FirebaseConstants.POSTS_COLLECTION)
+            .orderBy(FirebaseConstants.CREATION_TIME, Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                if (exception != null && snapshot == null) {
+                    postLiveData.value = Resource.loading(isloading = false)
+                    postLiveData.value = Resource.error(exception.message)
+                    Timber.e("Exception when retrieving posts from FireStore : ${exception.message}")
+                    return@addSnapshotListener
+                }
+                postList.clear()
+                if (snapshot != null) {
+                    val postListSnapShot = snapshot.toObjects(PostSchema::class.java)
+
+                    for (post in postListSnapShot) {
+                        postList.add(
+                            FeedPostModel(
+                                profileImage = post.userSchema?.photourl,
+                                username = post.userSchema?.username,
+                                designation = post.userSchema?.designation,
+                                postTime = post.creation_time,
+                                feedBody = post.body,
+                                likes = post.userSchema?.likes
+                            )
+                        )
+                    }
+                    postLiveData.value = Resource.success(null)
+                    postLiveData.value = Resource.loading(isloading = false)
+                }
+            }
+        return postLiveData
     }
 }

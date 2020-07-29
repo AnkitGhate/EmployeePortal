@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.Status
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.create_post_fragment.*
 
@@ -16,6 +17,11 @@ import kotlinx.android.synthetic.main.create_post_fragment.*
 class CreatePostFragment : BottomSheetDialogFragment() {
 
     private val viewModel: CreatePostViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        sharedElementEnterTransition = MaterialContainerTransform()
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

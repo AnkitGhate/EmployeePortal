@@ -33,6 +33,7 @@
     <string name="cardtitle_awh">AWH</string>
     <string name="cardtitle_gratify_balance">Gratify Balance</string>
     <string name="cd_add_leaves_button">Add Leaves Button</string>
-    <string name="home_average_in_time_title">Average In Time</string>
-    <string name="home_actual_work_hour_title">Actual Work Hour</string>
+    <string name="home_average_in_time_title">In Time</string>
+    <string name="home_actual_work_hour_title">Work Hour</string>
+    <string name="fragment_title_feed">Feed</string>
 </resources>

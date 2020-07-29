@@ -5,6 +5,7 @@
     android:id="@+id/create_post_fragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:transitionName="shared_element_container"
     android:background="@color/black_900"
     tools:context=".ui.feed.CreatePostFragment">
 
@@ -26,14 +27,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/post_textinputlayout"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:background="@color/black_900"
-        android:fontFamily="@font/jostregular"
         android:hint="What's happening?"
         android:textColorHint="@color/colorAccent"
         app:errorEnabled="true"
@@ -46,12 +46,11 @@
             android:id="@+id/post_input_editext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/jostregular"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:nextFocusDown="@id/register_password_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/white_50"
+            android:textColor="@color/dark_default_color_on_surface"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,5 +82,5 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_textinputlayout"
-        app:rippleColor="@color/card_background" />
+        app:rippleColor="@color/ripple_background" />
 </androidx.constraintlayout.widget.ConstraintLayout>

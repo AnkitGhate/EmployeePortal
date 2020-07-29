@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.add_leave_fragment.*
 import kotlinx.android.synthetic.main.titlebar.*
@@ -18,9 +21,19 @@ import java.util.*
 
 @AndroidEntryPoint
 class AddLeaveFragment : Fragment() {
-
+    private var sharedElement: String? = null
     private val viewModel: AddLeaveViewModel by viewModels()
     private lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            setPathMotion(MaterialArcMotion())
+        }
+        arguments?.let {
+            sharedElement = AddLeaveFragmentArgs.fromBundle(it).addleavesSharedMotionElement
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +45,7 @@ class AddLeaveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ViewCompat.setTransitionName(addleaves_root, sharedElement)
         navController = Navigation.findNavController(view)
         title_tv.text = getString(R.string.title_text_leavesfragment)
         val date: Date = Calendar.getInstance().time

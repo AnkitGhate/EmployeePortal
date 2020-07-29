@@ -39,6 +39,7 @@ class HomeViewModel @ViewModelInject constructor(
             when (it.status) {
                 SUCCESS -> _userData.value = it
                 ERROR -> _userData.value = it
+                LOADING -> _userData.value = it
             }
         })
         return _userData
@@ -48,8 +49,8 @@ class HomeViewModel @ViewModelInject constructor(
         getTopHeadlinesUseCase.getTopHeadlines(NetworkUtil.isNetworkConnected(appContext)).let {
             when (it.status) {
                 SUCCESS -> _getArticles.value = Resource.success(it.data)
-                ERROR -> _getArticles.value = Resource.success(it.data)
-                LOADING -> TODO("Handle loading case for when()")
+                ERROR -> _getArticles.value = Resource.error(it.message)
+                LOADING -> _getArticles.value = Resource.loading(it.isloading)
             }
         }
         return _getArticles

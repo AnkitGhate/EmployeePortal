@@ -36,11 +36,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_email_input_layout"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_bottom_16dp"
-        android:fontFamily="@font/jostregular"
         android:hint="@string/hint_employeeid"
         android:textColorHint="@color/colorAccent"
         app:errorEnabled="true"
@@ -54,22 +53,20 @@
             android:id="@+id/login_email_input_edittext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/jostregular"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:nextFocusDown="@id/login_password_inputlayout"
             android:singleLine="true"
-            android:textColor="@color/white_50"
+            android:textColor="@color/dark_default_color_on_surface"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password_inputlayout"
-        style="@style/LoginTextInputLayoutStyle"
+        style="@style/TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:fontFamily="@font/jostregular"
         android:hint="@string/password_text"
         android:nextFocusForward="@id/login_button_signin"
         android:textColorHint="@color/colorAccent"
@@ -86,12 +83,11 @@
             android:id="@+id/login_password_input_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/jostregular"
             android:inputType="textPassword"
             android:maxLines="1"
             android:nextFocusDown="@id/login_button_signin"
             android:singleLine="true"
-            android:textColor="@color/white_50"
+            android:textColor="@color/dark_default_color_on_surface"
             android:textCursorDrawable="@color/colorAccent" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +104,7 @@
         android:textSize="@dimen/size_20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/card_background" />
+        app:rippleColor="@color/ripple_background" />
 
     <Button
         android:id="@+id/login_button_register"
@@ -122,7 +118,7 @@
         android:textSize="@dimen/size_20sp"
         app:layout_constraintBottom_toBottomOf="@+id/login_button_signin"
         app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/card_background" />
+        app:rippleColor="@color/ripple_background" />
 
     <ProgressBar
         android:id="@+id/login_progressBar"

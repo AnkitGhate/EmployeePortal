@@ -11,9 +11,9 @@ class NewsRemoteDataSourceImpl @Inject constructor(private val newsApiService: N
     }
 
     override suspend fun getTopHeadlines(): Resource<List<NewsArticleModel>> {
+        Resource.loading<List<NewsArticleModel>>(isloading = true)
         val response = newsApiService.getTopHeadlinesFromGoogle(API_KEY)
         return if (response.isSuccessful) {
-
             val articlesList = response.body()?.articles
             val newsArticleModelList = ArrayList<NewsArticleModel>()
             articlesList?.forEach {
@@ -31,8 +31,10 @@ class NewsRemoteDataSourceImpl @Inject constructor(private val newsApiService: N
                     )
                 )
             }
+            Resource.loading<List<NewsArticleModel>>(isloading = false)
             Resource.success(newsArticleModelList)
         } else {
+            Resource.loading<List<NewsArticleModel>>(isloading = false)
             Resource.error(response.errorBody().toString())
         }
     }

@@ -15,5 +15,5 @@
     <dimen name="profileimage_width">90dp</dimen>
     <dimen name="profileimage_height">90dp</dimen>
     <dimen name="home_cardview_corner_radius">6dp</dimen>
-    <dimen name="home_cardview_elevation">24dp</dimen>
+    <dimen name="home_cardview_elevation">2dp</dimen>
 </resources>

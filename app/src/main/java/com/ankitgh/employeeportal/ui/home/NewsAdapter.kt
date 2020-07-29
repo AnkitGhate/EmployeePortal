@@ -2,6 +2,7 @@ package com.ankitgh.employeeportal.ui.home
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.getRelativeDateTimeFromString
@@ -9,13 +10,14 @@ import com.ankitgh.employeeportal.utils.inflate
 import kotlinx.android.synthetic.main.organisation_new_item.view.*
 import timber.log.Timber
 import java.util.*
+import kotlin.random.Random
 
 class NewsAdapter(
     private var newsArticleList: ArrayList<NewsArticleModel>,
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private var view: View = itemView
@@ -30,11 +32,12 @@ class NewsAdapter(
         }
 
         fun bindNews(newsArticle: NewsArticleModel, onItemClickListener: OnItemClickListener) {
+            ViewCompat.setTransitionName(itemView, Random.nextInt(1, 100).toString())
             this.newsArticle = newsArticle
             view.news_body_textview.text = newsArticle.description
             view.news_date_tv.text = getRelativeDateTimeFromString(newsArticle.publishedAt)
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(newsArticle)
+                onItemClickListener.onItemClicked(it, newsArticle)
             }
         }
     }
@@ -66,6 +69,6 @@ class NewsAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(article: NewsArticleModel)
+        fun onItemClicked(article1: View, article: NewsArticleModel)
     }
 }

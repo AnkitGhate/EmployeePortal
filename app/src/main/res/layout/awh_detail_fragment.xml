@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/awh_root"
     android:layout_height="match_parent"
     android:background="@color/black_900"
     android:padding="16dp"
@@ -16,7 +17,7 @@
         android:layout_height="240dp"
         android:padding="10dp"
         app:chart_axis="x"
-        app:chart_labelsColor="@color/grey"
+        app:chart_labelsColor="@color/dark_default_color_on_surface"
         app:chart_labelsFont="@font/jostlight"
         app:chart_labelsSize="6sp"
         app:chart_lineColor="@color/colorAccent"
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
-                android:textColor="@color/white_50"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="30sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linechartlayout"
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
                 android:text="Last 30 Days"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
                 android:text="5.51"
-                android:textColor="@color/white_50"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="30sp" />
 
             <TextView
@@ -87,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
                 android:text="Last 90 Days"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
                 android:text="7.71"
-                android:textColor="@color/white_50"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="30sp" />
 
             <TextView
@@ -113,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jostlight"
                 android:text="Last 1 Year"
-                android:textColor="@color/grey"
+                android:textColor="@color/dark_default_color_on_surface"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>

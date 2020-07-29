@@ -2,52 +2,101 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/dark_default_color_background</item>
+        <item name="colorPrimaryDark">@color/dark_default_color_primary_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/black_900</item>
-        <item name="colorSurface">@color/cardBackGroundColor</item>
-        <item name="colorOnBackground">@color/white_50</item>
-        <item name="colorOnSurface">@color/white_50</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:colorBackground">@color/dark_default_color_background</item>
+        <item name="colorSurface">@color/dark_default_color_surface</item>
+        <item name="colorOnBackground">@color/dark_default_color_on_background</item>
+        <item name="colorOnSurface">@color/dark_default_color_on_surface</item>
+        <item name="android:fontFamily">@font/jostregular</item>
+        <item name="fontFamily">@font/jostregular</item>
+        <item name="colorError">@color/dark_default_color_error</item>
+        <item name="colorOnError">@color/dark_default_color_on_error</item>
         <item name="android:windowBackground">@drawable/splashbackground</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:textColorHint">@color/colorAccent</item>
         <item name="boxStrokeColor">@color/textinputlayout_color_scheme</item>
     </style>
 
-    <style name="MyTextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
-
     <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cornerFamily">rounded</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="cardForegroundColor">@color/card_view_foreground</item>
         <item name="cornerSize">@dimen/home_cardview_corner_radius</item>
         <item name="cardElevation">@dimen/home_cardview_elevation</item>
     </style>
 
-    <style name="TextViewStyleRegularFont" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="fontFamily">@font/jostregular</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="TextViewStyleLightFont" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/white_50</item>
+    <style name="TextAppearance.LargeNumber" parent="TextAppearance.Headline5">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
         <item name="fontFamily">@font/jostlight</item>
     </style>
 
-    <style name="TextViewStyleBoldFont" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">@color/white_50</item>
-        <item name="fontFamily">@font/jostbold</item>
+    <!--    Text Styles-->
+    <style name="TextAppearance.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">111sp</item>
     </style>
 
-    <style name="CustomFloatingActionButtonStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="android:textColor">@color/grey</item>
+    <style name="TextAppearance.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textSize">69sp</item>
+    </style>
+
+    <style name="TextAppearance.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">55sp</item>
+    </style>
+
+    <style name="TextAppearance.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">39sp</item>
+    </style>
+
+    <style name="TextAppearance.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="TextAppearance.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="android:textSize">23sp</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="lineSpacing">0.5dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">4dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/subtitle_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/jostbold</item>
+        <item name="android:fontFamily">@font/jostbold</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>

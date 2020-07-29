@@ -13,9 +13,11 @@
         android:id="@+id/navBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
         app:srcCompat="@drawable/ic_action_arrow_back" />
 
     <TextView
@@ -24,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:fontFamily="@font/jostregular"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         tools:text="Title" />

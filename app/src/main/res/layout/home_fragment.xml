@@ -1,258 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_8"
-    tools:context=".ui.home.HomeActivity">
+    android:background="@color/black_900"
+    android:paddingStart="@dimen/padding_8"
+    android:paddingTop="@dimen/padding_8"
+    android:paddingEnd="@dimen/padding_8"
+    tools:context=".ui.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/root_home_fragment"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/home_user_cardview"
+        style="@style/Widget.App.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_900"
-        tools:context=".ui.home.HomeFragment">
+        app:contentPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_user_cardview"
-            style="@style/Widget.App.CardView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentPadding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/home_profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/dark_default_color_on_surface"
+                tools:src="@drawable/avatar_2" />
+
+            <TextView
+                android:id="@+id/home_username_title"
+                style="@style/TextAppearance.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_default_color_on_surface"
+                tools:ignore="RelativeOverlap"
+                tools:text="Ankit Ghate" />
+
+            <TextView
+                android:id="@+id/home_designation_title"
+                style="@style/TextAppearance.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_username_title"
+                android:layout_marginTop="-2dp"
+                tools:text="Senior Android Developer" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/home_organisation_news_cardview"
+        style="@style/Widget.App.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+        app:cardElevation="@dimen/home_cardview_elevation"
+        app:contentPadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/home_user_cardview"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/home_organisation_news_title"
+            style="@style/TextAppearance.Overline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardtitle_organisation_news" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_recyclerview_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_below="@id/home_organisation_news_title"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:weightSum="3">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/home_profile_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    app:civ_border_color="@color/colorAccent"
-                    app:civ_border_width="1dp"
-                    app:civ_circle_background_color="@color/white_50"
-                    tools:src="@drawable/ic_default_profile_avatar" />
+                <include layout="@layout/shimmer_organisation_new_item" />
 
-                <TextView
-                    android:id="@+id/home_username_title"
+                <include layout="@layout/shimmer_organisation_new_item" />
+
+                <include layout="@layout/shimmer_organisation_new_item" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_organisation_news_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_below="@id/home_organisation_news_title"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            tools:itemCount="3"
+            tools:listitem="@layout/organisation_new_item"
+            tools:visibility="gone" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/home_leave_balance_cardview"
+        style="@style/Widget.App.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+        app:cardElevation="@dimen/home_cardview_elevation"
+        app:contentPadding="@dimen/padding_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_organisation_news_cardview">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/home_add_leaves_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/cd_add_leaves_button"
+                android:elevation="4dp"
+                android:src="@mipmap/ic_add" />
+
+            <TextView
+                android:id="@+id/home_leave_balance_title"
+                style="@style/TextAppearance.Overline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cardtitle_leave_balance"
+                tools:ignore="RelativeOverlap" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_add_leaves_button"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_floating_holidays_cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/jostregular"
-                    android:textColor="@color/off_white"
-                    android:textSize="25sp"
-                    tools:ignore="RelativeOverlap"
-                    tools:text="Ankit Ghate" />
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                    app:cardElevation="@dimen/home_cardview_elevation">
 
-                <TextView
-                    android:id="@+id/home_designation_title"
+                    <include layout="@layout/planned_leaves_item" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_unplaneed_leaves_cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/home_username_title"
-                    android:layout_marginTop="-2dp"
-                    android:fontFamily="@font/jostlight"
-                    android:textColor="#DDDDDD"
-                    android:textSize="12sp"
-                    tools:text="Senior Android Developer" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                    app:cardElevation="@dimen/home_cardview_elevation">
 
-            </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <include layout="@layout/unplanned_leaves_item" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/home_planned_leaves_cardview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/home_cardview_corner_radius"
+                    app:cardElevation="@dimen/home_cardview_elevation">
+
+                    <include layout="@layout/floating_leaves_item" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_leave_balance_cardview">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_organisation_news_cardview"
+            android:id="@+id/home_awh_cardview"
             style="@style/Widget.App.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-            app:cardElevation="@dimen/home_cardview_elevation"
-            app:contentPadding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/home_user_cardview"
-            tools:layout_editor_absoluteX="1dp">
+            app:cardElevation="@dimen/home_cardview_elevation">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_organisation_news_title"
+                    android:id="@+id/my_awh_title"
+                    style="@style/TextAppearance.Overline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/jostbold"
-                    android:text="@string/cardtitle_organisation_news"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="16sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/home_organisation_news_recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_below="@id/home_organisation_news_title"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/organisation_new_item" />
-            </RelativeLayout>
+                    android:text="@string/cardtitle_awh"
+                    android:textColor="@color/colorAccent" />
+
+                <include layout="@layout/awh_item" />
+            </LinearLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_leave_balance_cardview"
+            android:id="@+id/home_gratify_cardview"
             style="@style/Widget.App.CardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
             app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-            app:cardElevation="@dimen/home_cardview_elevation"
-            app:contentPadding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_organisation_news_cardview">
+            app:cardElevation="@dimen/home_cardview_elevation">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/home_add_leaves_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:contentDescription="@string/cd_add_leaves_button"
-                    android:elevation="20sp"
-                    android:src="@mipmap/ic_add" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/home_leave_balance_title"
+                    android:id="@+id/home_gratify_title"
+                    style="@style/TextAppearance.Overline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/jostbold"
-                    android:text="@string/cardtitle_leave_balance"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="16sp"
-                    tools:ignore="RelativeOverlap" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/cardtitle_gratify_balance" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/home_leave_balance_title"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/home_floating_holidays_cardview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-                        app:cardElevation="@dimen/home_cardview_elevation">
-
-                        <include layout="@layout/planned_leaves_item" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/home_unplaneed_leaves_cardview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-                        app:cardElevation="@dimen/home_cardview_elevation">
-
-                        <include layout="@layout/unplanned_leaves_item" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/home_planned_leaves_cardview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-                        app:cardElevation="@dimen/home_cardview_elevation">
-
-                        <include layout="@layout/floating_leaves_item" />
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-            </RelativeLayout>
-
+                <include layout="@layout/gratify_item" />
+            </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintTop_toBottomOf="@id/home_leave_balance_cardview">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/home_awh_cardview"
-                style="@style/Widget.App.CardView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-                app:cardElevation="@dimen/home_cardview_elevation">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/my_awh_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/jostbold"
-                        android:text="@string/cardtitle_awh"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />
-
-                    <include layout="@layout/awh_item" />
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/home_gratify_cardview"
-                style="@style/Widget.App.CardView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="@dimen/home_cardview_corner_radius"
-                app:cardElevation="@dimen/home_cardview_elevation">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/home_gratify_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/jostbold"
-                        android:text="@string/cardtitle_gratify_balance"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />
-
-                    <include layout="@layout/gratify_item" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

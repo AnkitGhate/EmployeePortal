@@ -2,19 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feed_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
-    android:padding="20dp"
+    android:padding="@dimen/padding_8"
     tools:context=".ui.feed.FeedFragment">
 
     <TextView
-        android:id="@+id/title_network"
+        android:id="@+id/feed_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/jostlight"
-        android:text="Feed"
+        android:text="@string/fragment_title_feed"
         android:textColor="@color/colorAccent"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,15 +33,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_network"
+        app:layout_constraintTop_toBottomOf="@id/feed_title_tv"
         tools:listitem="@layout/feed_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_add_post_fab"
+        android:id="@+id/feed_button_add_post_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:clickable="true"
+        android:transitionName="shared_element_container"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="@+id/feed_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:id="@+id/login_progressBar"
+        android:id="@+id/feed_progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

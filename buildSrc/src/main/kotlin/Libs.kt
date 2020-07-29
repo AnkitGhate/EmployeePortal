@@ -8,8 +8,6 @@ object Testing {
     const val TEST_EXT_TRUTH = "androidx.test.ext:truth:1.2.0"
     const val TEST_GOOGLE_TRUTH = "com.google.truth:truth:1.0.1"
 
-
-
     object Espresso {
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.2.0"
         const val ESPRESSO_CONTRIB = "androidx.test.espresso:espresso-contrib:3.2.0"
@@ -38,6 +36,7 @@ object Libs {
     //Docs : https://github.com/ismaeldivita/chip-navigation-bar
     const val CHIP_NAVIGATION = "com.ismaeldivita.chipnavigation:chip-navigation-bar:1.0.0"
     const val TIMBER = "com.jakewharton.timber:timber:4.7.1"
+
 }
 
 object Lifecycle {
@@ -78,10 +77,11 @@ object Androidx {
     const val NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:2.3.0-rc01"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
     const val ARCH_TESTING = "androidx.arch.core:core-testing:2.1.0"
+    const val BIOMETRIC = "androidx.biometric:biometric:1.0.1"
 }
 
 object Google {
-    const val MATERIAL = "com.google.android.material:material:1.3.0-alpha01"
+    const val MATERIAL = "com.google.android.material:material:1.3.0-alpha02"
 }
 
 object Firebase {

@@ -1,65 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview_container"
-    style="@style/Widget.App.CardView"
+    android:id="@+id/contact_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="6dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:background="@color/black_800"
+    android:padding="@dimen/padding_8">
 
-    <RelativeLayout
-        android:id="@+id/contact_container"
-        android:layout_width="match_parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_imageview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/placeholder_avatar_1"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/username_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/profile_imageview"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/dark_default_color_on_surface"
+        android:textSize="16sp"
+        tools:text="Ankit Ghate" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_imageview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:civ_border_color="@color/colorAccent"
-            app:civ_border_width="1dp"
-            app:civ_circle_background_color="@color/white_50"
-            android:src="@drawable/placeholder_avatar_1" />
-
-        <TextView
-            android:id="@+id/username_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/profile_imageview"
-            android:fontFamily="@font/jostregular"
-            android:maxLines="1"
-            android:textColor="@color/off_white"
-            android:textSize="20sp"
-            tools:text="Ankit Ghate" />
-
-        <TextView
-            android:id="@+id/designation_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/username_tv"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="-5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/profile_imageview"
-            android:fontFamily="@font/jostlight"
-            android:maxLines="1"
-            android:textColor="@color/grey"
-            android:textSize="14sp"
-            tools:text="Sr Software Developer" />
-
-    </RelativeLayout>
-</com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/designation_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_tv"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/profile_imageview"
+        android:fontFamily="@font/jostlight"
+        android:maxLines="1"
+        android:textColor="@color/dark_default_color_on_surface"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="64dp"
+        tools:text="Sr Software Developer" />
+</RelativeLayout>

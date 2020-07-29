@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
-    android:padding="8dp"
+    android:padding="@dimen/padding_8"
     tools:context=".ui.settings.SettingsFragment">
 
 
@@ -29,7 +29,7 @@
             android:layout_height="150dp"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="1dp"
-            app:civ_circle_background_color="@color/white_50"
+            app:civ_circle_background_color="@color/dark_default_color_on_surface"
             android:layout_gravity="center"
             android:src="@drawable/add_profile_placeholder" />
 
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/termsandcondition_textview"
-        style="@style/TextViewStyleRegularFont"
+        android:textAppearance="@style/TextAppearance.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -45,13 +45,13 @@
         android:drawableStart="@drawable/ic_terms"
         android:drawablePadding="10dp"
         android:text="Terms and Condition"
-        android:textColor="@color/white_50"
+        android:textColor="@color/dark_default_color_on_surface"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/mytrainings_textview" />
 
     <TextView
         android:id="@+id/mytrainings_textview"
-        style="@style/TextViewStyleRegularFont"
+        android:textAppearance="@style/TextAppearance.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -59,14 +59,14 @@
         android:drawableStart="@drawable/ic_training"
         android:drawablePadding="10dp"
         android:text="My Trainings"
-        android:textColor="@color/white_50"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/settingsheadercardview" />
 
     <TextView
         android:id="@+id/feedback_textview"
-        style="@style/TextViewStyleRegularFont"
+        android:textAppearance="@style/TextAppearance.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -74,19 +74,19 @@
         android:drawableStart="@drawable/ic_feedback"
         android:drawablePadding="10dp"
         android:text="Feedback"
-        android:textColor="@color/white_50"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/termsandcondition_textview" />
 
     <TextView
         android:id="@+id/signout_textview"
-        style="@style/TextViewStyleRegularFont"
+        android:textAppearance="@style/TextAppearance.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:text="Signout"
-        android:textColor="@color/white_50"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/about_textview"
-        style="@style/TextViewStyleRegularFont"
+        android:textAppearance="@style/TextAppearance.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -104,7 +104,7 @@
         android:drawableStart="@drawable/ic_about"
         android:drawablePadding="10dp"
         android:text="About"
-        android:textColor="@color/white_50"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/feedback_textview" />

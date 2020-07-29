@@ -4,22 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.Status
+import com.ankitgh.employeeportal.utils.showSnackBar
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.Hold
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
+class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickListener {
 
     private val viewModel: HomeViewModel by viewModels()
     private var newsList = ArrayList<NewsArticleModel>()
@@ -40,9 +48,16 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = Hold()
+    }
+
+    @ExperimentalStdlibApi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        observeData()
+        setupUserDataObserver()
+        setupNewsArticleDataObserver()
     }
 
     override fun onCreateView(
@@ -55,56 +70,90 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ViewCompat.setTransitionName(home_awh_cardview, Random.nextInt(1, 100).toString())
+        ViewCompat.setTransitionName(home_add_leaves_button, Random.nextInt(1, 100).toString())
         navController = Navigation.findNavController(view)
         setupRecyclerView()
-        home_awh_cardview.setOnClickListener {
-            navController.navigate(R.id.AWHDetailFragment)
-        }
-        home_add_leaves_button.setOnClickListener {
-            navController.navigate(R.id.addLeaveFragment)
-        }
+        home_awh_cardview.setOnClickListener(this)
+        home_add_leaves_button.setOnClickListener(this)
     }
 
     private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)
         home_organisation_news_recyclerview.layoutManager = linearLayoutManager
-
+        val mDividerItemDecoration = DividerItemDecoration(
+            home_organisation_news_recyclerview.context,
+            linearLayoutManager.orientation
+        )
+        home_organisation_news_recyclerview.addItemDecoration(mDividerItemDecoration)
         newsAdapter = NewsAdapter(newsList, this)
         home_organisation_news_recyclerview.adapter = newsAdapter
     }
 
-    private fun observeData() {
+    private fun setupNewsArticleDataObserver() {
+        viewModel.getArticles.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Status.SUCCESS -> updateUI(it.data)
+                Status.ERROR -> {
+                    home_organisation_news_recyclerview.visibility = View.GONE
+                    showSnackBar(requireView(), it.message.toString())
+                }
+                Status.LOADING -> {
+                    if (it.isloading) {
+                        shimmer_recyclerview_placeholder.visibility = View.VISIBLE
+                    } else {
+                        shimmer_recyclerview_placeholder.visibility = View.GONE
+                        home_organisation_news_recyclerview.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
+    }
+
+    @ExperimentalStdlibApi
+    private fun setupUserDataObserver() {
         viewModel.userData.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    home_username_title.text = it.data?.username.toString().capitalize()
-                    home_designation_title.text = it.data?.designation?.toUpperCase()
+                    home_username_title.text = it.data?.username.toString().toUpperCase(Locale.ROOT)
+                    home_designation_title.text = it.data?.designation?.toLowerCase(Locale.ROOT)?.capitalize(Locale.ROOT)
                     Glide.with(this)
                         .load(it.data?.photoUrl)
                         .placeholder(R.drawable.ic_default_profile_avatar)
                         .into(home_profile_image)
 
                 }
-                Status.ERROR -> TODO("Handle error case for when()")
-                Status.LOADING -> TODO("Handle loading case for when()")
-            }
-        })
-
-        viewModel.getArticles.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Status.SUCCESS -> updateUI(it.data)
-                Status.ERROR -> Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_SHORT).show()
+                Status.ERROR -> showSnackBar(requireView(), it.message.toString())
                 Status.LOADING -> TODO("Handle loading case for when()")
             }
         })
     }
 
     private fun updateUI(newsArticleList: List<NewsArticleModel>?) {
+        shimmer_recyclerview_placeholder.visibility = View.GONE
+        home_organisation_news_recyclerview.visibility = View.VISIBLE
         newsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
     }
 
-    override fun onItemClicked(article: NewsArticleModel) {
+    override fun onItemClicked(article1: View, article: NewsArticleModel) {
         viewModel.setSelectedArticle(article)
-        navController.navigate(R.id.newsDetailFragment)
+        val extras = FragmentNavigatorExtras(((article1 to (ViewCompat.getTransitionName(article1) as String))))
+        val bundleArgs = bundleOf("shared_motion_element" to ViewCompat.getTransitionName(article1) as String)
+        navController.navigate(R.id.newsDetailFragment, bundleArgs, null, extras)
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            home_add_leaves_button -> {
+                val extras = FragmentNavigatorExtras(((home_add_leaves_button to (ViewCompat.getTransitionName(home_add_leaves_button) as String))))
+                val bundleArgs = bundleOf("addleaves_shared_motion_element" to ViewCompat.getTransitionName(home_add_leaves_button) as String)
+                navController.navigate(R.id.action_homeFragment_to_addLeaveFragment, bundleArgs, null, extras)
+            }
+            home_awh_cardview -> {
+                val extras = FragmentNavigatorExtras(((home_awh_cardview to (ViewCompat.getTransitionName(home_awh_cardview) as String))))
+                val bundleArgs = bundleOf("awh_shared_motion_element" to ViewCompat.getTransitionName(home_awh_cardview) as String)
+                navController.navigate(R.id.action_homeFragment_to_AWHDetailFragment, bundleArgs, null, extras)
+            }
+        }
     }
 }

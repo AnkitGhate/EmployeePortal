@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
 import com.db.williamchart.ExperimentalFeature
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.awh_detail_fragment.*
 import kotlinx.android.synthetic.main.titlebar.*
@@ -18,8 +20,17 @@ import kotlinx.android.synthetic.main.titlebar.*
 @ExperimentalFeature
 @AndroidEntryPoint
 class AWHDetailFragment : Fragment() {
+    private var sharedElement: String? = null
 
-    private val viewModel: AWHDetailViewModel by viewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            setPathMotion(MaterialArcMotion())
+        }
+        arguments?.let {
+            sharedElement = AWHDetailFragmentArgs.fromBundle(it).awhSharedMotionElement
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +42,7 @@ class AWHDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        ViewCompat.setTransitionName(awh_root, sharedElement)
         title_tv.text = getString(R.string.awhfragment_title_text)
         setupGraph()
     }

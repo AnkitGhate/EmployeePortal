@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     android:background="@color/black_900"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostlight"
         android:text="700"
-        android:textColor="@color/off_white"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="35sp" />
 
     <TextView
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
         android:text="Reward Points"
-        android:textColor="@color/off_white"
+        android:textColor="@color/subtitle_text_color"
         android:textSize="15sp" />
 
     <TextView
@@ -30,7 +29,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/jostlight"
         android:text="200"
-        android:textColor="@color/off_white"
+        android:textColor="@color/dark_default_color_on_surface"
         android:textSize="35sp" />
 
     <TextView
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/jostbold"
         android:text="Manager Points"
-        android:textColor="@color/off_white"
+        android:textColor="@color/subtitle_text_color"
         android:textSize="15sp" />
 
 </LinearLayout>
