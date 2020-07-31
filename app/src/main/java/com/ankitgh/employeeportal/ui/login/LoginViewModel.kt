@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 class LoginViewModel @ViewModelInject constructor(private val signInUseCase: SignInUseCase) : ViewModel() {
 
     fun signInUser(email: String, password: String, callback: (Resource<Boolean>) -> Unit) {
+
         callback(Resource.loading(isloading = true))
         viewModelScope.launch {
             signInUseCase.signInUserWithEmailAndPassword(email, password)

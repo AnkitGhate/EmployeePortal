@@ -21,8 +21,10 @@ object Testing {
     const val TEST_RUNNER = "androidx.test:runner:1.2.0"
     const val TEST_RULE = "androidx.test:rules:1.2.0"
     const val TEST_EXT_JUNIT = "androidx.test.ext:junit:1.1.1"
+    const val TEST_EXT_JUNIT_KTX = "androidx.test.ext:junit-ktx:1.1.0"
     const val TEST_EXT_TRUTH = "androidx.test.ext:truth:1.2.0"
     const val TEST_GOOGLE_TRUTH = "com.google.truth:truth:1.0.1"
+    const val TEST_FRAGMENT = "androidx.fragment:fragment-testing:1.2.5"
 
     object Espresso {
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.2.0"

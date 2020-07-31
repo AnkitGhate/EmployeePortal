@@ -19,6 +19,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lgs_fragment_rootview"
     android:layout_width="match_parent"
+    android:contentDescription="root_lgs_fragment"
     android:layout_height="match_parent"
     android:background="@color/black_900"
     android:padding="@dimen/padding_24"

@@ -50,8 +50,8 @@ android {
             )
         }
         getByName("debug") {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-debug"
+//            applicationIdSuffix = ".debug"
+//            versionNameSuffix = "-debug"
             isMinifyEnabled = false
         }
     }
@@ -113,6 +113,7 @@ dependencies {
     androidTestImplementation(Testing.TEST_RUNNER)
     androidTestImplementation(Testing.TEST_RULE)
     androidTestImplementation(Testing.TEST_EXT_JUNIT)
+    androidTestImplementation(Testing.TEST_EXT_JUNIT_KTX)
     androidTestImplementation(Testing.TEST_EXT_TRUTH)
     androidTestImplementation(Testing.TEST_GOOGLE_TRUTH)
     androidTestImplementation(Coroutines.TEST_KOTLINX_COROUTINES_TEST)
@@ -124,7 +125,7 @@ dependencies {
     androidTestImplementation(Testing.Espresso.ESPRESSO_INTENTS)
     androidTestImplementation(Testing.Espresso.ESPRESSO_ACCESSIBILITY)
     androidTestImplementation(Testing.Espresso.IDLING_CONCURRENT)
-    androidTestImplementation(Testing.Espresso.ESPRESSO_IDLING_RESOURCE)
+    implementation(Testing.Espresso.ESPRESSO_IDLING_RESOURCE)
 
     // Mockito
     testImplementation(Testing.Mockito.MOCKITO)

@@ -17,7 +17,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_fragment_container"
+    android:id="@+id/root_fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
@@ -86,6 +86,7 @@
 
         <TextView
             android:id="@+id/home_organisation_news_title"
+            android:contentDescription="xyz"
             style="@style/TextAppearance.Overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

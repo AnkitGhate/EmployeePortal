@@ -26,10 +26,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
-import com.ankitgh.employeeportal.utils.Status
-import com.ankitgh.employeeportal.utils.isValidEmail
-import com.ankitgh.employeeportal.utils.isValidPassword
-import com.ankitgh.employeeportal.utils.showSnackBar
+import com.ankitgh.employeeportal.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.login_fragment.*
 import timber.log.Timber
@@ -74,14 +71,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private fun initSignIn() {
         val email = login_email_input_edittext.text.toString()
         val password = login_password_input_edittext.text.toString()
+        EspressoIdlingResource.increment()
         if (validateUser(email, password)) {
             viewModel.signInUser(email, password) {
                 when (it.status) {
                     Status.SUCCESS -> {
+                        EspressoIdlingResource.decrement()
                         navigateTo(R.id.action_loginFragment_to_homeActivity)
                         requireActivity().finish()
                     }
                     Status.ERROR -> {
+                        EspressoIdlingResource.decrement()
                         clearFieldsData()
                         showSnackBar(requireView(), getString(R.string.authentication_failed_message))
                         Timber.d("signInWithEmail:${it.message}")
@@ -96,14 +96,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
         login_email_input_edittext.text?.clear()
         login_password_input_edittext.text?.clear()
     }
-
-//    private fun showSnackBar(message: String) {
-//        val snackBar: Snackbar = Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
-//            .setTextColor(ContextCompat.getColor(requireActivity(), R.color.white_50))
-//        val snackBarView = snackBar.view
-//        snackBarView.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.colorAccent))
-//        snackBar.show()
-//    }
 
     private fun validateUser(email: String, password: String): Boolean {
         var result = true
@@ -121,5 +113,4 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private fun navigateTo(resId: Int) {
         onBoardingNavController.navigate(resId)
     }
-
 }
