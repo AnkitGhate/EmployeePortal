@@ -42,7 +42,8 @@
             android:id="@+id/profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:civ_border_color="@color/colorAccent"
+            app:civ_border_color="@color/colorPrimaryDark"
+
             app:civ_border_width="1dp"
             app:civ_circle_background_color="@color/dark_default_color_on_surface"
             android:layout_gravity="center"

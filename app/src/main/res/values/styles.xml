@@ -53,6 +53,10 @@
         <item name="fontFamily">@font/jostlight</item>
     </style>
 
+    <style name="TextAppearance.Title" parent="TextAppearance.Headline6">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontFamily">@font/jostlight</item>
+    </style>
     <!--    Text Styles-->
     <style name="TextAppearance.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:textSize">111sp</item>

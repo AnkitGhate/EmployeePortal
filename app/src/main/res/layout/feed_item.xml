@@ -36,7 +36,7 @@
             android:layout_height="36dp"
             android:layout_alignParentStart="true"
             android:src="@drawable/placeholder_avatar_1"
-            app:civ_border_color="@color/colorAccent"
+            app:civ_border_color="@color/colorPrimaryDark"
             app:civ_border_width="1dp"
             app:civ_circle_background_color="@color/dark_default_color_on_surface"
             tools:src="@drawable/avatar_2" />
@@ -55,13 +55,13 @@
 
         <TextView
             android:id="@+id/designation_title"
-            style="@style/TextAppearance.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_title"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/profile_imageview"
             android:includeFontPadding="false"
+            android:textAppearance="@style/TextAppearance.Caption"
             tools:text="Senior Developer" />
 
         <TextView
@@ -90,8 +90,7 @@
             android:includeFontPadding="false"
             android:maxLines="4"
             android:text="@string/placeholder_text_paragraph"
-            android:textColor="@color/dark_default_color_on_surface"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextAppearance.Body2" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,18 +111,18 @@
 
             <TextView
                 android:id="@+id/likecounttv"
-                android:textAppearance="@style/TextAppearance.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12"
+                android:textAppearance="@style/TextAppearance.Headline6"
                 android:textSize="12sp" />
 
             <TextView
-                android:textAppearance="@style/TextAppearance.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="Likes"
+                android:textAppearance="@style/TextAppearance.Headline6"
                 android:textSize="12sp" />
         </LinearLayout>
     </RelativeLayout>
