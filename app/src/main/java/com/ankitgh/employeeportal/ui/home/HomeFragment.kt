@@ -29,7 +29,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.Status
@@ -97,11 +96,11 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickLi
     private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)
         home_organisation_news_recyclerview.layoutManager = linearLayoutManager
-        val mDividerItemDecoration = DividerItemDecoration(
-            home_organisation_news_recyclerview.context,
-            linearLayoutManager.orientation
-        )
-        home_organisation_news_recyclerview.addItemDecoration(mDividerItemDecoration)
+//        val mDividerItemDecoration = DividerItemDecoration(
+//            home_organisation_news_recyclerview.context,
+//            linearLayoutManager.orientation
+//        )
+//        home_organisation_news_recyclerview.addItemDecoration(mDividerItemDecoration)
         newsAdapter = NewsAdapter(newsList, this)
         home_organisation_news_recyclerview.adapter = newsAdapter
     }

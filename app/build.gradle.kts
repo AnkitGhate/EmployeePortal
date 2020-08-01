@@ -102,6 +102,9 @@ dependencies {
 
     // Dagger-Hilt
     implementation(Hilt.HILT_ANDROID)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     kapt(Hilt.HILT_COMPILER)
     implementation(Hilt.HILT_LIFECYCLE_VIEWMODEL)
     kapt(Hilt.HILT_ANDROID_COMPILER)

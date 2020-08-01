@@ -27,10 +27,9 @@
         android:id="@+id/news_body_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jostlight"
+        android:includeFontPadding="false"
         android:maxLines="2"
-        android:textColor="@color/dark_default_color_on_surface"
-        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.Body2"
         tools:text="@string/placeholder_text_for_lists" />
 
     <TextView

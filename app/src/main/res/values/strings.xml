@@ -21,7 +21,11 @@
     <string name="placeholder_text">loremipsum</string>
     <string name="placeholder_text_for_lists">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="hint_employeeid">Cybage ID</string>
-    <string name="placeholder_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mollis metus ut ornare ultrices. Quisque fringilla hendrerit ipsum pellentesque viverra. Quisque tincidunt felis vitae turpis accumsan dapibus. Aliquam efficitur pulvinar leo, sit amet ornare elit faucibus quis. Pellentesque et magna ornare, tincidunt ante ac,</string>
+    <string name="placeholder_text_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In diam diam, rutrum non lacinia id, ullamcorper non nunc. Mauris vel arcu vitae ligula accumsan tincidunt vel non erat. Nunc eu urna tellus. Sed risus tortor, dignissim ut orci feugiat, condimentum ornare quam. Duis et libero quis ligula elementum pharetra nec quis nisi. Cras vitae augue elementum, ultrices erat et, volutpat odio. Vestibulum pulvinar mattis consectetur. Nunc aliquam purus eu turpis vehicula faucibus. Morbi molestie tincidunt scelerisque. Duis scelerisque risus at dolor imperdiet tristique vel at lorem. Cras malesuada facilisis arcu, nec rutrum neque egestas ac. Nulla id posuere augue.
+
+Donec convallis, nisl eu tincidunt molestie, arcu urna sagittis nisl, sed sodales ligula sapien rutrum eros. Donec mattis pretium ipsum, et commodo nulla gravida sed. Donec vitae lacus ut magna placerat laoreet. Nulla molestie in ex id dapibus. Praesent felis dui, rutrum a bibendum et, fermentum euismod quam. Nulla egestas orci ullamcorper, molestie metus id, elementum nulla. Donec mauris ex, porttitor quis risus eu, molestie ultrices nulla. Donec ultricies lorem id enim gravida dictum. Vivamus sed risus rutrum, commodo mauris sit amet, hendrerit mauris. Nullam posuere mauris eu risus pretium vestibulum. Nunc placerat justo vel mollis rutrum. In hac habitasse platea dictumst. Morbi faucibus sodales nunc eu laoreet. Aenean volutpat interdum metus, eu pretium diam volutpat nec.
+
+Aliquam erat volutpat. Mauris aliquet tempor convallis. Suspendisse magna quam, elementum ut finibus non, auctor id nisi. Donec nec diam eget justo egestas semper ac non elit. Donec at eros semper, commodo ligula id, vehicula leo. Mauris urna quam, tempus condimentum leo vitae, hendrerit commodo leo. Nunc fringilla egestas dictum. Ut viverra scelerisque sem non dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In ut elementum libero. Nulla eget nulla placerat, malesuada arcu vel, accumsan leo. Aenean ut ex sit amet urna condimentum posuere ac eget nisi. Cras sollicitudin volutpat nulla, vitae elementum libero sollicitudin nec.</string>
     <string name="login_body_text">Login with credentials registered with your organisation</string>
     <string name="password_text">Password</string>
     <string name="sign_in_text">SIGN IN</string>
@@ -52,4 +56,12 @@
     <string name="home_average_in_time_title">In Time</string>
     <string name="home_actual_work_hour_title">Work Hour</string>
     <string name="fragment_title_feed">Feed</string>
+    <string name="title_article">Articles</string>
+    <string name="placeholder_date">20 Feb 2020</string>
+    <string name="placeholder_name">Arun Nathani</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_feed">Feed</string>
+    <string name="menu_article">Article</string>
+    <string name="menu_people">People</string>
+    <string name="menu_settings">Settings</string>
 </resources>

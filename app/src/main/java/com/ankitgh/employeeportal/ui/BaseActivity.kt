@@ -48,6 +48,10 @@ abstract class BaseActivity : AppCompatActivity() {
                     navController.popBackStack(R.id.homeFragment, false)
                     navigateTo(R.id.feedFragment)
                 }
+                R.id.article_tab -> {
+                    navController.popBackStack(R.id.articleFragment, false)
+                    navigateTo(R.id.articleFragment)
+                }
                 R.id.addressBook_tab -> {
                     navController.popBackStack(R.id.homeFragment, false)
                     navigateTo(R.id.addressBookFragment)
@@ -67,6 +71,7 @@ abstract class BaseActivity : AppCompatActivity() {
             bottom_chip_navigation_bar.setItemSelected(R.id.home_tab)
         }
     }
+
 
     abstract fun setLayoutId(): Int
 

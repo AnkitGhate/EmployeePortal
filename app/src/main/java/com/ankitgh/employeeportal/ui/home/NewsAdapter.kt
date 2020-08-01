@@ -24,7 +24,6 @@ import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.getRelativeDateTimeFromString
 import com.ankitgh.employeeportal.utils.inflate
 import kotlinx.android.synthetic.main.organisation_new_item.view.*
-import timber.log.Timber
 import java.util.*
 import kotlin.random.Random
 
@@ -35,21 +34,13 @@ class NewsAdapter(
 
     private lateinit var recyclerView: RecyclerView
 
-    class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var view: View = itemView
         private var newsArticle: NewsArticleModel? = null
 
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            Timber.d("CLICK!")
-        }
-
         fun bindNews(newsArticle: NewsArticleModel, onItemClickListener: OnItemClickListener) {
-            ViewCompat.setTransitionName(itemView, Random.nextInt(1, 100).toString())
             this.newsArticle = newsArticle
+            ViewCompat.setTransitionName(itemView, Random.nextInt(1, 100).toString())
             view.news_body_textview.text = newsArticle.description
             view.news_date_tv.text = getRelativeDateTimeFromString(newsArticle.publishedAt)
             itemView.setOnClickListener {

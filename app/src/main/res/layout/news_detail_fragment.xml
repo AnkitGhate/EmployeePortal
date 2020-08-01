@@ -17,59 +17,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsDetailFragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/newsDetailFragment_container"
     android:background="@color/dark_default_color_surface"
-    android:padding="@dimen/padding_8"
     tools:context=".ui.home.newsdetail.NewsDetailFragment">
-
-    <include
-        layout="@layout/titlebar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/nd_news_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:lineHeight="28dp"
-        android:textColor="@color/dark_default_color_on_surface"
-        android:textSize="30sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.Headline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titlebarlayout"
+        app:layout_constraintTop_toBottomOf="@id/nd_news_background_imageview"
         tools:text="@string/placeholder_text_for_lists" />
 
     <TextView
         android:id="@+id/nd_author_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jostlight"
-        android:textColor="@color/dark_default_color_on_surface"
-        android:textSize="14sp"
+        android:layout_marginStart="8dp"
+        android:includeFontPadding="false"
+        android:textAppearance="@style/TextAppearance.Caption"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nd_news_title_tv"
         tools:text="BBC" />
 
     <ImageView
         android:id="@+id/nd_news_background_imageview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="250dp"
-        android:layout_marginTop="10dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nd_author_tv"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/navBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/padding_8"
+        android:background="@drawable/back_button_background"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="@dimen/padding_8"
+        android:tint="@color/dark_default_color_on_surface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_action_arrow_back" />
 
     <TextView
         android:id="@+id/nd_published_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jostlight"
-        android:textColor="@color/dark_default_color_on_surface"
-        android:textSize="14sp"
+        android:layout_marginEnd="8dp"
+        android:textAppearance="@style/TextAppearance.Caption"
         app:layout_constraintBottom_toBottomOf="@+id/nd_author_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nd_author_tv"
@@ -77,15 +83,17 @@
 
     <TextView
         android:id="@+id/nd_news_body_tv"
-        style="@style/TextAppearance.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:justificationMode="inter_word"
-        android:textColor="@color/dark_default_color_on_surface"
-        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:includeFontPadding="false"
+        android:textAppearance="@style/TextAppearance.Body1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nd_news_background_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/nd_author_tv"
         tools:text="@string/placeholder_text_paragraph" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

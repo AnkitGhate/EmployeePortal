@@ -27,6 +27,7 @@
         <item name="colorOnBackground">@color/dark_default_color_on_background</item>
         <item name="colorOnSurface">@color/dark_default_color_on_surface</item>
         <item name="android:fontFamily">@font/jostregular</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="fontFamily">@font/jostregular</item>
         <item name="colorError">@color/dark_default_color_error</item>
         <item name="colorOnError">@color/dark_default_color_on_error</item>
@@ -63,18 +64,28 @@
     </style>
 
     <style name="TextAppearance.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
         <item name="android:textSize">69sp</item>
     </style>
 
     <style name="TextAppearance.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="fontFamily">@font/jostlight</item>
+        <item name="android:fontFamily">@font/jostlight</item>
         <item name="android:textSize">55sp</item>
     </style>
 
     <style name="TextAppearance.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="fontFamily">@font/jostlight</item>
+        <item name="android:fontFamily">@font/jostlight</item>
         <item name="android:textSize">39sp</item>
     </style>
 
     <style name="TextAppearance.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="fontFamily">@font/jostlight</item>
+        <item name="android:fontFamily">@font/jostlight</item>
         <item name="android:textSize">28sp</item>
     </style>
 
@@ -84,6 +95,9 @@
     </style>
 
     <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/dark_default_color_on_surface</item>
+        <item name="fontFamily">@font/jostlight</item>
+        <item name="android:fontFamily">@font/jostlight</item>
         <item name="android:textSize">18sp</item>
     </style>
 
