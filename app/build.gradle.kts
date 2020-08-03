@@ -169,6 +169,9 @@ dependencies {
 
     // Logging
     implementation(Libs.TIMBER)
+
+    //JSOUP for HTML parsing
+    implementation(Libs.JSOUP)
 }
 
 ktlint {

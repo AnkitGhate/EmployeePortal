@@ -54,7 +54,7 @@ object Libs {
     //Docs : https://github.com/ismaeldivita/chip-navigation-bar
     const val CHIP_NAVIGATION = "com.ismaeldivita.chipnavigation:chip-navigation-bar:1.0.0"
     const val TIMBER = "com.jakewharton.timber:timber:4.7.1"
-
+    const val JSOUP = "org.jsoup:jsoup:1.12.1"
 }
 
 object Lifecycle {

@@ -19,6 +19,7 @@ package com.ankitgh.employeeportal.data
 import androidx.lifecycle.LiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
+import com.ankitgh.employeeportal.ui.article.ArticleModel
 import com.ankitgh.employeeportal.ui.feed.FeedPostModel
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
 import com.ankitgh.employeeportal.utils.Resource
@@ -45,4 +46,6 @@ interface MainRepository {
     fun getCurrentAuthUser(): Flow<FirebaseUser>
 
     fun fetchPosts(postList: ArrayList<FeedPostModel>): LiveData<Resource<PostSchema>>
+
+    fun fetchBlogPosts(): Flow<List<ArticleModel>>
 }

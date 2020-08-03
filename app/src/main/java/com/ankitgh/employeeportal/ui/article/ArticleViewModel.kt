@@ -17,8 +17,24 @@
 package com.ankitgh.employeeportal.ui.article
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.ankitgh.employeeportal.domain.GetBlogPostsUseCase
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class ArticleViewModel @ViewModelInject constructor() : ViewModel() {
-    // TODO: Implement the ViewModel
+class ArticleViewModel @ViewModelInject constructor(private val getBlogPostsUseCase: GetBlogPostsUseCase) : ViewModel() {
+
+    private val _blogs = MutableLiveData<List<ArticleModel>>()
+    val blogs: LiveData<List<ArticleModel>> = _blogs
+
+    init {
+        viewModelScope.launch {
+            getBlogPostsUseCase.fetchBlogs().collect {
+                _blogs.value = it
+            }
+        }
+    }
 }

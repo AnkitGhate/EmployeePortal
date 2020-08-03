@@ -55,7 +55,7 @@
 
     <TextView
         android:id="@+id/article_author"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_margin="10dp"
@@ -64,4 +64,5 @@
         android:textAppearance="@style/TextAppearance.Body1"
         android:textSize="12sp"
         tools:text="CNN" />
+
 </RelativeLayout>

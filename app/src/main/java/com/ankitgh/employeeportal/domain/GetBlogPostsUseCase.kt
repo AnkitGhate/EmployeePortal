@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.ankitgh.employeeportal.ui.article
+package com.ankitgh.employeeportal.domain
 
-data class ArticleModel(
-    val articleId: Int? = 0,
-    val articleTitle: String?,
-    val articleAuthor: String?,
-    val articleImageUrl: String?,
-    val articleMetaDescription: String? = ""
-)
+import com.ankitgh.employeeportal.data.MainRepository
+import javax.inject.Inject
+
+class GetBlogPostsUseCase @Inject constructor(private val mainRepository: MainRepository) {
+
+    suspend fun fetchBlogs() = mainRepository.fetchBlogPosts()
+
+}
