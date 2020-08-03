@@ -62,7 +62,7 @@ class SettingsFragment : Fragment() {
                 .into(profile_image)
         })
 
-        signout_textview.setOnClickListener {
+        settings_logout_button.setOnClickListener {
             firebaseAuth.signOut()
             //TODO : Fix crash on navigation
             val intent = Intent(activity, OnBoardingActivity::class.java)

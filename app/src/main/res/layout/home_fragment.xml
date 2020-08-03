@@ -46,9 +46,8 @@
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_color="@color/dark_default_color_on_secondary"
                 app:civ_border_width="1dp"
-                app:civ_circle_background_color="@color/dark_default_color_on_surface"
                 tools:src="@drawable/avatar_2" />
 
             <TextView
@@ -86,10 +85,10 @@
 
         <TextView
             android:id="@+id/home_organisation_news_title"
-            android:contentDescription="xyz"
             style="@style/TextAppearance.Overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="xyz"
             android:text="@string/cardtitle_organisation_news" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
@@ -140,21 +139,13 @@
         app:contentPadding="@dimen/padding_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_organisation_news_cardview">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/home_add_leaves_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="@string/cd_add_leaves_button"
-                android:elevation="4dp"
-                android:src="@mipmap/ic_add" />
 
             <TextView
                 android:id="@+id/home_leave_balance_title"
@@ -167,7 +158,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/home_add_leaves_button"
+                android:layout_below="@id/home_leave_balance_title"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
@@ -208,8 +199,16 @@
                     <include layout="@layout/floating_leaves_item" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
+            <!--            <ImageView-->
+            <!--                android:id="@+id/home_add_leaves_button"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:layout_marginEnd="1dp"-->
+            <!--                android:contentDescription="@string/cd_add_leaves_button"-->
+            <!--                android:elevation="4dp"-->
+            <!--                android:src="@mipmap/ic_add" />-->
         </RelativeLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout

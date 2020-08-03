@@ -36,7 +36,7 @@
             android:layout_height="36dp"
             android:layout_alignParentStart="true"
             android:src="@drawable/placeholder_avatar_1"
-            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_color="@color/dark_default_color_on_secondary"
             app:civ_border_width="1dp"
             app:civ_circle_background_color="@color/dark_default_color_on_surface"
             tools:src="@drawable/avatar_2" />

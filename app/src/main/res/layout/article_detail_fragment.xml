@@ -59,7 +59,7 @@
             android:layout_height="64dp"
             android:layout_marginTop="368dp"
             android:src="@drawable/avatar_2"
-            app:civ_border_color="@color/dark_default_color_surface"
+            app:civ_border_color="@color/dark_default_color_on_secondary"
             app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

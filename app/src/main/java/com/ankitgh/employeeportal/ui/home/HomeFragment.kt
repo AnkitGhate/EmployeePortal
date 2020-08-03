@@ -86,11 +86,11 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ViewCompat.setTransitionName(home_awh_cardview, Random.nextInt(1, 100).toString())
-        ViewCompat.setTransitionName(home_add_leaves_button, Random.nextInt(1, 100).toString())
+        ViewCompat.setTransitionName(home_leave_balance_cardview, Random.nextInt(1, 100).toString())
         navController = Navigation.findNavController(view)
         setupRecyclerView()
         home_awh_cardview.setOnClickListener(this)
-        home_add_leaves_button.setOnClickListener(this)
+        home_leave_balance_cardview.setOnClickListener(this)
     }
 
     private fun setupRecyclerView() {
@@ -159,9 +159,9 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickLi
 
     override fun onClick(view: View?) {
         when (view) {
-            home_add_leaves_button -> {
-                val extras = FragmentNavigatorExtras(((home_add_leaves_button to (ViewCompat.getTransitionName(home_add_leaves_button) as String))))
-                val bundleArgs = bundleOf("addleaves_shared_motion_element" to ViewCompat.getTransitionName(home_add_leaves_button) as String)
+            home_leave_balance_cardview -> {
+                val extras = FragmentNavigatorExtras(((home_leave_balance_cardview to (ViewCompat.getTransitionName(home_leave_balance_cardview) as String))))
+                val bundleArgs = bundleOf("addleaves_shared_motion_element" to ViewCompat.getTransitionName(home_leave_balance_cardview) as String)
                 navController.navigate(R.id.action_homeFragment_to_addLeaveFragment, bundleArgs, null, extras)
             }
             home_awh_cardview -> {
