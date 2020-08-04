@@ -96,6 +96,7 @@ object Androidx {
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
     const val ARCH_TESTING = "androidx.arch.core:core-testing:2.1.0"
     const val BIOMETRIC = "androidx.biometric:biometric:1.0.1"
+    const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.0-alpha05"
 }
 
 object Google {

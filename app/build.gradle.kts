@@ -172,6 +172,8 @@ dependencies {
 
     //JSOUP for HTML parsing
     implementation(Libs.JSOUP)
+
+    implementation(Androidx.RECYCLERVIEW)
 }
 
 ktlint {

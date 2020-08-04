@@ -16,8 +16,17 @@
 
 package com.ankitgh.employeeportal.ui.article.articleDetail
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.ankitgh.employeeportal.data.MainRepository
+import kotlinx.coroutines.flow.collect
 
-class ArticleDetailFragmetnViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class ArticleDetailFragmentViewModel @ViewModelInject constructor(private val mainRepository: MainRepository) : ViewModel() {
+
+    fun fetchArticle(url: String) = liveData {
+        mainRepository.fetchArticle(url).collect {
+            emit(it)
+        }
+    }
 }

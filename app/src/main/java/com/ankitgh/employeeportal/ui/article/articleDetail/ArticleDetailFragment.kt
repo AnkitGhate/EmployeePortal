@@ -17,43 +17,61 @@
 package com.ankitgh.employeeportal.ui.article.articleDetail
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ankitgh.employeeportal.R
+import com.ankitgh.employeeportal.utils.Status.LOADING
+import com.ankitgh.employeeportal.utils.Status.SUCCESS
 import com.google.android.material.transition.MaterialContainerTransform
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.article_detail_fragment.*
 
-class ArticleDetailFragment : Fragment() {
+@AndroidEntryPoint
+class ArticleDetailFragment : Fragment(R.layout.article_detail_fragment) {
 
     private lateinit var navController: NavController
-    private var sharedelement: String? = null
-    private lateinit var viewModel: ArticleDetailFragmetnViewModel
+    private var sharedMotionElement: String? = null
+    private var articleUrl: String? = null
+    private val viewModel: ArticleDetailFragmentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform()
         arguments?.let {
-            sharedelement = ArticleDetailFragmentArgs.fromBundle(it).sharedMotionElementArticledetail
+            sharedMotionElement = ArticleDetailFragmentArgs.fromBundle(it).sharedMotionElementArticledetail
+            articleUrl = ArticleDetailFragmentArgs.fromBundle(it).articledetailUrl.toString()
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.article_detail_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ViewCompat.setTransitionName(root_article_detail_fragment, sharedelement)
+        ViewCompat.setTransitionName(root_article_detail_fragment, sharedMotionElement)
         navController = Navigation.findNavController(view)
-        navBackButton.setOnClickListener {
+
+        viewModel.fetchArticle(articleUrl as String).observe(viewLifecycleOwner, Observer { articleResource ->
+            when (articleResource.status) {
+                SUCCESS -> {
+                    root_article_detail_fragment.isVisible = true
+                    articleResource.data.let {
+                        article_body_tv.text = it?.body
+                        article_author_tv.text = it?.author
+                        article_date_tv.text = it?.readingTime
+                    }
+
+                }
+                LOADING -> {
+                    article_detail_progressBar.isVisible = articleResource.isloading
+                }
+            }
+        })
+
+        article_backButton.setOnClickListener {
             navController.popBackStack(R.id.articleFragment, false)
         }
     }

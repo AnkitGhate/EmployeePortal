@@ -14,14 +14,6 @@
  * limitations under the License.
  */
 
-package com.ankitgh.employeeportal.ui.article
+package com.ankitgh.employeeportal.ui.article.articleDetail
 
-data class ArticleModel(
-    val articleId: Int = 0,
-    val articleTitle: String,
-    val articleAuthor: String,
-    val articleImageUrl: String,
-    val articleMetaDescription: String = "",
-    val readingTime: String = "",
-    val articleURL: String
-)
+data class ArticleDetail(val body: String, val readingTime: String, val author: String)

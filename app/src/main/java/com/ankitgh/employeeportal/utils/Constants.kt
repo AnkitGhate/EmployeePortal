@@ -21,3 +21,10 @@ object FirebaseConstants {
     const val POSTS_COLLECTION: String = "posts"
     const val CREATION_TIME: String = "creation_time"
 }
+
+object BlogConstants {
+    const val BASE_URL = "https://www.arunnathaniblog.com/category/all-2/"
+    const val POST_COL_MD_3 = "post col-md-3"
+
+
+}

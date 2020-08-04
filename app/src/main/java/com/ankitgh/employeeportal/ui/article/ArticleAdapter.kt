@@ -35,28 +35,45 @@ package com.ankitgh.employeeportal.ui.article
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
 import com.ankitgh.employeeportal.utils.inflate
-import com.bumptech.glide.Glide
+import com.ankitgh.employeeportal.utils.setImageFromGlide
 import kotlinx.android.synthetic.main.article_item.view.*
 import kotlin.random.Random
 
-class ArticleAdapter(private val articles: ArrayList<ArticleModel>, private val onItemClickListener: OnArticleClickListener) :
+class ArticleAdapter(private val onItemClickListener: OnArticleClickListener) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
-    private var articlesList: ArrayList<ArticleModel> = articles
+
+    private val diffItemCallback = object : DiffUtil.ItemCallback<ArticleModel>() {
+        override fun areItemsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+            return oldItem.articleTitle == newItem.articleTitle
+        }
+
+        override fun areContentsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+    private var differ: AsyncListDiffer<ArticleModel> = AsyncListDiffer(this, diffItemCallback)
+
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindPost(article: ArticleModel, onArticleClickListener: OnArticleClickListener) {
             ViewCompat.setTransitionName(itemView, Random.nextInt(1, 100).toString())
+
             itemView.article_title.text = article.articleTitle
-            Glide.with(itemView)
-                .load(article.articleImageUrl)
-                .placeholder(R.drawable.placeholder_background_2)
-                .into(itemView.article_background_image)
-            itemView.article_author.text = article.articleAuthor
+            itemView.article_desc.text = article.articleMetaDescription
+            itemView.article_author.text = article.articleAuthor.ifBlank { "UnKnown" }
+            if (article.articleImageUrl.isNotEmpty()) {
+                itemView.article_background_image.setImageFromGlide(itemView, article.articleImageUrl, R.color.cardBackGroundColor, itemView.article_background_image)
+            } else {
+                itemView.article_background_image.visibility = View.GONE
+            }
             itemView.root_article_item.setOnClickListener {
-                onArticleClickListener.onArticleClicked(view = itemView)
+                onArticleClickListener.onArticleClicked(view = itemView, articleURL = article.articleURL)
             }
         }
     }
@@ -67,21 +84,19 @@ class ArticleAdapter(private val articles: ArrayList<ArticleModel>, private val 
     }
 
     override fun getItemCount(): Int {
-        return articlesList.size
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val postItem = articlesList[position]
+        val postItem = differ.currentList[position]
         holder.bindPost(postItem, onItemClickListener)
     }
 
-    fun updateList(list: ArrayList<ArticleModel>) {
-        articlesList.clear()
-        articlesList = list
-        notifyDataSetChanged()
+    fun submitList(list: MutableList<ArticleModel>) {
+        differ.submitList(list)
     }
 }
 
 interface OnArticleClickListener {
-    fun onArticleClicked(view: View?)
+    fun onArticleClicked(view: View?, articleURL: String)
 }

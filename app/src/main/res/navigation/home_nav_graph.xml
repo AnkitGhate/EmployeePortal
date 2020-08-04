@@ -157,5 +157,8 @@
         <argument
             android:name="shared_motion_element_articledetail"
             app:argType="string" />
+        <argument
+            android:name="articledetail_url"
+            app:argType="string" />
     </fragment>
 </navigation>

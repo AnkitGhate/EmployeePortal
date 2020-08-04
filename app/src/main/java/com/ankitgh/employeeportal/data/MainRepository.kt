@@ -20,6 +20,7 @@ import androidx.lifecycle.LiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.ui.article.ArticleModel
+import com.ankitgh.employeeportal.ui.article.articleDetail.ArticleDetail
 import com.ankitgh.employeeportal.ui.feed.FeedPostModel
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
 import com.ankitgh.employeeportal.utils.Resource
@@ -47,5 +48,7 @@ interface MainRepository {
 
     fun fetchPosts(postList: ArrayList<FeedPostModel>): LiveData<Resource<PostSchema>>
 
-    fun fetchBlogPosts(): Flow<List<ArticleModel>>
+    fun fetchBlogPosts(): Flow<Resource<MutableList<ArticleModel>>>
+
+    fun fetchArticle(articleURL: String): Flow<Resource<ArticleDetail>>
 }

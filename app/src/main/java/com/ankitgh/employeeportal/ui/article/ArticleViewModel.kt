@@ -22,13 +22,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ankitgh.employeeportal.domain.GetBlogPostsUseCase
+import com.ankitgh.employeeportal.utils.Resource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ArticleViewModel @ViewModelInject constructor(private val getBlogPostsUseCase: GetBlogPostsUseCase) : ViewModel() {
 
-    private val _blogs = MutableLiveData<List<ArticleModel>>()
-    val blogs: LiveData<List<ArticleModel>> = _blogs
+    private val _blogs = MutableLiveData<Resource<MutableList<ArticleModel>>>()
+    val blogs: LiveData<Resource<MutableList<ArticleModel>>> = _blogs
 
     init {
         viewModelScope.launch {

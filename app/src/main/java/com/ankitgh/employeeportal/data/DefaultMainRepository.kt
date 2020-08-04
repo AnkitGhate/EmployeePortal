@@ -16,14 +16,17 @@
 
 package com.ankitgh.employeeportal.data
 
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
 import com.ankitgh.employeeportal.data.remote.firebase.FirebaseRemoteDataSource
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsRemoteDataSource
 import com.ankitgh.employeeportal.ui.article.ArticleModel
+import com.ankitgh.employeeportal.ui.article.articleDetail.ArticleDetail
 import com.ankitgh.employeeportal.ui.feed.FeedPostModel
 import com.ankitgh.employeeportal.ui.home.NewsArticleModel
+import com.ankitgh.employeeportal.utils.BlogConstants
 import com.ankitgh.employeeportal.utils.Resource
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -31,6 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import org.jsoup.Jsoup
+import timber.log.Timber
 import javax.inject.Inject
 
 class DefaultMainRepository @Inject constructor(
@@ -71,33 +75,65 @@ class DefaultMainRepository @Inject constructor(
         return firebaseRemoteDataSource.fetchPosts(postList)
     }
 
-    override fun fetchBlogPosts() = flow<List<ArticleModel>> {
-        val listOfArticles = ArrayList<ArticleModel>()
+    @WorkerThread
+    override fun fetchBlogPosts() = flow {
+        emit(Resource.loading(isloading = true))
+        val listOfArticles: MutableList<ArticleModel> = mutableListOf()
 
-        val articles = Jsoup.connect("https://www.arunnathaniblog.com/category/all-2/").get()
+        try {
+            val articles = Jsoup.connect(BlogConstants.BASE_URL).get()
 
-        val articleMetaData = articles.getElementsByClass("post col-md-3")
+            val articleMetaData = articles.getElementsByClass(BlogConstants.POST_COL_MD_3)
 
-        for (blogPosts in articleMetaData) {
-            val root = blogPosts.getElementsByClass("post col-md-3")
+            for (blogPosts in articleMetaData) {
+                val root = blogPosts.getElementsByClass("post col-md-3")
 
-            val title = root.first().getElementsByClass("article").first()
-                .getElementsByClass("title").first()
-                .select("a[href]").text()
+                val title = root.first().getElementsByClass("article").first()
+                    .getElementsByClass("title").first()
+                    .select("a[href]").text()
 
-            val metaDesc = root.first().getElementsByClass("post-description").text()
+                val metaDesc = root.first().getElementsByClass("post-description").text()
 
-            val date = root.first().getElementsByClass("article").first()
-                .getElementsByClass("entry-date pull-left")[0].select("span").text()
+                val date = root.first().getElementsByClass("article").first()
+                    .getElementsByClass("entry-date pull-left")[0].select("span").text()
 
-            val articleImage = root.first().getElementsByClass("post col-md-3").first()
-                .getElementsByClass("row post-image-container").select("a[href]").select("img").attr("src")
+                val articleImage = root.first().getElementsByClass("post col-md-3").first()
+                    .getElementsByClass("row post-image-container").select("a[href]").select("img").attr("src")
 
-            val readingTime = root.first().getElementsByClass("article").first()
-                .getElementsByClass("entry-date pull-left")[1].select("span").text()
+                val readingTime = root.first().getElementsByClass("article").first()
+                    .getElementsByClass("entry-date pull-left")[1].select("span").text()
 
-            listOfArticles.add(ArticleModel(0, title, "Arun Nathani", articleImage, metaDesc))
+                val articleURL = root.first().getElementsByClass("read-more").select("a").first().select("a[href]").attr("href")
+
+                listOfArticles.add(
+                    ArticleModel(
+                        0,
+                        articleTitle = title,
+                        articleAuthor = "Arun Nathani",
+                        articleImageUrl = articleImage,
+                        articleMetaDescription = metaDesc,
+                        readingTime = readingTime,
+                        articleURL = articleURL
+                    )
+                )
+            }
+            emit(Resource.loading(isloading = false))
+            emit(Resource.success(data = listOfArticles))
+        } catch (exception: Throwable) {
+            emit(Resource.loading(isloading = false))
+            emit(Resource.error(exception.message))
+            Timber.e(exception)
         }
-        emit(listOfArticles)
+    }.flowOn(Dispatchers.IO)
+
+
+    @WorkerThread
+    override fun fetchArticle(articleURL: String) = flow {
+        emit(Resource.loading(true))
+        val root = Jsoup.connect(articleURL).get()
+        val body = root.getElementsByClass("post-detail").first().getElementById("wpa_content").text()
+        val readingTime = root.getElementsByClass("post-detail").first().getElementsByClass("entry-standard entry-length col-xs-6 col-sm-3").select("span").text()
+
+        emit(Resource.success(ArticleDetail(readingTime = readingTime, body = body, author = "Arun Nathani")))
     }.flowOn(Dispatchers.IO)
 }

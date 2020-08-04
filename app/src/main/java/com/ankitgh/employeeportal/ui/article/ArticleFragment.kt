@@ -17,11 +17,10 @@
 package com.ankitgh.employeeportal.ui.article
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -29,58 +28,63 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ankitgh.employeeportal.R
+import com.ankitgh.employeeportal.utils.Status.*
+import com.ankitgh.employeeportal.utils.showSnackBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.Hold
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.article_fragment.*
 
 @AndroidEntryPoint
-class ArticleFragment : Fragment(), OnArticleClickListener {
+class ArticleFragment : Fragment(R.layout.article_fragment), OnArticleClickListener {
 
     private lateinit var navController: NavController
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private val viewModel: ArticleViewModel by viewModels()
 
-    private var articleList = ArrayList<ArticleModel>()
-    //private var articleList = placeholderListOfArticles()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exitTransition = Hold()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.article_fragment, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (savedInstanceState == null) {
-            initView(view)
+            initView()
         }
     }
 
-    private fun initView(view: View) {
-        viewModel.blogs.observe(viewLifecycleOwner, Observer {
-            articleList = it as ArrayList<ArticleModel>
-            articleAdapter.updateList(articleList)
-        })
-        navController = Navigation.findNavController(view)
+    private fun initView() {
+        observeArticles()
+        navController = Navigation.findNavController(requireView())
         linearLayoutManager = LinearLayoutManager(activity)
         article_recyclerview.layoutManager = linearLayoutManager
-        articleAdapter = ArticleAdapter(articleList, this)
+        articleAdapter = ArticleAdapter(this)
+        articleAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.ALLOW
         article_recyclerview.adapter = articleAdapter
     }
 
-    override fun onArticleClicked(view: View?) {
+    private fun observeArticles() {
+        viewModel.blogs.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                SUCCESS -> it.data?.let { list -> articleAdapter.submitList(list) }
+                ERROR -> showSnackBar(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
+                LOADING -> article_progressBar.isVisible = it.isloading
+            }
+        })
+    }
+
+    override fun onArticleClicked(view: View?, articleURL: String) {
         when (view?.id) {
             R.id.root_article_item -> {
                 val extras = FragmentNavigatorExtras(((view to (ViewCompat.getTransitionName(view) as String))))
-                var bundleArgs = bundleOf("shared_motion_element_articledetail" to ViewCompat.getTransitionName(view) as String)
+                var bundleArgs = bundleOf(
+                    "shared_motion_element_articledetail" to ViewCompat.getTransitionName(view) as String,
+                    "articledetail_url" to articleURL
+                )
                 navController.navigate(R.id.action_articleFragment_to_articleDetailFragment, bundleArgs, null, extras)
             }
         }

@@ -51,19 +51,19 @@ fun getPlaceHolderListOfContacts() = arrayListOf(
 )
 
 fun placeholderListOfArticles() = arrayListOf(
-    ArticleModel(1, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz"),
-    ArticleModel(2, "The Millionaire Guide On Company To Help You Get Rich", "Deepak Nathani", "xyz"),
-    ArticleModel(3, "The Millionaire Guide On Company To Help You Get Rich", "Jagat Pal Singh", "xyz"),
-    ArticleModel(4, "The Millionaire Guide On Company To Help You Get Rich", "Amit Gajwani", "xyz"),
-    ArticleModel(5, "The Millionaire Guide On Company To Help You Get Rich", "JaiKrishna K", "xyz"),
-    ArticleModel(6, "The Millionaire Guide On Company To Help You Get Rich", "Debasis Ray", "xyz"),
-    ArticleModel(7, "The Millionaire Guide On Company To Help You Get Rich", "Ashwin Parmar", "xyz"),
-    ArticleModel(8, "The Millionaire Guide On Company To Help You Get Rich", "Geetha Sham", "xyz"),
-    ArticleModel(9, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz"),
-    ArticleModel(10, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz"),
-    ArticleModel(11, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz"),
-    ArticleModel(12, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz"),
-    ArticleModel(13, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz")
+    ArticleModel(1, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(2, "The Millionaire Guide On Company To Help You Get Rich", "Deepak Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(3, "The Millionaire Guide On Company To Help You Get Rich", "Jagat Pal Singh", "xyz", articleURL = "www.google.com"),
+    ArticleModel(4, "The Millionaire Guide On Company To Help You Get Rich", "Amit Gajwani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(5, "The Millionaire Guide On Company To Help You Get Rich", "JaiKrishna K", "xyz", articleURL = "www.google.com"),
+    ArticleModel(6, "The Millionaire Guide On Company To Help You Get Rich", "Debasis Ray", "xyz", articleURL = "www.google.com"),
+    ArticleModel(7, "The Millionaire Guide On Company To Help You Get Rich", "Ashwin Parmar", "xyz", articleURL = "www.google.com"),
+    ArticleModel(8, "The Millionaire Guide On Company To Help You Get Rich", "Geetha Sham", "xyz", articleURL = "www.google.com"),
+    ArticleModel(9, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(10, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(11, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(12, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com"),
+    ArticleModel(13, "The Millionaire Guide On Company To Help You Get Rich", "Arun Nathani", "xyz", articleURL = "www.google.com")
 )
 
 // fun getPlaceHolderListofPosts() = arrayListOf(
