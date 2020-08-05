@@ -70,9 +70,16 @@ class ArticleFragment : Fragment(R.layout.article_fragment), OnArticleClickListe
     private fun observeArticles() {
         viewModel.blogs.observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                SUCCESS -> it.data?.let { list -> articleAdapter.submitList(list) }
+                SUCCESS -> {
+                    article_progressBar.animate().alpha(0f).withEndAction {
+                        it.data?.let { list ->
+                            articleAdapter.submitList(list)
+                            article_recyclerview.animate().alpha(1f)
+
+                        }
+                    }
+                }
                 ERROR -> showSnackBar(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
-                LOADING -> article_progressBar.isVisible = it.isloading
             }
         })
     }

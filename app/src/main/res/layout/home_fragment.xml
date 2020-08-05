@@ -120,9 +120,9 @@
             android:id="@+id/home_organisation_news_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="220dp"
+            android:alpha="0"
             android:layout_below="@id/home_organisation_news_title"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
             tools:itemCount="3"
             tools:listitem="@layout/organisation_new_item"
             tools:visibility="visible" />

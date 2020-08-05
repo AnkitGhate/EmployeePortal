@@ -90,6 +90,11 @@ dependencies {
     implementation(Androidx.NAVIGATION_UI_KTX)
     implementation(Androidx.BIOMETRIC)
 
+    //ROOM
+    implementation(Androidx.ROOM_RUNTIME)
+    kapt(Androidx.ROOM_COMPILER)
+    implementation(Androidx.ROOM_KTX)
+
     // LifeCycle
     implementation(Lifecycle.LIFECYCLE_EXTENSIONS)
     implementation(Lifecycle.LIFECYCLE_VIEWMODEL_KTX)
@@ -109,7 +114,7 @@ dependencies {
     implementation(Hilt.HILT_LIFECYCLE_VIEWMODEL)
     kapt(Hilt.HILT_ANDROID_COMPILER)
 
-    // Testing---begin---
+    // Testing
     testImplementation(Testing.JUNIT)
     testImplementation(Coroutines.TEST_KOTLINX_COROUTINES_TEST)
     androidTestImplementation(Testing.TEST_CORE)
@@ -121,6 +126,7 @@ dependencies {
     androidTestImplementation(Testing.TEST_GOOGLE_TRUTH)
     androidTestImplementation(Coroutines.TEST_KOTLINX_COROUTINES_TEST)
     testImplementation(Androidx.ARCH_TESTING)
+    testImplementation(Testing.TEST_ROOM)
 
     // Espresso dependencies
     androidTestImplementation(Testing.Espresso.ESPRESSO_CORE)
@@ -174,6 +180,11 @@ dependencies {
     implementation(Libs.JSOUP)
 
     implementation(Androidx.RECYCLERVIEW)
+
+    //Dropbox store for data caching
+    implementation(Libs.STORE)
+
+
 }
 
 ktlint {

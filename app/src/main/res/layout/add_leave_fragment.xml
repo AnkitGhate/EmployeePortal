@@ -17,10 +17,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addleaves_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
-    android:id="@+id/addleaves_root"
     android:padding="16dp"
     tools:context=".ui.home.addLeave.AddLeaveFragment">
 
@@ -87,8 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textAppearance="@style/TextAppearance.Overline"
             android:text="Available Leaves"
+            android:textAppearance="@style/TextAppearance.Overline"
             android:textColor="@color/colorAccent"
             android:textSize="16sp" />
 
@@ -102,65 +102,59 @@
 
             <TextView
                 android:id="@+id/plannedleavestv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
                 android:text="Planned Leaves"
-                android:textSize="15sp"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/unplannedleavestv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:justificationMode="inter_word"
                 android:text="Unplanned Leaves"
-                android:textSize="15sp"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/plannedleavestv" />
 
             <TextView
                 android:id="@+id/floatingleavestv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:justificationMode="inter_word"
                 android:text="Floating Leaves"
-                android:textSize="15sp"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/unplannedleavestv" />
 
             <TextView
                 android:id="@+id/plannedleavescounttv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintBottom_toBottomOf="@+id/plannedleavestv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/plannedleavestv" />
 
             <TextView
                 android:id="@+id/unplannedleavescounttv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintBottom_toBottomOf="@+id/unplannedleavestv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/unplannedleavestv" />
 
             <TextView
                 android:id="@+id/floatingleavescounttv"
-                android:textAppearance="@style/TextAppearance.LargeNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
+                android:textAppearance="@style/TextAppearance.Body1"
                 app:layout_constraintBottom_toBottomOf="@+id/floatingleavestv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/floatingleavestv" />

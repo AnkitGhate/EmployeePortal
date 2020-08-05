@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:lineHeight="24dp"
                 android:textAppearance="@style/TextAppearance.Subtitle1"
                 android:textStyle="bold"
                 tools:text="@string/placeholder_text_for_lists" />

@@ -16,7 +16,6 @@
 
 package com.ankitgh.employeeportal.data
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.ankitgh.employeeportal.data.model.firestoremodel.PostSchema
 import com.ankitgh.employeeportal.data.model.firestoremodel.UserSchema
@@ -42,16 +41,11 @@ class DefaultMainRepository @Inject constructor(
     private val firebaseRemoteDataSource: FirebaseRemoteDataSource
 ) : MainRepository {
 
-    override suspend fun getTopHeadlines(isConnectivityAvailable: Boolean): Resource<List<NewsArticleModel>> {
-        return if (isConnectivityAvailable) {
-            mainRemoteDataSource.getTopHeadlines()
-        } else {
-            TODO()
-            // newsLocalDataSource.getTopHeadlines()
-        }
+    override suspend fun fetchTopNewsHeadlines(isConnectivityAvailable: Boolean): Resource<List<NewsArticleModel>> {
+        return mainRemoteDataSource.getTopHeadlines()
     }
 
-    override suspend fun signInUser(email: String, password: String): Task<AuthResult> {
+    override suspend fun signIn(email: String, password: String): Task<AuthResult> {
         return firebaseRemoteDataSource.signInUserWithUserNameAndPassword(email, password)
     }
 
@@ -75,7 +69,6 @@ class DefaultMainRepository @Inject constructor(
         return firebaseRemoteDataSource.fetchPosts(postList)
     }
 
-    @WorkerThread
     override fun fetchBlogPosts() = flow {
         emit(Resource.loading(isloading = true))
         val listOfArticles: MutableList<ArticleModel> = mutableListOf()
@@ -127,13 +120,13 @@ class DefaultMainRepository @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-    @WorkerThread
-    override fun fetchArticle(articleURL: String) = flow {
+    override fun fetchArticleDetails(articleURL: String) = flow {
         emit(Resource.loading(true))
         val root = Jsoup.connect(articleURL).get()
         val body = root.getElementsByClass("post-detail").first().getElementById("wpa_content").text()
         val readingTime = root.getElementsByClass("post-detail").first().getElementsByClass("entry-standard entry-length col-xs-6 col-sm-3").select("span").text()
 
+        emit(Resource.loading(isloading = false))
         emit(Resource.success(ArticleDetail(readingTime = readingTime, body = body, author = "Arun Nathani")))
     }.flowOn(Dispatchers.IO)
 }

@@ -13,110 +13,111 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_article_detail_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/black_900"
     tools:context=".ui.article.articleDetail.ArticleDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/root_article_detail_fragment"
+    <ScrollView
         android:layout_width="match_parent"
+        android:id="@+id/content_container"
+        android:layout_height="match_parent"
+        android:alpha="0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/articledetail_hero_image"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:contentDescription="@string/cd_article_detail_hero_image"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder_background_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/article_backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/padding_8"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/cd_article_back_button"
+                android:padding="@dimen/padding_8"
+                android:paddingBottom="10dp"
+                android:tint="@color/dark_default_color_on_surface"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_action_arrow_back" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="368dp"
+                android:src="@drawable/avatar_2"
+                app:civ_border_color="@color/dark_default_color_on_secondary"
+                app:civ_border_width="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/article_author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.Caption"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                app:layout_constraintEnd_toStartOf="@+id/circleImageView"
+                app:layout_constraintTop_toBottomOf="@+id/articledetail_hero_image"
+                tools:text="Arun Nathani" />
+
+            <TextView
+                android:id="@+id/article_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@style/TextAppearance.Caption"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                app:layout_constraintTop_toBottomOf="@+id/articledetail_hero_image"
+                tools:text="@string/placeholder_date" />
+
+            <TextView
+                android:id="@+id/article_body_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:padding="@dimen/padding_8"
+                android:textAppearance="@style/TextAppearance.Body1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+                tools:text="@string/placeholder_text_paragraph" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/article_detail_progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black_900"
-        android:visibility="gone"
-        tools:visibility="visible">
-
-        <ImageView
-            android:id="@+id/articledetail_hero_image"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/placeholder_background_4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/article_backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="@dimen/padding_8"
-            android:background="@drawable/back_button_background"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:padding="@dimen/padding_8"
-            android:paddingBottom="10dp"
-            android:tint="@color/dark_default_color_on_surface"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_action_arrow_back" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="368dp"
-            android:src="@drawable/avatar_2"
-            app:civ_border_color="@color/dark_default_color_on_secondary"
-            app:civ_border_width="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/article_author_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/placeholder_name"
-            android:textAppearance="@style/TextAppearance.Caption"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
-            app:layout_constraintEnd_toStartOf="@+id/circleImageView"
-            app:layout_constraintTop_toBottomOf="@+id/articledetail_hero_image"
-            tools:text="Arun Nathani" />
-
-        <TextView
-            android:id="@+id/article_date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/placeholder_date"
-            android:textAppearance="@style/TextAppearance.Caption"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
-            app:layout_constraintTop_toBottomOf="@+id/articledetail_hero_image" />
-
-        <TextView
-            android:id="@+id/article_body_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:padding="@dimen/padding_8"
-            android:text="@string/placeholder_text_paragraph"
-            android:textAppearance="@style/TextAppearance.Body1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-            tools:text="@string/placeholder_text_paragraph" />
-
-        <ProgressBar
-            android:id="@+id/article_detail_progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        tools:visibility="visible" />
+</RelativeLayout>

@@ -34,9 +34,9 @@ import kotlinx.coroutines.flow.Flow
  */
 interface MainRepository {
 
-    suspend fun getTopHeadlines(isConnectivityAvailable: Boolean): Resource<List<NewsArticleModel>>
+    suspend fun fetchTopNewsHeadlines(isConnectivityAvailable: Boolean): Resource<List<NewsArticleModel>>
 
-    suspend fun signInUser(email: String, password: String): Task<AuthResult>
+    suspend fun signIn(email: String, password: String): Task<AuthResult>
 
     fun isUserAlreadyRegistered(): Boolean
 
@@ -50,5 +50,5 @@ interface MainRepository {
 
     fun fetchBlogPosts(): Flow<Resource<MutableList<ArticleModel>>>
 
-    fun fetchArticle(articleURL: String): Flow<Resource<ArticleDetail>>
+    fun fetchArticleDetails(articleURL: String): Flow<Resource<ArticleDetail>>
 }

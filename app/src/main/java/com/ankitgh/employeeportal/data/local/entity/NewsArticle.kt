@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package com.ankitgh.employeeportal.ui.article.articleDetail
+package com.ankitgh.employeeportal.data.local.entity
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.ankitgh.employeeportal.data.MainRepository
-import kotlinx.coroutines.flow.collect
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class ArticleDetailFragmentViewModel @ViewModelInject constructor(private val mainRepository: MainRepository) : ViewModel() {
-
-    fun fetchArticle(url: String) = liveData {
-        mainRepository.fetchArticleDetails(url).collect {
-            emit(it)
-        }
-    }
-}
+@Entity(tableName = "news_article_table")
+data class NewsArticle(
+    @PrimaryKey val id: Int,
+    val description: String?,
+    val publishedAt: String?,
+    val author: String?,
+    val sourceName : String?,
+    val title: String?,
+    val url: String?,
+    val urlToImage: String?,
+    val content: String?
+)

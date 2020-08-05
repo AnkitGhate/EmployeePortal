@@ -64,4 +64,6 @@ Aliquam erat volutpat. Mauris aliquet tempor convallis. Suspendisse magna quam, 
     <string name="menu_article">Article</string>
     <string name="menu_people">People</string>
     <string name="menu_settings">Settings</string>
+    <string name="cd_article_detail_hero_image">article_detail_hero_image</string>
+    <string name="cd_article_back_button">article_back_button</string>
 </resources>

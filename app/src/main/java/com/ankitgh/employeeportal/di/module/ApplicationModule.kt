@@ -16,8 +16,10 @@
 
 package com.ankitgh.employeeportal.di.module
 
+import android.app.Application
 import com.ankitgh.employeeportal.BuildConfig
 import com.ankitgh.employeeportal.data.MainRepository
+import com.ankitgh.employeeportal.data.local.LocalDatabase
 import com.ankitgh.employeeportal.data.remote.newsApi.NewsApiService
 import com.ankitgh.employeeportal.domain.FetchPostsUserCase
 import com.ankitgh.employeeportal.domain.GetTopHeadlinesUseCase
@@ -27,6 +29,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -60,6 +63,10 @@ class ApplicationModule {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideRoomDatabase(@ApplicationContext context: Application) = LocalDatabase.initLocalDb(context)
 
     @Provides
     @Singleton

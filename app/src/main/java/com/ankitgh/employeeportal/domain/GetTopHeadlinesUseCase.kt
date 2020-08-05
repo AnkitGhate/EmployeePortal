@@ -31,7 +31,7 @@ class GetTopHeadlinesUseCase @Inject constructor(
 
     suspend fun getTopHeadlines(isConnected: Boolean): Resource<List<NewsArticleModel>> {
         return withContext(dispatcher) {
-            return@withContext mainRepository.getTopHeadlines(isConnected)
+            return@withContext mainRepository.fetchTopNewsHeadlines(isConnected)
         }
     }
 }

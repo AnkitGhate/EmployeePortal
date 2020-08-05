@@ -96,11 +96,6 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickLi
     private fun setupRecyclerView() {
         linearLayoutManager = LinearLayoutManager(activity)
         home_organisation_news_recyclerview.layoutManager = linearLayoutManager
-//        val mDividerItemDecoration = DividerItemDecoration(
-//            home_organisation_news_recyclerview.context,
-//            linearLayoutManager.orientation
-//        )
-//        home_organisation_news_recyclerview.addItemDecoration(mDividerItemDecoration)
         newsAdapter = NewsAdapter(newsList, this)
         home_organisation_news_recyclerview.adapter = newsAdapter
     }
@@ -145,9 +140,10 @@ class HomeFragment : Fragment(), NewsAdapter.OnItemClickListener, View.OnClickLi
     }
 
     private fun updateUI(newsArticleList: List<NewsArticleModel>?) {
-        shimmer_recyclerview_placeholder.visibility = View.GONE
-        home_organisation_news_recyclerview.visibility = View.VISIBLE
-        newsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
+        shimmer_recyclerview_placeholder.animate().alpha(0f).withEndAction {
+            home_organisation_news_recyclerview.animate().alpha(1f)
+            newsAdapter.updateList(newsArticleList as ArrayList<NewsArticleModel>)
+        }
     }
 
     override fun onItemClicked(article1: View, article: NewsArticleModel) {

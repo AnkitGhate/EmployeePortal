@@ -18,9 +18,7 @@ package com.ankitgh.employeeportal.ui.home.addLeave
 
 import android.animation.Animator
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -36,13 +34,17 @@ import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
-class AddLeaveFragment : Fragment() {
+class AddLeaveFragment : Fragment(R.layout.add_leave_fragment) {
     private var sharedElement: String? = null
     private val viewModel: AddLeaveViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initMotionTransform()
+    }
+
+    private fun initMotionTransform() {
         sharedElementEnterTransition = MaterialContainerTransform().apply {
             setPathMotion(MaterialArcMotion())
         }
@@ -51,27 +53,32 @@ class AddLeaveFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.add_leave_fragment, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ViewCompat.setTransitionName(addleaves_root, sharedElement)
+
         navController = Navigation.findNavController(view)
+
         title_tv.text = getString(R.string.title_text_leavesfragment)
-        val date: Date = Calendar.getInstance().time
-        calenderview.setDate(date)
-        calenderview.setPreviousButtonImage(resources.getDrawable(R.drawable.ic_arrow_back, null))
-        calenderview.setForwardButtonImage(resources.getDrawable(R.drawable.ic_arrow_forward, null))
+
+        setupCalender()
+
+        observeForAddLeavesEvent()
 
         navBackButton.setOnClickListener {
             navController.popBackStack(R.id.homeFragment, false)
         }
+
+    }
+
+    private fun setupCalender() {
+        val date: Date = Calendar.getInstance().time
+        calenderview.setDate(date)
+        calenderview.setPreviousButtonImage(resources.getDrawable(R.drawable.ic_arrow_back, null))
+        calenderview.setForwardButtonImage(resources.getDrawable(R.drawable.ic_arrow_forward, null))
+    }
+
+    private fun observeForAddLeavesEvent() {
         add_leaves_button.setOnClickListener {
             val selectedDates: List<Calendar> = calenderview.selectedDates
             Timber.d(selectedDates.toString())

@@ -25,6 +25,7 @@ object Testing {
     const val TEST_EXT_TRUTH = "androidx.test.ext:truth:1.2.0"
     const val TEST_GOOGLE_TRUTH = "com.google.truth:truth:1.0.1"
     const val TEST_FRAGMENT = "androidx.fragment:fragment-testing:1.2.5"
+    const val TEST_ROOM = "androidx.room:room-testing:2.2.5"
 
     object Espresso {
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.2.0"
@@ -55,6 +56,7 @@ object Libs {
     const val CHIP_NAVIGATION = "com.ismaeldivita.chipnavigation:chip-navigation-bar:1.0.0"
     const val TIMBER = "com.jakewharton.timber:timber:4.7.1"
     const val JSOUP = "org.jsoup:jsoup:1.12.1"
+    const val STORE = "com.dropbox.mobile.store:store4:4.0.0-alpha06"
 }
 
 object Lifecycle {
@@ -83,7 +85,6 @@ object OkHttp {
 object Coroutines {
     const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
-
     const val TEST_KOTLINX_COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.1"
 }
 
@@ -95,9 +96,18 @@ object Androidx {
     const val NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:2.3.0-rc01"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
     const val ARCH_TESTING = "androidx.arch.core:core-testing:2.1.0"
-    const val BIOMETRIC = "androidx.biometric:biometric:1.0.1"
     const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.2.0-alpha05"
+
+    //BIOMETRIC
+    const val BIOMETRIC = "androidx.biometric:biometric:1.0.1"
+
+    //ROOM
+    const val ROOM_RUNTIME = "androidx.room:room-runtime:2.2.5"
+    const val ROOM_COMPILER =  "androidx.room:room-compiler:2.2.5"
+    const val ROOM_KTX= "androidx.room:room-ktx:2.2.5"
 }
+
+
 
 object Google {
     const val MATERIAL = "com.google.android.material:material:1.3.0-alpha02"

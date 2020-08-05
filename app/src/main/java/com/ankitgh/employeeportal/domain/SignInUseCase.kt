@@ -24,6 +24,6 @@ import javax.inject.Inject
 class SignInUseCase @Inject constructor(private val mainRepository: MainRepository) {
 
     suspend fun signInUserWithEmailAndPassword(email: String, password: String): Task<AuthResult> {
-        return mainRepository.signInUser(email, password)
+        return mainRepository.signIn(email, password)
     }
 }

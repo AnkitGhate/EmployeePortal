@@ -57,16 +57,20 @@ class ArticleDetailFragment : Fragment(R.layout.article_detail_fragment) {
         viewModel.fetchArticle(articleUrl as String).observe(viewLifecycleOwner, Observer { articleResource ->
             when (articleResource.status) {
                 SUCCESS -> {
-                    root_article_detail_fragment.isVisible = true
-                    articleResource.data.let {
-                        article_body_tv.text = it?.body
-                        article_author_tv.text = it?.author
-                        article_date_tv.text = it?.readingTime
-                    }
+                    article_detail_progressBar.animate().alpha(0f)
+                        .withEndAction {
+                            article_detail_progressBar.isVisible = false
+                            articleResource.data.let {
+                                article_body_tv.text = it?.body
+                                article_author_tv.text = it?.author
+                                article_date_tv.text = it?.readingTime
+                                content_container.animate().alpha(1f)
+                            }
 
+                        }
                 }
                 LOADING -> {
-                    article_detail_progressBar.isVisible = articleResource.isloading
+                    //article_detail_progressBar.isVisible = articleResource.isloading
                 }
             }
         })
